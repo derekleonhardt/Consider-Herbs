@@ -8,8 +8,13 @@ const NavBar = () => {
             {/* Logo */}
             <div className = "social-bar">
                 <Link className = "nav-title" to="/">
-                    <img className = "nav-logo" src={ "/logo192.png" } alt="React logo" />
+                    <img className = "nav-logo" src={ "/logos/considerHerbsLogo.png" } alt="React logo" />
                 </Link>
+                <div className = "social-logos">
+                    <img className = "social-image" src = {"/logos/facebookLogo.svg"}/>
+                    <img className = "social-image" src = {"/logos/instagramLogo.svg"}/>
+                    <img className = "social-image" src = {"/logos/emailLogo.svg"}/>
+                </div>
             </div>
             {/* Page Links */}
             <div className = "nav-items">

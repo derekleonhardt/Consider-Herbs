@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../../assets/logo.svg';
-import './Register.css';
+import './Remedy.css';
 
 const Register = () => {
     return (
