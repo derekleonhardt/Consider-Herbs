@@ -8,7 +8,7 @@ const NavBar = () => {
             {/* Logo */}
             <div className = "social-bar">
                 <Link className = "nav-title" to="/">
-                    <img className = "nav-logo" src={ "/logos/considerHerbsLogo.png" } alt="React logo" />
+                    <img className = "main-logo" src={ "/logos/considerHerbsLogo.png" } alt="React logo" />
                 </Link>
                 <div className = "social-logos">
                     <img className = "social-image" src = {"/logos/facebookLogo.svg"}/>
@@ -18,10 +18,19 @@ const NavBar = () => {
             </div>
             {/* Page Links */}
             <div className = "nav-items">
-                <Link className = "nav-link" to='/Home'>Browse Herbs</Link>
-                <Link className = "nav-link" to='/Remedy'>Find a Remedy</Link>
-                <Link className = "nav-link" to ='/Chat'>Chat With Others</Link>
-                <Link className = "nav-link" to ='/Book'>Book Consultation</Link>
+                <Link className = "nav-link" to='/Home'>
+                <img className = "nav-logo" src = {"/logos/browseLogo.svg"}></img>
+                Browse Herbs
+                </Link>
+                <Link className = "nav-link" to='/Remedy'>
+                <img className = "nav-logo" src = {"/logos/remedyLogo.svg"}></img>
+                Find a Remedy</Link>
+                <Link className = "nav-link" to ='/Chat'>
+                <img className = "nav-logo" src = {"/logos/chatLogo.svg"}></img>
+                Chat With Others</Link>
+                <Link className = "nav-link" to ='/Book'>
+                <img className = "nav-logo" src = {"/logos/bookLogo.svg"}></img>
+                Book Consultation</Link>
                 {/* <a className = "nav-link" target='_blank' rel="noopener noreferrer" href="https://reactjs.org/docs/getting-started.html">
                     React Docs
                 </a> */}

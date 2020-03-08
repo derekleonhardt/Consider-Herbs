@@ -6,7 +6,7 @@
     padding: 1%;
 }
 
-.nav-logo {
+.main-logo {
     display:flex;
     height: 50px;
     padding: 2%;
@@ -17,18 +17,29 @@
 } */
 .nav-items {
     display:flex;
+    justify-content: space-around;
 }
 
 .nav-link {
     background-color: #4F745A;
     color: black;
-    padding: 14px 25px;
+    padding: 14px;
     text-align: center;
     text-decoration: none;
+    flex-grow: 1;
+    color: white;
+    font-size: 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-
 .nav-link:hover {
     background-color: #08bd9a;
+}
+.nav-logo{
+    width: 50px;
+    align-self: center;
+    padding-bottom: 2px;
 }
 .social-bar{
     width: 100%;
