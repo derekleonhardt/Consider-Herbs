@@ -1,38 +1,60 @@
 .header {
-    background: #282c34;
+    background: #A0BAA7;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
     padding: 1%;
 }
 
-.nav-logo {
+.main-logo {
     display:flex;
     height: 50px;
-    width: 50px;
-    padding: 10%;
+    padding: 2%;
 }
 
-.nav-logo:hover {
+/* .nav-logo:hover {
 
-}
-
+} */
 .nav-items {
     display:flex;
-    margin-left: auto;
-    margin-right: 5%;
-    align-items: center;
+    justify-content: space-around;
 }
 
 .nav-link {
-    background-color: #09d3ac;
+    background-color: #4F745A;
     color: black;
-    padding: 14px 25px;
+    padding: 14px;
     text-align: center;
     text-decoration: none;
+    flex-grow: 1;
+    color: white;
+    font-size: 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-
 .nav-link:hover {
     background-color: #08bd9a;
 }
-
+.nav-logo{
+    width: 50px;
+    align-self: center;
+    padding-bottom: 2px;
+}
+.social-bar{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.social-logos{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+.social-image{
+    max-height: 40px;
+    max-width: 40px;
+    padding: 0 5px;
+    align-self: center;
+}
