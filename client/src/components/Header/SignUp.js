@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Form, Header } from 'semantic-ui-react'
 import './SignUp.css';
 
-const SignUp = () => {
+const SignUp = (props) => {
     return (
         <div className= "background">
             <div className = "box">

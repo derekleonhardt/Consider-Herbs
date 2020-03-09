@@ -4,8 +4,8 @@ const fs = require('fs');
 const { auth } = require("express-openid-connect");
 const config = require("./config/config.js");
 
-const key = fs.readFileSync('./localhost-key.pem');
-const cert = fs.readFileSync('./localhost.pem');
+const key = fs.readFileSync('./server/localhost-key.pem');
+const cert = fs.readFileSync('./server/localhost.pem');
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.send(req.isAuthenticated() ? "Logged in" : "Logged out");
 });
 
-https.createServer({key, cert}, app).listen('3000', () => {
-    console.log('Listening on https://localhost:3000');
+https.createServer({key, cert}, app).listen('5000', () => {
+    console.log('Listening on https://localhost:5000');
   });
   

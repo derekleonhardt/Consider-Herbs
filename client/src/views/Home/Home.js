@@ -3,7 +3,7 @@ import logo from '../../assets/logo.svg';
 import './Home.css';
 import SignUp from "../../components/Header/SignUp";
 
-function Home() {
+function Home(props) {
     return (
         <>
         <SignUp />
@@ -11,7 +11,7 @@ function Home() {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>
-                    Edit <code>src/App.js</code> and save to reload.
+                    Edit <code>{props.message}</code> and save to reload.
                 </p>
                 <a
                     className="App-link"
