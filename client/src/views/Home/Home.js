@@ -1,9 +1,12 @@
 import React from 'react';
 import logo from '../../assets/logo.svg';
 import './Home.css';
+import SignUp from "../../components/Header/SignUp";
 
 function Home() {
     return (
+        <>
+        <SignUp />
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
@@ -19,6 +22,7 @@ function Home() {
                 </a>
             </header>
         </div>
+        </>
     );
 }
 
