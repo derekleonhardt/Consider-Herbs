@@ -17,7 +17,10 @@ app.get("/", (req, res) => {
   res.send(req.isAuthenticated() ? "Logged in" : "Logged out");
 });
 
+app.get("/", (req,res) =>{
+
+});
+
 https.createServer({key, cert}, app).listen('3000', () => {
     console.log('Listening on https://localhost:3000');
-  });
-  
+});
