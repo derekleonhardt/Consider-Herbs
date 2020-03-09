@@ -8,6 +8,7 @@ const sqlite3 = require('sqlite3').verbose();
 
 const key = fs.readFileSync('./server/localhost-key.pem');
 const cert = fs.readFileSync('./server/localhost.pem');
+
 const app = express();
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
@@ -22,17 +23,7 @@ app.get("/check", (req, res) => {
   res.send(req.isAuthenticated() ? "true" : "false");
 });
 
-<<<<<<< Updated upstream
-app.get("/", (req,res) =>{
-
-});
-
-https.createServer({key, cert}, app).listen('3000', () => {
-    console.log('Listening on https://localhost:3000');
-=======
-//app.use('/api/data/', dbRouter);
 
 https.createServer({key, cert}, app).listen('5000', () => {
     console.log('Listening on https://localhost:5000');
->>>>>>> Stashed changes
 });

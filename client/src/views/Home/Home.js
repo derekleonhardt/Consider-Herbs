@@ -3,7 +3,7 @@ import logo from '../../assets/logo.svg';
 import './Home.css';
 import SignUp from "../../components/Header/SignUp";
 
-function Home() {
+function Home(props) {
     return (
         <>
         <SignUp />
