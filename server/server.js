@@ -1,7 +1,23 @@
-const express = require('./config/express.js')
- 
-// Use env port or default
-const port = process.env.PORT || 5000;
+const express = require('express');
+const https = require('https');
+const fs = require('fs');
+const { auth } = require("express-openid-connect");
+const config = require("./config/config.js");
 
-const app = express.init()
-app.listen(port, () => console.log(`Server now running on port ${port}!`));
+const key = fs.readFileSync('./localhost-key.pem');
+const cert = fs.readFileSync('./localhost.pem');
+
+const app = express();
+
+// auth router attaches /login, /logout, and /callback routes to the baseURL
+app.use(auth(config.auth0));
+
+// req.isAuthenticated is provided from the auth router
+app.get("/", (req, res) => {
+  res.send(req.isAuthenticated() ? "Logged in" : "Logged out");
+});
+
+https.createServer({key, cert}, app).listen('3000', () => {
+    console.log('Listening on https://localhost:3000');
+  });
+  
