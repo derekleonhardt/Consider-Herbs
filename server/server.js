@@ -6,8 +6,8 @@ const config = require("./config/config.js");
 // const sqlite3 = require('sqlite3').verbose();
 //const dbRouter = require('./routes/dbRouter.js')
 
-const key = fs.readFileSync('./server/localhost-key.pem');
-const cert = fs.readFileSync('./server/localhost.pem');
+// const key = fs.readFileSync('./server/localhost-key.pem');
+// const cert = fs.readFileSync('./server/localhost.pem');
 
 const app = express();
 
@@ -24,6 +24,6 @@ app.get("/check", (req, res) => {
 });
 
 
-https.createServer({key, cert}, app).listen('5000', () => {
+https.createServer(app).listen('5000', () => {
     console.log('Listening on https://localhost:5000');
 });
