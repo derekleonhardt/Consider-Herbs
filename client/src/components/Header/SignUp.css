@@ -9,7 +9,7 @@
     
     background-image: url("/logos/LoginBackground.jpg");
     background-size: 100%;
-
+    background-repeat: no-repeat;
 }
 .box{
     box-sizing:  border-box;
@@ -31,4 +31,5 @@
 }
 .box h1{
     color: white;
+    padding-bottom: 15%;
 }

@@ -3,7 +3,7 @@ const https = require('https');
 const fs = require('fs');
 const { auth } = require("express-openid-connect");
 const config = require("./config/config.js");
-const sqlite3 = require('sqlite3').verbose();
+// const sqlite3 = require('sqlite3').verbose();
 //const dbRouter = require('./routes/dbRouter.js')
 
 const key = fs.readFileSync('./server/localhost-key.pem');
