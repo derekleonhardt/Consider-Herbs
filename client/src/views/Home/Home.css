@@ -2,21 +2,27 @@ body {
     margin: 0;
 }
 
-.App {
-    text-align: center;
+.About {
     background: #A0BAA7;
 }
 
+.about-text {
+    position: absolute;
+    
+}
+
 .About-image {
+    position: absolute;
     opacity: .8;
+    
 }
 
 .Dee-image {
     position: absolute;
 }
 
-.About-info {
-    position: absolute;
+.info {
+    position: relative;
     left: 44.65%;
     right: 5.02%;
     top: 30.52%;
@@ -26,6 +32,7 @@ body {
     border: 5px solid #FFFFFF;
     box-sizing: border-box;
 }
+
 .App-header {
     background-color: #A0BAA7;
     min-height: 100vh;
@@ -41,6 +48,3 @@ body {
     color: #09d3ac;
 }
 
-.about-text {
-    position: absolute;
-}
