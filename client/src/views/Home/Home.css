@@ -7,11 +7,25 @@ body {
     background: #A0BAA7;
 }
 
-.App-logo {
+.About-image {
     opacity: .8;
-    
 }
 
+.Dee-image {
+    position: absolute;
+}
+
+.About-info {
+    position: absolute;
+    left: 44.65%;
+    right: 5.02%;
+    top: 30.52%;
+    bottom: 10.65%;
+
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    box-sizing: border-box;
+}
 .App-header {
     background-color: #A0BAA7;
     min-height: 100vh;
@@ -25,4 +39,8 @@ body {
 
 .App-link {
     color: #09d3ac;
+}
+
+.about-text {
+    position: absolute;
 }

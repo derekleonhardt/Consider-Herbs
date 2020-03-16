@@ -9,17 +9,14 @@ function Home() {
         <SignUp />
         <div className="App">
             <header className="App-header">
-                <img src="logos/aboutBackground.jpeg" className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
+                <img src="logos/aboutBackground.jpeg" className="About-image" />
+                <img src="logos/Dee.jpeg" className="Dee-image" />
+                
+                <p className="about-text">
+                    About
                 </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                </a>
+                <a className="About-info"></a>
+                
             </header>
         </div>
         </>
