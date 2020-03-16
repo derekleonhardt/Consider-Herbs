@@ -24,6 +24,6 @@ app.get("/check", (req, res) => {
 });
 
 
-https.createServer(app).listen('5000', () => {
+(app).listen(5000, () => {
     console.log('Listening on https://localhost:5000');
 });
