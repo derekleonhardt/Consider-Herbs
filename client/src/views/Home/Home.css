@@ -4,15 +4,16 @@ body {
 
 .App {
     text-align: center;
-    background: #282c34;
+    background: #A0BAA7;
 }
 
 .App-logo {
-    height: 40vmin;
+    opacity: .8;
+    
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: #A0BAA7;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
