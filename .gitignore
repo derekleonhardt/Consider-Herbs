@@ -1,7 +1,6 @@
 node_modules
 config.js
 .DS_Store
-server/config/config.js
-*/config.js
 localhost-key.pem
 localhost.pem
+.env
