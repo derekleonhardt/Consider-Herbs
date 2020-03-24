@@ -2,35 +2,40 @@ body {
     margin: 0;
 }
 
-.About {
+.about {
     background: #A0BAA7;
+    display: flex;
+    background-image: url(../../assets/aboutBackground.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2%;
 }
 
-.about-text {
-    position: absolute;
-    
+.title {
+    text-align: center;
+    border: white solid 5px;
+    width: 20%;
+    background-color: #C5DDE1;
+    margin-top: 5%;
 }
 
-.About-image {
-    position: absolute;
-    opacity: .8;
-    
+.dee {
+    width: 40%;
+    border: white solid 5px;
+    box-sizing: border-box;
 }
-
-.Dee-image {
-    position: absolute;
+.deeContent{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
-
 .info {
-    position: relative;
-    left: 44.65%;
-    right: 5.02%;
-    top: 30.52%;
-    bottom: 10.65%;
-
     background: #A0BAA7;
     border: 5px solid #FFFFFF;
     box-sizing: border-box;
+    width: 40%;
 }
 
 .App-header {
