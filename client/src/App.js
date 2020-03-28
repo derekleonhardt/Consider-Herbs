@@ -5,6 +5,7 @@ import NotFound from "./views/NotFound";
 import NavBar from "./components/Header/NavBar";
 import Remedy from './views/Remedy/Remedy.js';
 import { useAuth0 } from "./react-auth0-spa";
+import "./App.css"
 
 const App = () => {
   const { loading } = useAuth0();
