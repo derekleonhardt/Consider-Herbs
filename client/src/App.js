@@ -4,6 +4,7 @@ import Home from "./views/Home/Home";
 import NotFound from "./views/NotFound";
 import NavBar from "./components/Header/NavBar";
 import Remedy from './views/Remedy/Remedy.js';
+import Footer from "./components/Footer";
 import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
 
@@ -29,6 +30,7 @@ const App = () => {
         </Route>
         <Route component={NotFound}/>
       </Switch>
+      <Footer/>
     </div>
   );
 }
