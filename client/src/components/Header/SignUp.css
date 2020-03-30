@@ -1,6 +1,5 @@
 .background {
-    height: 500px;
-
+    height: 80vh;
     display: flex;
     flex-direction: row-reverse;
 
@@ -8,8 +7,9 @@
     padding: 5%;
     
     background-image: url("/logos/LoginBackground.jpg");
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
+    /* object-fit: cover; */
 }
 .box{
     box-sizing:  border-box;

@@ -1,0 +1,35 @@
+.footer{
+    background-color: #4F745A;
+    height: 25vh;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+}
+.contactInfo{
+    color: white;
+    margin: 0;
+    flex: 1;
+}
+.contactInfo > ul{
+    margin: 0;
+    list-style: none;
+    padding: 1%;
+    text-align: center;
+}
+.disclaimer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 1%;
+    font-size: .8em;
+    color: white;
+    text-align: center;
+}
+.ce-logo{
+    width: 40%;
+    margin-bottom: 2%;
+}
