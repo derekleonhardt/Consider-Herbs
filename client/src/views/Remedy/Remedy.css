@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+}
+
+.remedy {
+    background: #A0BAA7;
+    display: flex;
+    background-image: url(../../assets/remedy-background.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    align-items: center;
+    padding:2% 0 2% 0;
+}
+
+.remedyTitle {
+    background-color: #C5DDE1;
+    padding: 10px;
+    color: white;
+    border: white solid 5px;
+}
+
+.body {
+    width: 60%;
+    border: white solid 5px;
+    box-sizing: border-box;
+}
+
+.remedy{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.pain {
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    box-sizing: border-box;
+    width: 40%;
+    padding: 1%;
+    color: white;
+    text-align: center;
+    font-size: 1.7vw;
+    align-items: center;
+}
+.suggestions{
+    display: flex;
+    flex-flow: column;
+    padding: 1%;
+    align-items: center;
+    padding-bottom: 5%;
+    margin: 0;
+}
+.inspoTitle{
+    margin: auto;
+}
+.booking,.aboutTitle, .inspoTitle,.findHerbs{
+    font-family: inherit;
+    border: white solid 5px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+.booking,.findHerbs{
+    background-color: #4F745A;
+}
+.booking > a , .findHerbs > a{
+    color: white;
+    padding: 5%;
+}
+.herbGallery{
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+}
+.galleryImage{
+    max-width: 20vw;
+    margin-bottom: 5%;
+}
+.galleryItem{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 33%;
+}
+figcaption, .galleryTitle{
+    text-align: center;
+    color: white;
+}
