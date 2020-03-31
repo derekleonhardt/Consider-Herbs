@@ -3,7 +3,7 @@ const path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    exampleRouter = require('../routes/examples.server.routes');
+    dbRouter = require('../routes/dbRouter.js');
 
 module.exports.init = () => {
     /* 
@@ -22,11 +22,15 @@ module.exports.init = () => {
     // enable request logging for development debugging
     app.use(morgan('dev'));
 
+    app.use(bodyParser.urlencoded({
+        extended: true
+      }));
+
     // body parsing middleware
     app.use(bodyParser.json());
 
     // add a router
-    app.use('/api/example', exampleRouter);
+    app.use('/api/db/', dbRouter);
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
