@@ -11,7 +11,7 @@ import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
 
 const App = () => {
-  const [herbList, setHerbList] = useState([]);
+  const [herbList, setHerbList] = useState(['']);
 
   const { loading } = useAuth0();
 
