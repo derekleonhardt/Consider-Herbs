@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.6.4",
+    "moment": "^2.24.0",
     "react": "^16.13.0",
+    "react-big-calendar": "^0.24.1",
     "react-dom": "^16.13.0",
     "react-scripts": "^3.4.0",
     "semantic-ui-css": "^2.4.1",
