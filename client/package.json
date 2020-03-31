@@ -36,5 +36,5 @@
   "devDependencies": {
     "react-router-dom": "^5.1.2"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "https://consider-herbs-application.herokuapp.com"
 }
