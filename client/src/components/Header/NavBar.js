@@ -7,7 +7,7 @@ const NavBar = () => {
         <div className = "header">
             {/* Logo */}
             <div className = "social-bar">
-                <Link className = "nav-title" to="/">
+                <Link className = "nav-title" to="/Home">
                     <img className = "main-logo" src={ "/logos/considerHerbsLogo.png" } alt="React logo" />
                 </Link>
                 <div className = "social-logos">
@@ -18,7 +18,7 @@ const NavBar = () => {
             </div>
             {/* Page Links */}
             <div className = "nav-items">
-                <Link className = "nav-link" to='/Home'>
+                <Link className = "nav-link" to='/Browse'>
                 <img className = "nav-logo" src = {"/logos/browseLogo.svg"}></img>
                 Browse Herbs
                 </Link>

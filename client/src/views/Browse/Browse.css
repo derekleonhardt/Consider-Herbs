@@ -1,0 +1,35 @@
+.glossary{
+    background-image: url("./../../assets/glossaryBackground.png");
+    /* background-size: contain; */
+    min-height: 200vh;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-top: 2%;
+    font-family: "brawler" serif;
+}
+.glossaryTitle{
+    border: white 5px solid;
+    padding: 1%;
+    background-color: #A0BAA7;
+    font-style: inherit;
+    color: white;
+}
+.searchBar{
+    background-color: white;
+    width: 50%;
+    height: 6vh;
+    display: flex;
+    flex-flow: row;
+    padding: 1%;
+    align-items: center;
+}
+.searchBar >img {
+    max-height: 5.5vh;
+    margin-right: 1%;
+}
+.searchBar>input{
+    width: 100%;
+    border: none;
+    font-size: 1.5em;
+}
