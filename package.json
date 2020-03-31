@@ -2,7 +2,7 @@
   "name": "react_template_repo",
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha server/tests",
     "install-all": "concurrently \"npm install\" \"cd client && npm install\"",
@@ -10,7 +10,7 @@
     "server": "nodemon server/server.js",
     "dev": "concurrently \"nodemon server/server.js\" \"cd client && npm run start\"",
     "build": "cd client && npm build",
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "repository": {
@@ -30,7 +30,7 @@
     "mocha": "^6.2.1",
     "mongoose": "^5.7.1",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.10",
+    "nodemon": "^2.0.2",
     "should": "^13.2.3",
     "sqlite3": "^4.1.1",
     "supertest": "^4.0.2"
