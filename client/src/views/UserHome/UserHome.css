@@ -13,7 +13,7 @@
     color: white;
  }
 
-.sites {
+.sites, .products, .links{
     display: flex;
     background-repeat: no-repeat;
     flex-direction: row;
@@ -21,6 +21,9 @@
     padding:2% 0 2% 0;
     justify-content: space-evenly;
     
+}
+.product {
+    height: 190px;
 }
 .web {
     height: 400px;
