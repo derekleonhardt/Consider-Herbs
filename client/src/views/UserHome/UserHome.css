@@ -1,0 +1,27 @@
+.otherinspo {
+    background: #A0BAA7;  
+    background-image: url(../../assets/userbackground.jpeg);
+    background-size: cover;
+    
+}
+.welcome {
+    display: flex;
+    background-size: cover;
+    background-color: #C5DDE1;
+    justify-content: center;
+    padding: 10px;
+    color: white;
+ }
+
+.sites {
+    display: flex;
+    background-repeat: no-repeat;
+    flex-direction: row;
+    align-items: center;
+    padding:2% 0 2% 0;
+    justify-content: space-evenly;
+    
+}
+.web {
+    height: 400px;
+}

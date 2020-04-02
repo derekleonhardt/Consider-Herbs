@@ -8,6 +8,7 @@ import Admin from './views/Admin/Admin.js';
 import Book from './views/Book/Book.js'
 import Browse from "./views/Browse/Browse.js"
 import Footer from "./components/Footer";
+import UserHome from "./views/UserHome/UserHome.js";
 import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
 
@@ -31,6 +32,7 @@ const App = () => {
         />
         <Route exact path="/Register" component={Remedy} />
         <Route exact path="/Remedy" component={Remedy}/>
+        <Route exact path="/UserHome" component={UserHome}/>
 
         <Route exact path = "/Admin" component = {Admin}></Route>
         <Route exact path = "/Book" component = {Book}></Route>
