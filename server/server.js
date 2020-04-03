@@ -3,6 +3,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dbRouter = require('./routes/dbRouter.js');
 const app = express();
+const cors = require('cors');
+
+app.use(cors());
 
 app.use(bodyParser.urlencoded({
   extended: true

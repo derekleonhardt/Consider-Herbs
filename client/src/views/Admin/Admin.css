@@ -1,0 +1,11 @@
+.infoEdit{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-color: #A0BAA7;
+    padding: 1%;
+}
+input, select {
+    width: 30%;
+    border: none;
+}

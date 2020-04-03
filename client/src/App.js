@@ -32,7 +32,10 @@ const App = () => {
         <Route exact path="/Register" component={Remedy} />
         <Route exact path="/Remedy" component={Remedy}/>
 
-        <Route exact path = "/Admin" component = {Admin}></Route>
+        <Route path = "/Admin" render = {(props) => <Admin 
+        herbList = {herbList}
+        setHerbList = {setHerbList}
+        isAuthed = {true}/>}></Route>
         <Route exact path = "/Book" component = {Book}></Route>
 
         <Route path = "/Browse" render = {(props) => <Browse 
