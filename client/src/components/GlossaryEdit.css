@@ -1,0 +1,58 @@
+.infoEdit{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 1%;
+    height: 70%;
+}
+.infoEdit > input{
+    border: none;
+    padding: 1.5%;
+    width: 95%;
+    border-radius: 5%;
+    /* overflow: hidden; */
+}
+.infoEdit > input:nth-child(2){
+    height: max-content;
+}
+.entries, .entryInfo{
+    overflow: scroll;
+    overflow-x: hidden;
+    width: 95%;
+}
+.entries{
+    height: 30%;
+    margin: 2.5%;
+    border: white 3px solid;
+    border-radius: 3px;
+    padding-bottom: 5%;
+    color: white;
+    background-color: #A0BAA7;
+}
+.entryInfo{
+    padding: 1%;
+    margin: 2% 0;
+    border: white 3px solid;
+    border-radius: 3px;
+    height: 100%;
+}
+.editEntry{
+    padding-left: 2%;
+}
+.glossaryEdit{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    background-color: #4F745A;
+    height: 45vw;
+    max-height: 60vw;
+    width: 45vw;
+    border: 5px solid white;
+    margin: 5vw;
+    border-radius: 1em;
+}
+.submitEdit{
+    margin-top: 3%;
+}

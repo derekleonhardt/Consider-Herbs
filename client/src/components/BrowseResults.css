@@ -7,8 +7,14 @@
     width: 40%;
     margin: 1% 5%;
     background-color: #4F745A;
-    height: 20vw;
-    display: flex;
-    justify-content: center;
     padding: 1%;
+    color: white;
+    text-overflow: ellipsis;
+    border: white 5px solid;
+    border-radius: 3%;
+}
+.entry > p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
