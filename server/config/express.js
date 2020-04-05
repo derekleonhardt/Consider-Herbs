@@ -1,6 +1,5 @@
 const path = require('path'),
     express = require('express'),
-    mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     dbRouter = require('../routes/dbRouter.js');
