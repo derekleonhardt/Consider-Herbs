@@ -4,4 +4,4 @@ config.js
 localhost-key.pem
 localhost.pem
 .env
-*.db
+server/db/considerHerbDB.db
