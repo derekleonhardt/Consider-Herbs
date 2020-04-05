@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.6.4",
+    "cors": "^2.8.5",
     "moment": "^2.24.0",
     "react": "^16.13.0",
     "react-big-calendar": "^0.24.1",
