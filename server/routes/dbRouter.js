@@ -16,7 +16,10 @@ dbRouter.delete('ingredients/delete/:id/:name', db.deleteIngredient);
 
 // glossary
 dbRouter.get('/glossary/name/:name', db.readGlossary);
+dbRouter.get('/glossary/', db.listGlossary);
+dbRouter.get('/glossary/search/:query', db.searchGlossary);
 dbRouter.post('/glossary/insert', db.insertGlossary);
 dbRouter.delete('/glossary/delete/:name', db.deleteGlossary);
+dbRouter.delete('/glossary/delete/def/:def', db.deleteGlossaryDef);
 
 module.exports = dbRouter;

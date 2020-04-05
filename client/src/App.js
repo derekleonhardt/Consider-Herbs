@@ -11,6 +11,25 @@ import Footer from "./components/Footer";
 import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
 
+const defaultGlossary = (setResults) => {
+  fetch(`http://127.0.0.1:5000/api/db/glossary/`).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  setResults(data);
+          }))
+  });
+}
+const searchGlossary = (e, setResults) =>{
+  if (e.target.value.replace(/\s/g,'') != ''){
+      fetch(`http://127.0.0.1:5000/api/db/glossary/search/${e.target.value}`).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  setResults(data);
+              }))
+      });
+  }else defaultGlossary(setResults);
+}
+
 const App = () => {
   const [herbList, setHerbList] = useState(['']);
 
@@ -32,13 +51,16 @@ const App = () => {
         <Route exact path="/Register" component={Remedy} />
         <Route exact path="/Remedy" component={Remedy}/>
 
-        <Route exact path = "/Admin" component = {Admin}></Route>
+        <Route path = "/Admin" render = {(props) => <Admin
+        defaultGlossary = {defaultGlossary}
+        searchGlossary = {searchGlossary}
+        />}></Route>
         <Route exact path = "/Book" component = {Book}></Route>
 
-        <Route path = "/Browse" render = {(props) => <Browse 
-        herbList = {herbList}
-        setHerbList = {setHerbList}
-        isAuthed = {true}/>}></Route>
+        <Route path = "/Browse" render = {(props) => <Browse
+        searchGlossary = {searchGlossary}
+        defaultGlossary = {defaultGlossary}
+        />}></Route>
         <Route exact path="/">
           <Redirect to="/Home" />
         </Route>
