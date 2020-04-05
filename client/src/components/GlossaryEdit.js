@@ -20,26 +20,39 @@ const GlossaryEdit = (props) => {
         );
     });
     ///////function to delete elements from glossary  /////////
-    const submitDelete = async (formContents) => {
-        // Default options are marked with *
+    const submitDelete = async (formContents, display = true) => {
+        if(!formContents){
+            setMessageStatus("Please pick an entry to delete");
+            return;
+        }
         const response = await fetch(`http://127.0.0.1:5000/api/db/glossary/delete/${formContents.Title}`, {
           method: 'DELETE'
         });
         var res = (await response.json());
-        console.log(res);
         if(res.success){
-            setMessageStatus("Entry has been deleted");
+            if(display)
+                setMessageStatus("Entry has been deleted");
             setEntryInfo(null);
         }
         else 
+        if(display) 
             setMessageStatus("Error: Entry has not been deleted");
         props.defaultGlossary(setResults);
     }
     /////// function to add/ edit elements in glossary  ///////
-    const submitEdit = async (formContents, typeEdit) => {
-        console.log(formContents);
+    const submitEdit = async (formContents) => {
+        if(!entryInfo && typeEdit == "Edit"){
+            setMessageStatus("Please pick an entry to edit");
+            return;
+        }
+        var updatedContents = formContents;
         if(typeEdit == "Edit"){
-    
+            updatedContents = {
+                title: formContents.title.replace(/\s/g,'') != '' ? formContents.title : entryInfo.Title,
+                definition: formContents.definition.replace(/\s/g,'') != '' ? formContents.definition : entryInfo.Definition,    
+                usage: formContents.usage.replace(/\s/g,'') != '' ? formContents.usage : entryInfo.Usage
+            };
+            await submitDelete(entryInfo, false);
         }
         const response = await fetch(`http://127.0.0.1:5000/api/db/glossary/insert`,
         {
@@ -48,15 +61,15 @@ const GlossaryEdit = (props) => {
             'Content-Type': 'application/json'
         },
         referrerPolicy: 'no-referrer', // no-referrer, *client
-        body: JSON.stringify(formContents) // body data type must match "Content-Type" header
+        body: JSON.stringify(updatedContents) // body data type must match "Content-Type" header
         });
         var res = (await response.json());
-        console.log(res);
-        if(res.success)
-            setMessageStatus("Entry has been added");
+        if(res.success){
+            typeEdit == "Add" ? setMessageStatus("Entry has been added") : setMessageStatus("Entry has been edited");
+        }
         else 
             setMessageStatus("Error: Entry has not been added");
-            props.defaultGlossary(setResults);
+        props.defaultGlossary(setResults);
     }
     
     ///// Populating the glossary list with items
