@@ -264,7 +264,7 @@ const deleteGlossaryDef = async (req, res) => {
       }
   });
 
-  db.run(`delete from glossary where Usage = ?`, [req.params.def], function(err) {
+  db.run(`delete from glossary where Definition = ?`, [req.params.def], function(err) {
     if (err) {
       res.json({error:"error while processing data.", "message":err});
       return;
