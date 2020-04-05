@@ -141,6 +141,23 @@ const insertRecipe = async (req, res) => {
     db.close();
 };
 
+const updateRecipe = async (req, res) => {
+  const db = new sqlite3.Database(dbPath, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`update recipe set Recname=?, Ailment=?, BodyPart=?, Description=? where Id=?`, [req.body.name, req.body.ailment, req.body.bodyPart, req.body.description, req.body.Id], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    res.json({success:"successfully inserted data."});
+  });
+  db.close();
+};
+
 const deleteRecipe = async (req, res) => {
     const db = new sqlite3.Database(dbPath, (err) => {
         if (err) {
@@ -198,6 +215,23 @@ const insertGlossary = async (req, res) => {
     db.close();
 };
 
+const updateGlossary = async (req, res) => {
+  const db = new sqlite3.Database(dbPath, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`update glossary set Title = ?, Definition =?, Usage=? where Id=?`, [req.body.name, req.body.definition, req.body.usage, req.body.Id], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    res.json({success:"successfully inserted data."});
+  });
+  db.close();
+};
+
 const deleteGlossary = async (req, res) => {
     const db = new sqlite3.Database(dbPath, (err) => {
         if (err) {
@@ -249,4 +283,4 @@ const deleteIngredient = async (req, res) => {
     db.close();
 };
 
-module.exports = {readRecipe, readRecipeByID, listRecipe, searchRecipe, insertRecipe, deleteRecipe, readGlossary, insertGlossary, deleteGlossary, addIngredient, deleteIngredient};
+module.exports = {readRecipe, readRecipeByID, listRecipe, searchRecipe, insertRecipe, updateRecipe, deleteRecipe, readGlossary, updateGlossary, insertGlossary, deleteGlossary, addIngredient, deleteIngredient};
