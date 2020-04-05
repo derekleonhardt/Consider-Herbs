@@ -11,9 +11,15 @@ const NavBar = () => {
                     <img className = "main-logo" src={ "/logos/considerHerbsLogo.png" } alt="React logo" />
                 </Link>
                 <div className = "social-logos">
-                    <img className = "social-image" src = {"/logos/facebookLogo.svg"}/>
-                    <img className = "social-image" src = {"/logos/instagramLogo.svg"}/>
-                    <img className = "social-image" src = {"/logos/emailLogo.svg"}/>
+                    <a className = "social-link" href={'https://www.facebook.com/Consider-Herbs-276933896476422/'}>
+                        <img className = "social-image" src={"/logos/facebookLogo.svg"}/>
+                    </a>
+                    <a className = "social-link" href={'https://www.instagram.com/consider.herbs/'}>
+                        <img className = "social-image" src = {"/logos/instagramLogo.svg"}/>   
+                    </a>
+                    <a className = "social-link" href={'mailto:dee@considerherbs.com'}>
+                        <img className = "social-image" src = {"/logos/emailLogo.svg"}/>
+                    </a>
                 </div>
             </div>
             {/* Page Links */}

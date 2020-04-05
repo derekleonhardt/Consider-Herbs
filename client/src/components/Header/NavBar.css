@@ -52,6 +52,13 @@
     display: flex;
     justify-content: flex-end;
 }
+.social-link{
+    
+    padding: 0 5px;
+    height: 20px;
+    width: 40px;
+
+}
 .social-image{
     max-height: 40px;
     max-width: 40px;
