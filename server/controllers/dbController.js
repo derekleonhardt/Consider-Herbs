@@ -231,7 +231,7 @@ const insertGlossary = async (req, res) => {
         }
     });
 
-    db.run(`INSERT INTO glossary(Title, Definition, Usage) VALUES(?,?,?)`, [req.body.name, req.body.definition, req.body.usage], function(err) {
+    db.run(`INSERT INTO glossary(Title, Definition, Usage) VALUES(?,?,?)`, [req.body.title, req.body.definition, req.body.usage], function(err) {
       if (err) {
         res.json({error:"error while processing data.", "message":err});
         return;
@@ -256,6 +256,22 @@ const deleteGlossary = async (req, res) => {
       res.json({success:"successfully deleted data."});
     });
     db.close();
+};
+const deleteGlossaryDef = async (req, res) => {
+  const db = new sqlite3.Database(dbPath, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`delete from glossary where Definition = ?`, [req.params.def], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    res.json({success:"successfully deleted data."});
+  });
+  db.close();
 };
 
 const addIngredient = async (req, res) => {
@@ -292,4 +308,4 @@ const deleteIngredient = async (req, res) => {
     db.close();
 };
 
-module.exports = {readRecipe, readRecipeByID, listRecipe, searchRecipe, insertRecipe, deleteRecipe, readGlossary, listGlossary, insertGlossary, searchGlossary, deleteGlossary, addIngredient, deleteIngredient};
+module.exports = {readRecipe, readRecipeByID, listRecipe, searchRecipe, insertRecipe, deleteRecipe, readGlossary, listGlossary, insertGlossary, searchGlossary, deleteGlossary, deleteGlossaryDef, addIngredient, deleteIngredient};

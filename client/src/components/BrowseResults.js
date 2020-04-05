@@ -2,7 +2,9 @@ import React from "react";
 import "./BrowseResults.css";
 
 const BrowseResults = (props) => {
-    var temp = props.results != undefined ? props.results : [];
+    var temp = props.results != undefined ? 
+    props.results.sort((a, b) => (a.Title.toLowerCase() > b.Title.toLowerCase()) ? 1 : -1) 
+    : [];
     const entries = temp.map((result, index) =>{
         return(
             <div key = {index} className = "entry">

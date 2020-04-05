@@ -4,7 +4,6 @@ import "./Browse.css"
 
 const Browse = (props) => {
   const[results, setResults] = useState([]);
-
     if(results.length == 0) props.defaultGlossary(setResults);
     return(
         <div className = "glossary">

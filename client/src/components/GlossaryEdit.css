@@ -1,16 +1,23 @@
+.glossaryTitle{
+    margin-top: 50%;
+}
+.typeEdit{
+    margin: 2%;
+    width: 95%;
+}
 .infoEdit{
     display: flex;
     flex-flow: column;
+    justify-content: center;
     align-items: center;
     padding: 1%;
-    height: 70%;
+    max-height: 70%;
+    width: 100%;
 }
 .infoEdit > input{
     border: none;
     padding: 1.5%;
     width: 95%;
-    border-radius: 5%;
-    /* overflow: hidden; */
 }
 .infoEdit > input:nth-child(2){
     height: max-content;
@@ -26,7 +33,6 @@
     border: white 3px solid;
     border-radius: 3px;
     padding-bottom: 5%;
-    color: white;
     background-color: #A0BAA7;
 }
 .entryInfo{
@@ -34,19 +40,20 @@
     margin: 2% 0;
     border: white 3px solid;
     border-radius: 3px;
+    background-color: #A0BAA7;
     height: 100%;
 }
 .editEntry{
     padding-left: 2%;
 }
 .glossaryEdit{
+    color: white;
     display: flex;
     flex-flow: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     overflow: hidden;
     background-color: #4F745A;
-    height: 45vw;
     max-height: 60vw;
     width: 45vw;
     border: 5px solid white;
