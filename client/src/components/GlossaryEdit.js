@@ -119,16 +119,16 @@ const GlossaryEdit = (props) => {
                             usage: formContents.usage
                         })}/>
                         <label>New Definition</label>
-                        <input type = "text" placeholder = "Usage" onChange = {e => setFormContents({
-                            title: formContents.title,
-                            definition: formContents.definition,
-                            usage: e.target.value
-                        })}/>
-                        <label>New Usage</label>
                         <input type = "text" placeholder = "Definition" onChange = {e => setFormContents({
                             title: formContents.title,
                             definition: e.target.value,
                             usage: formContents.usage
+                        })}/>
+                        <label>New Usage</label>
+                        <input type = "text" placeholder = "Usage" onChange = {e => setFormContents({
+                            title: formContents.title,
+                            definition: formContents.definition,
+                            usage: e.target.value
                         })}/>
                         <button onClick = {e => {
                             e.preventDefault();

@@ -342,4 +342,4 @@ const deleteIngredient = async (req, res) => {
     db.close();
 };
 
-module.exports = {readRecipe, readRecipeByID, listRecipe, searchRecipe, insertRecipe, updateRecipe, deleteRecipe, listGlossary, readGlossary, updateGlossary, insertGlossary, deleteGlossary, deleteGlossaryDef, addIngredient, deleteIngredient};
+module.exports = {readRecipe, readRecipeByID, listRecipe, searchRecipe, insertRecipe, updateRecipe, deleteRecipe, listGlossary, readGlossary, updateGlossary, insertGlossary, searchGlossary, deleteGlossary, deleteGlossaryDef, addIngredient, deleteIngredient};
