@@ -222,7 +222,7 @@ const updateGlossary = async (req, res) => {
       }
   });
 
-  db.run(`update glossary set Title = ?, Definition =?, Usage=? where Id=?`, [req.body.name, req.body.definition, req.body.usage, req.body.Id], function(err) {
+  db.run(`update glossary set Definition =?, Usage=? where Title=?`, [req.body.definition, req.body.usage, req.body.name], function(err) {
     if (err) {
       res.json({error:"error while processing data.", "message":err});
       return;
