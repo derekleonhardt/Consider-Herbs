@@ -32,9 +32,7 @@ const searchGlossary = (e, setResults) =>{
 }
 
 const App = () => {
-  const [herbList, setHerbList] = useState(['']);
-
-  const { loading } = useAuth0();
+  const { loading, user, isAuthenticated } = useAuth0();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -43,7 +41,7 @@ const App = () => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar isAuthenticated = {isAuthenticated}/>
       <Switch>
         <Route
         exact path = "/Home" 

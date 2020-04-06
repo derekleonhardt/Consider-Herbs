@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form, Header } from 'semantic-ui-react';
 import Auth0 from "../auth0.js";
 import "./SignUp.css";
 
