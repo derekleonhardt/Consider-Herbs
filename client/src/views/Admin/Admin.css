@@ -1,0 +1,7 @@
+.admin{
+    background-color: #A0BAA7;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}

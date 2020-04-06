@@ -1,6 +1,5 @@
 const path = require('path'),
     express = require('express'),
-    mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     dbRouter = require('../routes/dbRouter.js');
@@ -10,11 +9,6 @@ module.exports.init = () => {
         connect to database
         - reference README for db uri
     */
-    mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
-        useNewUrlParser: true
-    });
-    mongoose.set('useCreateIndex', true);
-    mongoose.set('useFindAndModify', false);
 
     // initialize app
     const app = express();

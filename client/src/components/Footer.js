@@ -16,7 +16,7 @@ const Footer = () => {
                         Phone: 123 420 6969
                     </li>
                     <li>
-                        Facebook:
+                        Facebook: Consider Herbs
                     </li>
                     <li>
                         Instagram: consider.herbs

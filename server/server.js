@@ -1,6 +1,26 @@
+//const path = require('path');
 const express = require('./config/express.js');
+//const bodyParser = require('body-parser');
+//const dbRouter = require('./routes/dbRouter.js');
 
-const port = process.env.PORT || 5000;
 const app = express.init();
+const cors = require('cors');
 
-app.listen(port, () => console.log(`App now listening on port 5000`));
+app.use(cors());
+
+
+
+/*app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+//app.use(bodyParser.json());
+
+//app.use('/api/db/', dbRouter);
+
+/*app.get("*", (req, res) => {
+  let url = path.join(__dirname, '../client/build', 'index.html');
+  res.sendFile(url);
+});*/
+
+app.listen(process.env.PORT || 5000, () => console.log(`App now listening on port 5000`));

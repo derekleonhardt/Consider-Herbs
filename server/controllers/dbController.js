@@ -141,6 +141,23 @@ const insertRecipe = async (req, res) => {
     db.close();
 };
 
+const updateRecipe = async (req, res) => {
+  const db = new sqlite3.Database(dbPath, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`update recipe set Recname=?, Ailment=?, BodyPart=?, Description=? where Id=?`, [req.body.name, req.body.ailment, req.body.bodyPart, req.body.description, req.body.Id], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    res.json({success:"successfully inserted data."});
+  });
+  db.close();
+};
+
 const deleteRecipe = async (req, res) => {
     const db = new sqlite3.Database(dbPath, (err) => {
         if (err) {
@@ -165,7 +182,7 @@ const readGlossary = async (req, res) => {
     }
     });
     db.serialize(() => {
-        db.get(`SELECT * FROM glossary where Title=?`, [req.params.name], (err, row) => {
+        db.get(`SELECT * FROM glossary where Title=? COLLATE NOCASE`, [req.params.name], (err, row) => {
           if (err) {
             res.json({error:"error while processing data.", "message":err});
           }
@@ -180,7 +197,50 @@ const readGlossary = async (req, res) => {
         console.log('Close the database connection.');
     });
 };
-
+const listGlossary = async (req, res) => {
+  const db = new sqlite3.Database(dbPath, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+      });
+      db.serialize(() => {
+          db.all(`SELECT * FROM glossary`, (err, row) => {
+            if (err) {
+              res.json({error:"error while processing data.", "message":err});
+            }
+              res.json({data: row});
+          });
+        });
+         
+      db.close((err) => {
+          if (err) {
+            console.error(err.message);
+          }
+          console.log('Close the database connection.');
+      });
+};
+const searchGlossary = async (req, res) => {
+  const db = new sqlite3.Database(dbPath, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+      });
+      db.serialize(() => {
+          db.all(`SELECT * FROM glossary where Title like ?`, ["%"+req.params.query+"%"], (err, row) => {
+            if (err) {
+              res.json({error:"error while processing data.", "message":err});
+            }
+              res.json({data: row});
+          });
+        });
+         
+      db.close((err) => {
+          if (err) {
+            console.error(err.message);
+          }
+          console.log('Close the database connection.');
+      });
+};
 const insertGlossary = async (req, res) => {
     const db = new sqlite3.Database(dbPath, (err) => {
         if (err) {
@@ -188,7 +248,7 @@ const insertGlossary = async (req, res) => {
         }
     });
 
-    db.run(`INSERT INTO glossary(Title, Definition, Usage) VALUES(?,?,?)`, [req.body.name, req.body.definition, req.body.usage], function(err) {
+    db.run(`INSERT INTO glossary(Title, Definition, Usage) VALUES(?,?,?)`, [req.body.title, req.body.definition, req.body.usage], function(err) {
       if (err) {
         res.json({error:"error while processing data.", "message":err});
         return;
@@ -196,6 +256,23 @@ const insertGlossary = async (req, res) => {
       res.json({success:"successfully inserted data."});
     });
     db.close();
+};
+
+const updateGlossary = async (req, res) => {
+  const db = new sqlite3.Database(dbPath, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`update glossary set Definition =?, Usage=? where Title=?`, [req.body.definition, req.body.usage, req.body.name], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    res.json({success:"successfully inserted data."});
+  });
+  db.close();
 };
 
 const deleteGlossary = async (req, res) => {
@@ -213,6 +290,22 @@ const deleteGlossary = async (req, res) => {
       res.json({success:"successfully deleted data."});
     });
     db.close();
+};
+const deleteGlossaryDef = async (req, res) => {
+  const db = new sqlite3.Database(dbPath, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`delete from glossary where Definition = ?`, [req.params.def], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    res.json({success:"successfully deleted data."});
+  });
+  db.close();
 };
 
 const addIngredient = async (req, res) => {
@@ -249,4 +342,4 @@ const deleteIngredient = async (req, res) => {
     db.close();
 };
 
-module.exports = {readRecipe, readRecipeByID, listRecipe, searchRecipe, insertRecipe, deleteRecipe, readGlossary, insertGlossary, deleteGlossary, addIngredient, deleteIngredient};
+module.exports = {readRecipe, readRecipeByID, listRecipe, searchRecipe, insertRecipe, updateRecipe, deleteRecipe, listGlossary, readGlossary, updateGlossary, insertGlossary, searchGlossary, deleteGlossary, deleteGlossaryDef, addIngredient, deleteIngredient};
