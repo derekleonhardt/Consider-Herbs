@@ -47,15 +47,13 @@
 .products {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 .product {
     height: 190px;
-    justify-content: center;
-    align-items: center;
-    padding: 2%;
-    justify-content: space-evenly;
-   
-    
+    padding: 2%;  
+
 }
 
 .trying{

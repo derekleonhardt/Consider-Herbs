@@ -43,13 +43,16 @@ const App = () => {
     <div>
       <NavBar isAuthenticated = {isAuthenticated}/>
       <Switch>
-        <Route
-        exact path = "/Home" 
-        component = {Home}/>}
-        />
+        {!isAuthenticated &&
+          <Route exact path = "/Home" component = {Home}/>
+        }
+        { isAuthenticated &&
+          <Route path = "/Home" render = {(props) => <UserHome
+          user = {user}
+          />}></Route>
+        }
         <Route exact path="/Register" component={Remedy} />
         <Route exact path="/Remedy" component={Remedy}/>
-        <Route exact path="/UserHome" component={UserHome}/>
 
         <Route path = "/Admin" render = {(props) => <Admin
         defaultGlossary = {defaultGlossary}
