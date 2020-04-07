@@ -3,7 +3,6 @@ const path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     dbRouter = require('../routes/dbRouter.js');
-
 module.exports.init = () => {
     /* 
         connect to database
