@@ -5,6 +5,7 @@ const dbRouter = express.Router();
 dbRouter.get('/recipe/name/:name', db.readRecipe);
 dbRouter.get('/recipe/id/:id', db.readRecipeByID);
 dbRouter.get('/recipe/', db.listRecipe);
+dbRouter.get('/recipe/body/:body', db.searchRecipeByBody);
 dbRouter.get('/recipe/search/:query', db.searchRecipe);
 dbRouter.post('/recipe/insert',db.insertRecipe);
 dbRouter.post('/recipe/update',db.updateRecipe);
