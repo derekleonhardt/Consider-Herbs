@@ -2,7 +2,9 @@ const path = require('path'),
     express = require('express'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    dbRouter = require('../routes/dbRouter.js');
+    dbRouter = require('../routes/dbRouter.js'),
+    cors = require('cors');
+
 module.exports.init = () => {
     /* 
         connect to database
@@ -22,9 +24,11 @@ module.exports.init = () => {
     // body parsing middleware
     app.use(bodyParser.json());
 
+    // cors
+    app.use(cors());
+
     // add a router
     app.use('/api/db/', dbRouter);
-
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
         app.use(express.static(path.join(__dirname, '../../client/build')));
