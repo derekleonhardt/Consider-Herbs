@@ -21,10 +21,34 @@ body {
 }
 
 .body {
+    position: relative;
     width: 60%;
     border: white solid 5px;
     box-sizing: border-box;
+    top: 0;
+    left: 0;
+    z-index: 10;
 }
+
+
+.wrist {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 40%;
+    top: 100%;
+    position: absolute;
+}
+
+.head {
+    background-color: #C5DDE1;
+    
+    z-index: 20;
+    left: 30%;
+    top: 80%;
+    position: absolute;
+}
+
+
 
 .remedy{
     width: 100%;
