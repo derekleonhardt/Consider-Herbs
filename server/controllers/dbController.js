@@ -102,6 +102,28 @@ const listRecipe = async (req, res) => {
             console.log('Close the database connection.');
         });
 };
+const searchRecipeByBody = async (req, res) => {
+  const db = new sqlite3.Database(dbPath, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+      });
+      db.serialize(() => {
+          db.all(`SELECT * FROM recipe where Bodypart=? COLLATE NOCASE`, [req.params.body], (err, row) => {
+            if (err) {
+              res.json({error:"error while processing data.", "message":err});
+            }
+              res.json({data: row});
+          });
+        });
+         
+      db.close((err) => {
+          if (err) {
+            console.error(err.message);
+          }
+          console.log('Close the database connection.');
+      });
+};
 const searchRecipe = async (req, res) => {
     const db = new sqlite3.Database(dbPath, (err) => {
         if (err) {
@@ -124,6 +146,7 @@ const searchRecipe = async (req, res) => {
             console.log('Close the database connection.');
         });
 };
+
 const insertRecipe = async (req, res) => {
     const db = new sqlite3.Database(dbPath, (err) => {
         if (err) {
@@ -342,4 +365,4 @@ const deleteIngredient = async (req, res) => {
     db.close();
 };
 
-module.exports = {readRecipe, readRecipeByID, listRecipe, searchRecipe, insertRecipe, updateRecipe, deleteRecipe, listGlossary, readGlossary, updateGlossary, insertGlossary, searchGlossary, deleteGlossary, deleteGlossaryDef, addIngredient, deleteIngredient};
+module.exports = {readRecipe, readRecipeByID, listRecipe, searchRecipe, insertRecipe, updateRecipe, deleteRecipe, searchRecipeByBody, listGlossary, readGlossary, updateGlossary, insertGlossary, searchGlossary, deleteGlossary, deleteGlossaryDef, addIngredient, deleteIngredient};
