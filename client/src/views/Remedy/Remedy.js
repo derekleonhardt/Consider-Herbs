@@ -1,36 +1,15 @@
-import React from 'react';
+import React, {useState} from "react";
 import logo from '../../assets/logo.svg';
 import './Remedy.css';
+import BrowseResults from "../../components/BrowseResults";
 
 
 
-const Register = () => {
-    const arr = [];
-    arr.push({
-        name: "Lavender",
-        src: "logos/Lavender.png",
-        caption:"Lavender has a long history of use to boost appetite and mood, as well as relieve gastrointestinal problems and anxiety."
-    },{
-        name: "Eucalyptus",
-        src: "logos/Eucalyptus.png",
-        caption: "People use eucalyptus for many conditions including asthma, bronchitis, plaque and gingivitis, head lice, toe nail fungus, and many others"
-    },{
-        name: "Rosemary",
-        src: "logos/Rosemary.png",
-        caption: "Anti-cancer properties(for certain cancers) and anti-inflammatory properties,discourages hair loss and boosts growth,improves memory, liver boosting."
-    });
 
-    const gallery = arr.map((item) => {
-        return(
-        <figure className = "galleryItem">
-            <h2 className = "galleryTitle">{item.name}</h2>
-            <img className = "galleryImage" src = {item.src}></img>
-            <figcaption>{item.caption}</figcaption>
-        </figure>
-    )})
+const Register = (props) => {
 
-    function myfunction() {}
-
+    const[results, setResults] = useState([]);
+    if(results.length == 0) props.defaultGlossary(setResults);
     return (
         <>
             
@@ -61,7 +40,13 @@ const Register = () => {
                     <button className="wrist">Wrist</button>
                     
                     
-                    
+                    <div className ="searchBar">
+                    <img src = "logos/search.png"/>
+                    <input type = "text" placeholder = "Search For Herbs" onChange = {e => props.searchGlossary(e, setResults)}/>
+                    </div> 
+                    <BrowseResults
+                        results = {results.data}
+                    />
                     
 
 
@@ -71,13 +56,7 @@ const Register = () => {
 
 
 
-                <div className = "suggestions">
-                <h2 className = "inspoTitle">Suggested Herbs</h2>
-                <div className = "herbGallery">
-                   {gallery}                    
-                </div>
                 
-            </div>
                 
             </div>
             

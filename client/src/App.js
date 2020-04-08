@@ -48,7 +48,10 @@ const App = () => {
         component = {Home}/>}
         />
         <Route exact path="/Register" component={Remedy} />
-        <Route exact path="/Remedy" component={Remedy}/>
+        <Route path = "/Remedy" render = {(props) => <Remedy
+        searchGlossary = {searchGlossary}
+        defaultGlossary = {defaultGlossary}
+        />}></Route>
         <Route exact path="/UserHome" component={UserHome}/>
 
         <Route path = "/Admin" render = {(props) => <Admin
