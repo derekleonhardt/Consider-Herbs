@@ -40,6 +40,7 @@ const Register = (props) => {
                     <button className="wrist">Wrist</button>
                     
                     
+                    <div className="inspoTitle"> Suggested Recipes </div>
                     <div className ="searchBar">
                     <img src = "logos/search.png"/>
                     <input type = "text" placeholder = "Search For Herbs" onChange = {e => props.searchGlossary(e, setResults)}/>

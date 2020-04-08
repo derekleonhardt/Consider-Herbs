@@ -30,25 +30,141 @@ body {
     z-index: 10;
 }
 
-
 .wrist {
     background-color: #C5DDE1;
     z-index: 20;
-    left: 40%;
+    left: 42%;
     top: 100%;
+    position: absolute;
+}
+
+.hands {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 42%;
+    top: 107%;
+    position: absolute;
+}
+
+.fingers {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 42%;
+    top: 113%;
     position: absolute;
 }
 
 .head {
     background-color: #C5DDE1;
-    
     z-index: 20;
-    left: 30%;
-    top: 80%;
+    left: 35%;
+    top: 60%;
     position: absolute;
 }
 
+.lips {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 30%;
+    top: 59%;
+    position: absolute;
+}
 
+.mouth {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 30%;
+    top: 62%;
+    position: absolute;
+}
+
+.ears {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 30%;
+    top: 65%;
+    position: absolute;
+}
+
+.eyes {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 30%;
+    top: 68%;
+    position: absolute;
+}
+
+.face {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 30%;
+    top: 71%;
+    position: absolute;
+}
+
+.throat {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 35%;
+    top: 71%;
+    position: absolute;
+}
+
+.arm {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 42%;
+    top: 90%;
+    position: absolute;
+}
+
+.stomach {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 35%;
+    top: 95%;
+    position: absolute;
+}
+
+.legs {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 35%;
+    top: 115%;
+    position: absolute;
+}
+
+.knee {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 35%;
+    top: 125%;
+    position: absolute;
+}
+
+.feet {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 35%;
+    top: 150%;
+    position: absolute;
+}
+
+.back {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 60%;
+    top: 90%;
+    position: absolute;
+}
+
+.chest {
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 35%;
+    top: 80%;
+    position: absolute;
+}
 
 .remedy{
     width: 100%;
