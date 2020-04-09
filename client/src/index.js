@@ -20,18 +20,34 @@ const onRedirectCallback = appState => {
   );
 };
 
-ReactDOM.render(
-  <Auth0Provider
-    domain={config.domain}
-    client_id={config.clientId}
-    redirect_uri={window.location.origin}
-    onRedirectCallback={onRedirectCallback}
-  >
-    <Router>
-    <App />
-    </Router>
-  </Auth0Provider>,
-  document.getElementById("root")
-);
+let config_ = {};
+fetch(`http://127.0.0.1:5000/auth`).then(res =>{
+  res.json().then(data => {
+    config_ = data;
+    console.log(data);
+  }).then(() => {
+    ReactDOM.render(
+      <Auth0Provider
+        domain={config_.domain}
+        client_id={config_.clientId}
+        redirect_uri={window.location.origin}
+        onRedirectCallback={onRedirectCallback}
+      >
+        <Router>
+        <App />
+        </Router>
+      </Auth0Provider>,
+      document.getElementById("root")
+    );
+  }).catch(() => {
+    ReactDOM.render(
+        <Router>
+        <App />
+        </Router>,
+      document.getElementById("root")
+    );
+  })
+})
+
 
 serviceWorker.unregister();

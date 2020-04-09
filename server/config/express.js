@@ -3,7 +3,8 @@ const path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     dbRouter = require('../routes/dbRouter.js'),
-    cors = require('cors');
+    cors = require('cors'),
+    {auth0} = require('./config');
 
 module.exports.init = () => {
     /* 
@@ -26,7 +27,10 @@ module.exports.init = () => {
 
     // cors
     app.use(cors());
-
+    
+    app.get('/auth',(req,res) => {
+        res.send(auth0);
+    })
     // add a router
     app.use('/api/db/', dbRouter);
     if (process.env.NODE_ENV === 'production') {
