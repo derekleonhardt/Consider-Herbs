@@ -4,7 +4,8 @@ const path = require('path'),
     bodyParser = require('body-parser'),
     dbRouter = require('../routes/dbRouter.js'),
     cors = require('cors'),
-    {auth0} = require('./config');
+    {auth0} = require('./config'),
+    request = require('request');
 
 module.exports.init = () => {
     /* 
@@ -27,10 +28,24 @@ module.exports.init = () => {
 
     // cors
     app.use(cors());
+    //access codes for authentication
     
     app.get('/auth',(req,res) => {
         res.send(auth0);
-    })
+    });
+
+    var options = { method: 'POST',
+    url: 'https://wadboy.auth0.com/oauth/token',
+    headers: { 'content-type': 'application/json' },
+    body: '{"client_id":"UlL6zTercIkWOWQkeeSTX1V6u667hhqQ","client_secret":"CB3MtgXf-0YyxmZPzUSUgxIYGqWr4GeX2ZcAEZOzb8fwWta4ezfjuYWRjMm3I82N","audience":"https://wadboy.auth0.com/api/v2/","grant_type":"client_credentials"}' };
+    var access;
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        access = body;
+    });
+     app.get('/auth/access',(req,res)=>{
+         res.send(access);
+     })
     // add a router
     app.use('/api/db/', dbRouter);
     if (process.env.NODE_ENV === 'production') {

@@ -24,7 +24,6 @@ let config_ = {};
 fetch(`http://127.0.0.1:5000/auth`).then(res =>{
   res.json().then(data => {
     config_ = data;
-    console.log(data);
   }).then(() => {
     ReactDOM.render(
       <Auth0Provider
@@ -34,16 +33,9 @@ fetch(`http://127.0.0.1:5000/auth`).then(res =>{
         onRedirectCallback={onRedirectCallback}
       >
         <Router>
-        <App />
+        <App config = {config_}/>
         </Router>
       </Auth0Provider>,
-      document.getElementById("root")
-    );
-  }).catch(() => {
-    ReactDOM.render(
-        <Router>
-        <App />
-        </Router>,
       document.getElementById("root")
     );
   })

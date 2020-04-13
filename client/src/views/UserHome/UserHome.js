@@ -11,9 +11,9 @@ const UserHome = (props) => {
             </div>
         
             <div className="sites">   
-                <embed className="web" src="https://learningherbs.com/"/>
+                {/* <embed className="web" src="https://learningherbs.com/"/>
                 <embed className="web" src="https://permies.com/"/>
-                <embed className="web" src="https://www.healthline.com/"/>
+                <embed className="web" src="https://www.healthline.com/"/> */}
             </div>
 
             <div className="links">

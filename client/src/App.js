@@ -10,6 +10,7 @@ import Browse from "./views/Browse/Browse.js"
 import Footer from "./components/Footer";
 import UserHome from "./views/UserHome/UserHome.js";
 import { useAuth0 } from "./react-auth0-spa";
+import request from 'request';
 import "./App.css"
 
 const defaultGlossary = (setResults) => {
@@ -31,34 +32,35 @@ const searchGlossary = (e, setResults) =>{
   }else defaultGlossary(setResults);
 }
 
-const App = () => {
+const App = (props) => {
   const { loading, user, isAuthenticated } = useAuth0();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [access, setAccess] = useState(undefined);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  const TheHome = isAuthenticated ? UserHome : Home;
+
+  fetch('http://127.0.0.1:5000/auth/access')
+  .then(res=>res.json().then(data => setAccess(data)))
+  .catch(reas=>console.log(reas));
 
   return (
     <div>
-      <NavBar isAuthenticated = {isAuthenticated}/>
+      <NavBar isAuthenticated = {isAuthenticated} user = {user}/>
       <Switch>
-        {!isAuthenticated &&
-          <Route exact path = "/Home" component = {Home}/>
-        }
-        { isAuthenticated &&
-          <Route path = "/Home" render = {(props) => <UserHome
+        <Route path = "/Home" render = {(props) => <TheHome
           user = {user}
-          />}></Route>
-        }
-        <Route exact path="/Register" component={Remedy} />
-        <Route exact path="/Remedy" component={Remedy}/>
-
+        />}></Route>
         <Route path = "/Admin" render = {(props) => <Admin
         defaultGlossary = {defaultGlossary}
         searchGlossary = {searchGlossary}
+        access = {access}
         />}></Route>
-        <Route exact path = "/Book" component = {Book}></Route>
+        <Route exact path="/Remedy" component={Remedy}/>
+        <Route exact path = "/Book" component = {Book}/>
 
         <Route path = "/Browse" render = {(props) => <Browse
         searchGlossary = {searchGlossary}
