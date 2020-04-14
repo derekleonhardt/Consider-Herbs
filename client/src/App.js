@@ -7,6 +7,8 @@ import Remedy from './views/Remedy/Remedy.js';
 import Admin from './views/Admin/Admin.js';
 import Book from './views/Book/Book.js'
 import Browse from "./views/Browse/Browse.js"
+import Chat from './views/Chat/Chat.js'
+import Edit from './views/Chat/Edit.js'
 import Footer from "./components/Footer";
 import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
@@ -56,7 +58,9 @@ const App = () => {
         searchGlossary = {searchGlossary}
         />}></Route>
         <Route exact path = "/Book" component = {Book}></Route>
-
+        <Route exact path = "/Chat" component = {Chat}></Route>
+        <Route path = "/Chat/:pid" component = {Chat}></Route>
+        <Route exact path = "/Write" component = {Edit}></Route>
         <Route path = "/Browse" render = {(props) => <Browse
         searchGlossary = {searchGlossary}
         defaultGlossary = {defaultGlossary}

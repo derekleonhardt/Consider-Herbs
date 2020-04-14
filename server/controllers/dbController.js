@@ -374,7 +374,7 @@ const listPost = async (req, res) => {
     }
     });
     db.serialize(() => {
-        db.all(`SELECT * FROM post`, (err, row) => {
+        db.all(`SELECT * FROM post order by date desc`, (err, row) => {
           if (err) {
             res.json({error:"error while processing data.", "message":err});
           }
@@ -421,7 +421,7 @@ const writePost = async (req, res) => {
       }
   });
 
-  db.run(`INSERT INTO post(Title, content, Date) VALUES(?,?,?)`, [req.body.title, req.body.content, new Date()], function(err) {
+  db.run(`INSERT INTO post(Title, content, name, username, email, Date) VALUES(?,?,?,?,?,?)`, [req.body.title, req.body.content, req.body.name, req.body.username, req.body.email, new Date()], function(err) {
     if (err) {
       res.json({error:"error while processing data.", "message":err});
       return;
@@ -495,7 +495,7 @@ const writeReply = async (req, res) => {
       }
   });
 
-  db.run(`INSERT INTO reply(postId, Title, content, Date) VALUES(?,?,?,?)`, [req.params.id, req.body.title, req.body.content, new Date()], function(err) {
+  db.run(`INSERT INTO reply(postId, Title, content, name, username, email, Date) VALUES(?,?,?,?,?,?,?)`, [req.params.id, req.body.title, req.body.content, req.body.name, req.body.username, req.body.email, new Date()], function(err) {
     if (err) {
       res.json({error:"error while processing data.", "message":err});
       return;
