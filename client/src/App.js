@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home";
 import NotFound from "./views/NotFound";
@@ -12,6 +12,7 @@ import UserHome from "./views/UserHome/UserHome.js";
 import { useAuth0 } from "./react-auth0-spa";
 import request from 'request';
 import "./App.css"
+import { get } from 'mongoose';
 
 const defaultGlossary = (setResults) => {
   fetch(`http://127.0.0.1:5000/api/db/glossary/`).then(
@@ -31,15 +32,29 @@ const searchGlossary = (e, setResults) =>{
       });
   }else defaultGlossary(setResults);
 }
-
 const App = (props) => {
-  const { loading, user, isAuthenticated } = useAuth0();
+  const { loading, user, isAuthenticated, getTokenSilently} = useAuth0();
   const [isAdmin, setIsAdmin] = useState(false);
-  const [access, setAccess] = useState(undefined);
+  const [access, setAccess] = useState(null);
+  const config = props.config;
+
+  useEffect(() => { //check to see if user has already logged in
+    const callAPI = async () => {
+      try{
+        const token = await getTokenSilently();
+        // console.log(token);
+      }catch(e){
+        // console.log(e);
+      }
+    };
+    if (!loading) {
+      callAPI();
+    }
+  }, [loading, getTokenSilently]);
+
   if (loading) {
     return <div>Loading...</div>;
   }
-
   const TheHome = isAuthenticated ? UserHome : Home;
   
   if (!access){
@@ -58,7 +73,7 @@ const App = (props) => {
   }
   return (
     <div>
-      <NavBar isAuthenticated = {isAuthenticated} user = {user} access = {access}/>
+      <NavBar isAuthenticated = {isAuthenticated} user = {user} isAdmin = {isAdmin}/>
       <Switch>
         <Route path = "/Home" render = {(props) => <TheHome
           user = {user}
@@ -67,6 +82,9 @@ const App = (props) => {
         defaultGlossary = {defaultGlossary}
         searchGlossary = {searchGlossary}
         access = {access}
+        config = {config}
+        isAuthenticated = {isAuthenticated}
+        isAdmin = {isAdmin}
         />}></Route>
         <Route exact path="/Remedy" component={Remedy}/>
         <Route exact path = "/Book" component = {Book}/>

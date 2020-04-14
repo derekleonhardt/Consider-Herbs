@@ -5,3 +5,16 @@
     justify-content: space-around;
 
 }
+.adminPanel{
+    color: white;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    overflow: hidden;
+    background-color: #4F745A;
+    max-height: 45vw;
+    width: 45vw;
+    border: 5px solid white;
+    margin: 5vw;
+    border-radius: 1em;
+}

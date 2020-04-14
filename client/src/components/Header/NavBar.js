@@ -12,7 +12,16 @@ const NavBar = (props) => {
                     <img className = "main-logo" src={ "/logos/considerHerbsLogo.png" } alt="React logo" />
                 </Link>
                 <div className = "social-logos">
-                    <Auth0 className = "login"><a href = "#">Login</a></Auth0>
+                    {
+                        props.isAdmin &&
+                        <Link className = "login" to="/Admin">
+                            Admin Page
+                        </Link>
+                    }
+
+                    <Auth0 className = "login">
+                        Login
+                    </Auth0>
                     <a className = "social-link" href={'https://www.facebook.com/Consider-Herbs-276933896476422/'}>
                         <img className = "social-image" src={"/logos/facebookLogo.svg"}/>
                     </a>
