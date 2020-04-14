@@ -38,3 +38,9 @@ dbRouter.post('/post/:id/reply/write', db.writeReply);  // post body json{title,
 dbRouter.post('/post/reply/edit', db.updateReply);  // post body json{id}
 dbRouter.post('/post/reply/delete', db.deleteReply);  // post body json{id}
 module.exports = dbRouter;
+
+// booking
+dbRouter.get('/booking/', db.listBooking);
+dbRouter.post('/booking/commit/', db.commitBooking);
+dbRouter.get('/booking/admin/', db.adminListBooking);
+dbRouter.post('/booking/admin/confirm', db.confirmBooking);
