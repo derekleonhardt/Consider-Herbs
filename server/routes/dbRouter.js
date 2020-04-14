@@ -27,7 +27,7 @@ dbRouter.delete('/glossary/delete/def/:def', db.deleteGlossaryDef);
 
 // post
 dbRouter.get('/post/', db.listPost);
-dbRouter.get('/post/read/:id', db.readPost);
+dbRouter.get('/post/:id', db.readPost);
 dbRouter.post('/post/write/', db.writePost);        // post body json{title, content}
 dbRouter.post('/post/edit/:id', db.updatePost);     // post body json{title, content}
 dbRouter.delete('/post/delete/:id', db.deletePost);

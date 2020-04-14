@@ -7,6 +7,8 @@ import Remedy from './views/Remedy/Remedy.js';
 import Admin from './views/Admin/Admin.js';
 import Book from './views/Book/Book.js'
 import Browse from "./views/Browse/Browse.js"
+import Chat from './views/Chat/Chat.js'
+import Edit from './views/Chat/Edit.js'
 import Footer from "./components/Footer";
 import UserHome from "./views/UserHome/UserHome.js";
 import { useAuth0 } from "./react-auth0-spa";
@@ -86,9 +88,11 @@ const App = (props) => {
         isAuthenticated = {isAuthenticated}
         isAdmin = {isAdmin}
         />}></Route>
+        <Route exact path = "/Book" component = {Book}></Route>
+        <Route exact path = "/Chat" component = {Chat}></Route>
+        <Route path = "/Chat/:pid" component = {Chat}></Route>
+        <Route exact path = "/Write" component = {Edit}></Route>
         <Route exact path="/Remedy" component={Remedy}/>
-        <Route exact path = "/Book" component = {Book}/>
-
         <Route path = "/Browse" render = {(props) => <Browse
         searchGlossary = {searchGlossary}
         defaultGlossary = {defaultGlossary}
