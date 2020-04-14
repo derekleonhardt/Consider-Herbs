@@ -42,6 +42,7 @@ const Chat = (props) => {
             <p>{curPost.name}</p>
             <p>{curPost.content}</p>
             <h3>Comment</h3>
+            <Link to="/Chat"><p>back to list</p></Link>
             
         </>
         );
@@ -62,7 +63,7 @@ const Chat = (props) => {
             posts.map(post=>{
                 return(
                     <>
-                        <p><a href={"Chat/"+post.Id}>{post.Id} {post.title} {post.name}</a></p>
+                        <Link to={"Chat/"+post.Id}><p>{post.Id} {post.title} {post.name}</p></Link>
                     </>
                 )
             })
