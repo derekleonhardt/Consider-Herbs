@@ -1,0 +1,65 @@
+.glossaryTitle{
+    margin-top: 50%;
+}
+.typeEdit{
+    margin: 2%;
+    width: 95%;
+}
+.infoEdit{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+    max-height: 70%;
+    width: 100%;
+}
+.infoEdit > input{
+    border: none;
+    padding: 1.5%;
+    width: 95%;
+}
+.infoEdit > input:nth-child(2){
+    height: max-content;
+}
+.entries, .entryInfo{
+    overflow: scroll;
+    overflow-x: hidden;
+    width: 95%;
+}
+.entries{
+    height: 30%;
+    margin: 2.5%;
+    border: white 3px solid;
+    border-radius: 3px;
+    padding-bottom: 5%;
+    background-color: #A0BAA7;
+}
+.entryInfo{
+    padding: 1%;
+    margin: 2% 0;
+    border: white 3px solid;
+    border-radius: 3px;
+    background-color: #A0BAA7;
+    height: 100%;
+}
+.editEntry{
+    padding-left: 2%;
+}
+.glossaryEdit{
+    color: white;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #4F745A;
+    max-height: 60vw;
+    width: 45vw;
+    border: 5px solid white;
+    margin: 5vw;
+    border-radius: 1em;
+}
+.submitEdit{
+    margin-top: 3%;
+}
