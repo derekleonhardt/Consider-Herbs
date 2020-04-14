@@ -36,7 +36,6 @@ const App = (props) => {
   const { loading, user, isAuthenticated } = useAuth0();
   const [isAdmin, setIsAdmin] = useState(false);
   const [access, setAccess] = useState(undefined);
-  console.log(props.config);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -48,12 +47,13 @@ const App = (props) => {
     .then(res=>res.json().then(data => setAccess(data)))
     .catch(reas=>console.log(reas));
   }
-  if(isAuthenticated){
-    fetch(`${props.config.domain}/api/v2/user`,{
-      method: 'GET',
-      headers: {authorization: `'${access}'`}
+  if (access && isAuthenticated){
+    //get the users role
+    fetch(`https://${props.config.domain}/api/v2/users/${user.sub}/roles`,{
+      headers: {authorization: "Bearer " + access.access_token}
     }).then(res => res.json().then(data => {
-      console.log(data);
+      if(data.filter(role => role.name === "Admin").length > 0)
+        setIsAdmin(true);
     })).catch(rej=>console.log(rej));
   }
   return (
