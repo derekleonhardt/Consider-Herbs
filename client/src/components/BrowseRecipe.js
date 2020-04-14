@@ -8,8 +8,11 @@ const BrowseRecipe = (props) => {
     const entries = temp.map((result, index) =>{
         return(
             <div key = {index} className = "entry">
-                <h2>{result.RecName}</h2>
                 <p> <b>Ailment:</b> {result.Ailment}</p>
+                <p> <b>Body Part:</b> {result.BodyPart}</p>
+                <p> <b>Description:</b> {result.Description}</p>
+                <p> <b>Recipe Name:</b> {result.RecName}</p>
+
             </div>
         );
     });
@@ -20,3 +23,5 @@ const BrowseRecipe = (props) => {
     );
 }
 export default BrowseRecipe;
+
+
