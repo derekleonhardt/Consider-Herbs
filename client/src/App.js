@@ -31,6 +31,25 @@ const searchGlossary = (e, setResults) =>{
   }else defaultGlossary(setResults);
 }
 
+const defaultRecipe = (setResults) => {
+  fetch(`http://127.0.0.1:5000/api/db/recipe/`).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  setResults(data);
+          }))
+  });
+}
+const searchRecipeByBody = (e, setResults) =>{
+  if (e.target.value.replace(/\s/g,'') != ''){
+      fetch(`http://127.0.0.1:5000/api/db/recipe/body/${e.target.value}`).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  setResults(data);
+              }))
+      });
+  }else defaultRecipe(setResults);
+}
+
 const App = () => {
   const { loading, user, isAuthenticated } = useAuth0();
 
@@ -49,8 +68,8 @@ const App = () => {
         />
         <Route exact path="/Register" component={Remedy} />
         <Route path = "/Remedy" render = {(props) => <Remedy
-        searchGlossary = {searchGlossary}
-        defaultGlossary = {defaultGlossary}
+        searchRecipeByBody = {searchRecipeByBody}
+        defaultRecipe = {defaultRecipe}
         />}></Route>
         <Route exact path="/UserHome" component={UserHome}/>
 

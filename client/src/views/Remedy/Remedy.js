@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import logo from '../../assets/logo.svg';
 import './Remedy.css';
-import BrowseResults from "../../components/BrowseResults";
+import BrowseRecipe from "../../components/BrowseRecipe";
 
 
 
@@ -9,7 +9,7 @@ import BrowseResults from "../../components/BrowseResults";
 const Register = (props) => {
 
     const[results, setResults] = useState([]);
-    if(results.length == 0) props.defaultGlossary(setResults);
+    if(results.length == 0) props.defaultRecipe(setResults);
     return (
         <>
             
@@ -43,9 +43,9 @@ const Register = (props) => {
                     <div className="inspoTitle"> Suggested Recipes </div>
                     <div className ="searchBar">
                     <img src = "logos/search.png"/>
-                    <input type = "text" placeholder = "Search For Herbs" onChange = {e => props.searchGlossary(e, setResults)}/>
+                    <input type = "text" placeholder = "Search For Herbs" onChange = {e => props.searchRecipeByBody(e, setResults)}/>
                     </div> 
-                    <BrowseResults
+                    <BrowseRecipe
                         results = {results.data}
                     />
                     
