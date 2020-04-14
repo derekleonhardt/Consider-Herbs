@@ -37,7 +37,9 @@ module.exports.init = () => {
     var options = { method: 'POST',
     url: 'https://wadboy.auth0.com/oauth/token',
     headers: { 'content-type': 'application/json' },
-    body: '{"client_id":"UlL6zTercIkWOWQkeeSTX1V6u667hhqQ","client_secret":"CB3MtgXf-0YyxmZPzUSUgxIYGqWr4GeX2ZcAEZOzb8fwWta4ezfjuYWRjMm3I82N","audience":"https://wadboy.auth0.com/api/v2/","grant_type":"client_credentials"}' };
+    body: `{"client_id":"${process.env.REACT_APP_AUTH0_CLIENT_ID}",
+    "client_secret":"${process.env.REACT_APP_CLIENT_SECRET}",
+    "audience":"https://wadboy.auth0.com/api/v2/","grant_type":"client_credentials"}` };
     var access;
     request(options, function (error, response, body) {
         if (error) throw new Error(error);

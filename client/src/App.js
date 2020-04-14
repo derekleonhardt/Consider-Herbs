@@ -36,20 +36,29 @@ const App = (props) => {
   const { loading, user, isAuthenticated } = useAuth0();
   const [isAdmin, setIsAdmin] = useState(false);
   const [access, setAccess] = useState(undefined);
-
+  console.log(props.config);
   if (loading) {
     return <div>Loading...</div>;
   }
 
   const TheHome = isAuthenticated ? UserHome : Home;
-
-  fetch('http://127.0.0.1:5000/auth/access')
-  .then(res=>res.json().then(data => setAccess(data)))
-  .catch(reas=>console.log(reas));
-
+  
+  if (!access){
+    fetch('http://127.0.0.1:5000/auth/access')
+    .then(res=>res.json().then(data => setAccess(data)))
+    .catch(reas=>console.log(reas));
+  }
+  if(isAuthenticated){
+    fetch(`${props.config.domain}/api/v2/user`,{
+      method: 'GET',
+      headers: {authorization: `'${access}'`}
+    }).then(res => res.json().then(data => {
+      console.log(data);
+    })).catch(rej=>console.log(rej));
+  }
   return (
     <div>
-      <NavBar isAuthenticated = {isAuthenticated} user = {user}/>
+      <NavBar isAuthenticated = {isAuthenticated} user = {user} access = {access}/>
       <Switch>
         <Route path = "/Home" render = {(props) => <TheHome
           user = {user}

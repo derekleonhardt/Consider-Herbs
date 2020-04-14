@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Auth0 from "../auth0.js";
 import './NavBar.css';
 
-const NavBar = () => {
+const NavBar = (props) => {
     return (
         <div className = "header">
             {/* Logo */}

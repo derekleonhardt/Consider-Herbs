@@ -7,7 +7,6 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css'
 import { Auth0Provider } from "./react-auth0-spa";
-import config from "./auth_config.json";
 import history from "./utils/history";
 
 // A function that routes the user to the right place
