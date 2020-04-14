@@ -4,5 +4,6 @@
     border: white 5px solid;
 }
 .editUsers{
-    padding-top:1%;
+    flex-grow: 3;
+    min-height: 30vw;
 }

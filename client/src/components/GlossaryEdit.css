@@ -32,6 +32,8 @@
     padding-bottom: 5%;
     background-color: #A0BAA7;
     flex-grow: 3;
+    max-height: 15vw;
+    min-height: 10vw;
 }
 .entryInfo{
     padding: 1%;
@@ -40,6 +42,7 @@
     border-radius: 3px;
     background-color: #A0BAA7;
     height: 100%;
+    max-height: 15vw;
 }
 .editEntry{
     padding-left: 2%;
@@ -49,7 +52,7 @@
 }
 #glossaryEdit {
     padding-top: 1%;
-    max-height: 60vw;
+    max-height: 80vw;
 }
 .submitEdit{
     margin-top: 3%;
