@@ -1,6 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const dbPath = './server/db/considerHerbDB.db';
 const dbPathPostReply = './server/db/PostReplyDB.db';
+const dbPathBooking = './server/db/bookingDB.db';
 const readRecipe = async (req, res) => {
     const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
@@ -538,6 +539,91 @@ const deleteReply = async (req, res) => {
     db.close();
 };
 
+const listBooking = async (req, res) => {
+  const db = new sqlite3.Database(dbPathBooking, (err) => {
+    if (err) {
+        res.json({error:"error while connecting database.", "message":err});
+    }
+    });
+    db.serialize(() => {
+        db.all(`SELECT * FROM booking where visible=1`, (err, row) => {
+          if (err) {
+            res.json({error:"error while processing data.", "message":err});
+          }
+            res.json({data: row});
+        });
+      });
+       
+    db.close((err) => {
+        if (err) {
+          console.error(err.message);
+        }
+        console.log('Close the database connection.');
+    });
+}
+
+const adminListBooking = async (req, res) => {
+  const db = new sqlite3.Database(dbPathBooking, (err) => {
+    if (err) {
+        res.json({error:"error while connecting database.", "message":err});
+    }
+    });
+    db.serialize(() => {
+        db.all(`SELECT * FROM booking`, (err, row) => {
+          if (err) {
+            res.json({error:"error while processing data.", "message":err});
+          }
+            res.json({data: row});
+        });
+      });
+       
+    db.close((err) => {
+        if (err) {
+          console.error(err.message);
+        }
+        console.log('Close the database connection.');
+    });
+}
+
+const commitBooking = async (req, res) => {
+    const db = new sqlite3.Database(dbPathBooking, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`INSERT INTO booking(Token, EventTitle, Comment, Date, Visible) VALUES(?,?,?,?,?)`, [req.body.token, req.body.title, req.body.comment, req.body.date, 0], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    console.log(new Date(req.body.date));
+    res.json({success:"successfully inserted data."});
+  });
+  db.close();
+}
+
+const checkBooking = async (req, res) => {
+
+}
+
+const confirmBooking = async (req, res) => {
+  const db = new sqlite3.Database(dbPathBooking, (err) => {
+    if (err) {
+        res.json({error:"error while connecting database.", "message":err});
+    }
+});
+
+db.run(`update booking set Visible=1 where Id=?`, [req.body.id], function(err) {
+  if (err) {
+    res.json({error:"error while processing data.", "message":err});
+    return;
+  }
+  res.json({success:"successfully inserted data."});
+});
+db.close(); 
+}
+
 module.exports = {
   readRecipe, 
   readRecipeByID, 
@@ -564,5 +650,10 @@ module.exports = {
   listReply,
   writeReply,
   updateReply,
-  deleteReply
+  deleteReply,
+  listBooking,
+  adminListBooking,
+  commitBooking,
+  checkBooking,
+  confirmBooking
 };
