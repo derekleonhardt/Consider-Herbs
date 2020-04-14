@@ -28,7 +28,7 @@ const BookingAdmin = (props) => {
     if(events.length == 0)
         bookingEvents(setEvents);
   return(
-        <div className = "glossaryEdit"> {/*Holds all glossary editing content */}
+        <div className = "adminPanel bookingAdmin"> {/*Holds all glossary editing content */}
             <h2 className = "glossaryTitle">Confirm Booking</h2>
             
             <div>

@@ -78,12 +78,14 @@ const GlossaryEdit = (props) => {
     const entries = temp.map((result, index) =>{
         return(
             <div key = {index} className = "editEntry" onClick = {() => {setEntryInfo(result);}}>
-                {result.Title}
+                <a href = "#">
+                    {result.Title}
+                </a>
             </div>
         );
     });
   return(
-        <div className = "glossaryEdit"> {/*Holds all glossary editing content */}
+        <div className = "adminPanel" id = "glossaryEdit"> {/*Holds all glossary editing content */}
             <h2 className = "glossaryTitle">Edit Glossary</h2>
             <form className = "infoEdit"> {/*holds everything but the interactive glossary list */}
                 <select onChange = {e => { 

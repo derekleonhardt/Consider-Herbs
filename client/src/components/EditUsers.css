@@ -1,0 +1,9 @@
+.editUsers > h2{
+    background-color: #A0BAA7;
+    padding: 1%;
+    border: white 5px solid;
+}
+.editUsers{
+    flex-grow: 3;
+    min-height: 30vw;
+}
