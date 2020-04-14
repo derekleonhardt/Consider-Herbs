@@ -44,3 +44,7 @@ dbRouter.get('/booking/', db.listBooking);
 dbRouter.post('/booking/commit/', db.commitBooking);
 dbRouter.get('/booking/admin/', db.adminListBooking);
 dbRouter.post('/booking/admin/confirm', db.confirmBooking);
+
+//content - link
+dbRouter.get('/content/links/', db.listLinks);
+dbRouter.post('/content/links/insert/', db.insertLink);

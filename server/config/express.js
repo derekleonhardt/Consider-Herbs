@@ -51,7 +51,7 @@ module.exports.init = () => {
           grant_type: 'client_credentials',
           client_id: `${auth0.clientId_m}`,
           client_secret: `${auth0.clientSecret_m}`,
-          audience: 'https://wadboy.auth0.com/api/v2/'
+          audience: `${auth0.audience}`
         }
       };
       

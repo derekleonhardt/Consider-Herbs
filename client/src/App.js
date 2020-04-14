@@ -33,24 +33,10 @@ const searchGlossary = (e, setResults) =>{
   }else defaultGlossary(setResults);
 }
 const App = (props) => {
-  const { loading, user, isAuthenticated, getTokenSilently} = useAuth0();
+  const { loading, user, isAuthenticated, getTokenSilently, getIdTokenClaims} = useAuth0();
   const [isAdmin, setIsAdmin] = useState(false);
   const [access, setAccess] = useState(null);
   const config = props.config;
-
-  useEffect(() => { //check to see if user has already logged in
-    const callAPI = async () => {
-      try{
-        const token = await getTokenSilently();
-        // console.log(token);
-      }catch(e){
-        // console.log(e);
-      }
-    };
-    if (!loading) {
-      callAPI();
-    }
-  }, [loading, getTokenSilently]);
 
   if (loading) {
     return <div>Loading...</div>;
