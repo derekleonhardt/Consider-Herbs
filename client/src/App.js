@@ -92,6 +92,7 @@ const App = (props) => {
         <Route exact path = "/Chat" component = {Chat}></Route>
         <Route path = "/Chat/:pid" component = {Chat}></Route>
         <Route exact path = "/Write" component = {Edit}></Route>
+        <Route path = "/Edit/:pid" component = {Edit}></Route>
         <Route exact path="/Remedy" component={Remedy}/>
         <Route path = "/Browse" render = {(props) => <Browse
         searchGlossary = {searchGlossary}
