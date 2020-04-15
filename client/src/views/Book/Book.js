@@ -101,44 +101,50 @@ const Book = ({ products, selectProduct }) => {
     else
     return (
         <>
-        <p>Pending Payment</p>
-        {
-            events.map((event)=>{
-                if(event.email == user.email && event.paid != 1)
-                return(
-                    <>
-                        <p> - booking for {event.title}<button onClick = {()=>handlePurchase(event.bid)}>pay</button></p>
-                    </>
-                )
-            })
-        }
-        <Grid centered stackable className="grid">
-            <Grid.Row className="headerRow">
-                <Grid.Column width={gridWidth} textAlign="center" verticalAlign="middle">
-                    <Calendar className="calendar"
-                    localizer={localizer}
-                    events={events}
-                    startAccessor="start"
-                    endAccessor="end"
-                    style={{ height: 500 }}
-                    />
+        <p></p>
+        <Grid centered className="grid" columns={1} verticalAlign="middle" centered>
+            <Grid.Row>
+            {
+                events.map((event)=>{
+                    if(event.email == user.email && event.paid != 1)
+                    return(
+                        <>
+                            <div className="paymentBox">
+                                <h1  className="paymentTitle">Pending Payment</h1>
+                                <p> - booking for {event.title}</p>
+                                <Button  positive onClick = {()=>handlePurchase(event.bid)}>Pay</Button>
+                            </div>
+                        </>
+                    )
+                })
+            }
+            </Grid.Row>
+            <Grid.Row className="headerRow" verticalAlign="middle">
+                <Grid.Column width={10} textAlign="center" verticalAlign="middle">
+                    <div className="calendar">
+                        <Calendar
+                        localizer={localizer}
+                        events={events}
+                        startAccessor="start"
+                        endAccessor="end"
+                        style={{ height: 500 }}
+                        />
+                    </div>
                 </Grid.Column>
             </Grid.Row>
 
             <Grid.Row className="headerRow">
-                <Grid.Column width={gridWidth} textAlign="center" verticalAlign="middle">
+                <Grid.Column width={8} textAlign="center" verticalAlign="middle">
                     <Transition visible={bookVisible} animation="fly up" duration={800} unmountOnHide={true}>
-                        <div>
+                        <div className="popup">
                             <Form onSubmit={addEvent}>
                                 <Form.Group widths="equal">
-                                    <Form.Input name='title' value={title} fluid label='Title' width={5} onChange={(event)=>setTitle(event.target.value)} required placeholder='Enter Title'/>
+                                    <Form.Input name='title' value={title} fluid label='Title' width={1} onChange={(event)=>setTitle(event.target.value)} required placeholder='Enter Title'/>
                                 </Form.Group>
                                 <Form.Group widths="equal">
                                     <Form.Input type="date" name="date" value={date} fluid label='Date' onChange={(event)=>setDate(event.target.value)} required placeholder='2020-03-31'></Form.Input>
                                 </Form.Group>
-                                <Form.Group>
-                                    <Form.Button primary>Submit</Form.Button>
-                                </Form.Group>
+                                <Form.Button  primary>Submit</Form.Button>
                             </Form>
                         </div>
                     </Transition>
@@ -146,9 +152,13 @@ const Book = ({ products, selectProduct }) => {
             </Grid.Row>
 
             <Grid.Row className="headerRow">
-                <Grid.Column width={gridWidth} textAlign="center" verticalAlign="middle">
-                {bookVisible? <Button onClick={()=>{setBookVisible(false);}}>Cancel</Button> : <Button onClick={()=>{setBookVisible(true);}}><Icon fitted name='edit'/>Book Consultation</Button>}
+                <Grid.Column width={gridWidth} textAlign="center" verticalAlign="middle" centered>
+                {bookVisible? <Button className="button" onClick={()=>{setBookVisible(false);}}>Cancel</Button> : <Button className="button" onClick={()=>{setBookVisible(true);}}><Icon fitted name='edit'/>Book Consultation</Button>}
                 </Grid.Column>
+                
+            </Grid.Row>
+            <Grid.Row className="headerRow">
+                
             </Grid.Row>
 
         </Grid>
