@@ -29,14 +29,24 @@ const BookingAdmin = (props) => {
         bookingEvents(setEvents);
   return(
         <div className = "adminPanel bookingAdmin"> {/*Holds all glossary editing content */}
-            <h2 className = "glossaryTitle">Confirm Booking</h2>
+            <h2 className = "glossaryTitle">Booking</h2>
             
             <div>
+                <h3>bookings to be confirmed</h3>
                 {
                     events.map(data=>{
                         if(data.Visible==0 && data.Date)
                         return(<div>
                             {data.EventTitle} by {data.Token}({data.Comment})<br></br> for {data.Date} <button onClick={()=>confirmBooking(data.Id, events, setEvents)}>confirm</button>
+                        </div>)
+                    })
+                }
+                <h3>confirmed bookings</h3>
+                {
+                    events.map(data=>{
+                        if(data.Visible==1 && data.Date)
+                        return(<div>
+                            - {data.EventTitle} by {data.Token}({data.Comment})<br></br> for {data.Date} {(data.Paid==1)?<a className="paid">paid</a>:<a className="unpaid">unpaid</a>}
                         </div>)
                     })
                 }
