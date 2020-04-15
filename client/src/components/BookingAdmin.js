@@ -21,7 +21,7 @@ const confirmBooking = (bid, array, setMethod) => {
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({id:bid})
-    });
+    }).then((res)=>{bookingEvents(setMethod)});
 }
 const BookingAdmin = (props) => {
     const [events, setEvents] = useState([]);
