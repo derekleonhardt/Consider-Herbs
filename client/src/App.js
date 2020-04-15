@@ -39,9 +39,21 @@ const defaultRecipe = (setResults) => {
           }))
   });
 }
+
 const searchRecipeByBody = (e, setResults) =>{
   if (e.target.value.replace(/\s/g,'') != ''){
       fetch(`http://127.0.0.1:5000/api/db/recipe/body/${e.target.value}`).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  setResults(data);
+              }))
+      });
+  }else defaultRecipe(setResults);
+}
+
+const searchRecipe = (e, setResults) =>{
+  if (e.target.value.replace(/\s/g,'') != ''){
+      fetch(`http://127.0.0.1:5000/api/db/recipe/search/${e.target.value}`).then(
           (response)=>{
               (response.json().then(data =>{
                   setResults(data);
@@ -69,6 +81,7 @@ const App = () => {
         <Route exact path="/Register" component={Remedy} />
         <Route path = "/Remedy" render = {(props) => <Remedy
         searchRecipeByBody = {searchRecipeByBody}
+        searchRecipe = {searchRecipe}
         defaultRecipe = {defaultRecipe}
         />}></Route>
         <Route exact path="/UserHome" component={UserHome}/>

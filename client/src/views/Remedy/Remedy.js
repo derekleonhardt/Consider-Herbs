@@ -43,7 +43,7 @@ const Register = (props) => {
                     <div className="inspoTitle"> Suggested Recipes </div>
                     <div className ="searchBar">
                     <img src = "logos/search.png"/>
-                    <input type = "text" placeholder = "Search By Ailment" onChange = {e => props.searchRecipeByBody(e, setResults)}/>
+                    <input type = "text" placeholder = "Search By Ailment" onChange = {e => props.searchRecipe(e, setResults)}/>
                     </div> 
                     <BrowseRecipe
                         results = {results.data}
