@@ -85,41 +85,43 @@ const Book = (props) => {
     return (
         <>
         <Grid centered stackable className="grid">
-        <Grid.Row className="headerRow">
-        <Grid.Column width={gridWidth} textAlign="center" verticalAlign="middle">
-           <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 500 }}
-        />
-        </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="headerRow">
-        <Grid.Column width={gridWidth} textAlign="center" verticalAlign="middle">
-        <Transition visible={bookVisible} animation="fly up" duration={800} unmountOnHide={true}>
-            <div>
-            <Form onSubmit={addEvent}>
-            <Form.Group widths="equal">
-                <Form.Input name='title' value={title} fluid label='Title' width={5} onChange={(event)=>setTitle(event.target.value)} required placeholder='Enter Title'/>
-            </Form.Group>
-            <Form.Group widths="equal">
-                <Form.Input type="date" name="date" value={date} fluid label='Date' onChange={(event)=>setDate(event.target.value)} required placeholder='2020-03-31'></Form.Input>
-            </Form.Group>
-            <Form.Group>
-                <Form.Button primary>Submit</Form.Button>
-            </Form.Group>
-        </Form>
-            </div>
-        </Transition>
-        </Grid.Column>
-        </Grid.Row>
-        <Grid.Row className="headerRow">
-        <Grid.Column width={gridWidth} textAlign="center" verticalAlign="middle">
-        {bookVisible? <Button onClick={()=>{setBookVisible(false);}}>Cancel</Button> : <Button onClick={()=>{setBookVisible(true);}}><Icon fitted name='edit'/>Book Consultation</Button>}
-        </Grid.Column>
-        </Grid.Row>
+            <Grid.Row className="headerRow">
+                <Grid.Column width={gridWidth} textAlign="center" verticalAlign="middle">
+                    <Calendar className="calendar"
+                    localizer={localizer}
+                    events={events}
+                    startAccessor="start"
+                    endAccessor="end"
+                    style={{ height: 500 }}
+                    />
+                </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row className="headerRow">
+                <Grid.Column width={gridWidth} textAlign="center" verticalAlign="middle">
+                    <Transition visible={bookVisible} animation="fly up" duration={800} unmountOnHide={true}>
+                        <div>
+                            <Form onSubmit={addEvent}>
+                                <Form.Group widths="equal">
+                                    <Form.Input name='title' value={title} fluid label='Title' width={5} onChange={(event)=>setTitle(event.target.value)} required placeholder='Enter Title'/>
+                                </Form.Group>
+                                <Form.Group widths="equal">
+                                    <Form.Input type="date" name="date" value={date} fluid label='Date' onChange={(event)=>setDate(event.target.value)} required placeholder='2020-03-31'></Form.Input>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Button primary>Submit</Form.Button>
+                                </Form.Group>
+                            </Form>
+                        </div>
+                    </Transition>
+                </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row className="headerRow">
+                <Grid.Column width={gridWidth} textAlign="center" verticalAlign="middle">
+                {bookVisible? <Button onClick={()=>{setBookVisible(false);}}>Cancel</Button> : <Button onClick={()=>{setBookVisible(true);}}><Icon fitted name='edit'/>Book Consultation</Button>}
+                </Grid.Column>
+            </Grid.Row>
 
         </Grid>
         </>
