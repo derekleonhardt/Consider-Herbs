@@ -592,7 +592,7 @@ const commitBooking = async (req, res) => {
       }
   });
 
-  db.run(`INSERT INTO booking(Token, EventTitle, Comment, Date, Visible) VALUES(?,?,?,?,?)`, [req.body.token, req.body.title, req.body.comment, req.body.date, 0], function(err) {
+  db.run(`INSERT INTO booking(Token, EventTitle, Comment, Date, Visible, Paid) VALUES(?,?,?,?,?, ?)`, [req.body.token, req.body.title, req.body.comment, req.body.date, 0, 0], function(err) {
     if (err) {
       res.json({error:"error while processing data.", "message":err});
       return;
@@ -622,6 +622,25 @@ db.run(`update booking set Visible=1 where Id=?`, [req.body.id], function(err) {
   res.json({success:"successfully inserted data."});
 });
 db.close(); 
+}
+
+const paidBooking = async (req, res) => {
+  console.log(req.body);
+  const charge = req.charge;
+
+  const db = new sqlite3.Database(dbPathBooking, (err) => {
+    if (err) {
+            res.json({error:"error while connecting database.", "message":err});
+        }
+    });
+
+    db.run(`update booking set Paid=1 where Id=?`, [req.body.bid], function(err) {});
+    db.close();
+
+  res.status(200).json({
+    message: 'charge posted successfully',
+    charge
+  })
 }
 
 module.exports = {
@@ -655,5 +674,6 @@ module.exports = {
   adminListBooking,
   commitBooking,
   checkBooking,
-  confirmBooking
+  confirmBooking,
+  paidBooking
 };

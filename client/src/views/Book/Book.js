@@ -6,6 +6,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './Book.css';
 import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
+import { useHistory } from "react-router-dom";
 const localizer = momentLocalizer(moment)
 const gridWidth = 500;
 const bookingEvents = (setMethod) => {
@@ -21,7 +22,10 @@ const bookingEvents = (setMethod) => {
                                     start: new Date(d.Date),
                                     end: new Date(d.Date),
                                     title: d.EventTitle+" by "+d.Token,
-                                    allDay: true
+                                    allDay: true,
+                                    email: d.Comment,
+                                    bid: d.Id,
+                                    paid: d.Paid
                                 }
                             )
                         }  
@@ -50,12 +54,25 @@ const commitBooking = (event) => {
     );
 }
 
-const Book = (props) => {
+
+const Book = ({ products, selectProduct }) => {
     const [events, setEvents] = useState([]);
     const [bookVisible, setBookVisible] = useState(false);
     const [date, setDate] = useState("");
     const [title, setTitle] = useState("");
     const { isLoading, user, loginWithRedirect, logout} = useAuth0();
+    const history = useHistory();
+    const handlePurchase = (bid) => {
+        console.log(bid+"is bid");
+        selectProduct( {
+          name: 'Booking',
+          desc: `Booking fee`,
+          price: 9.99,
+          id: bid,
+          email: user.email
+        });
+        history.push('/Checkout');
+  }
     const addEvent = () => {
         if(!user) {
             alert("You need to sign in!");
@@ -84,6 +101,17 @@ const Book = (props) => {
     else
     return (
         <>
+        <p>Pending Payment</p>
+        {
+            events.map((event)=>{
+                if(event.email == user.email && event.paid != 1)
+                return(
+                    <>
+                        <p> - booking for {event.title}<button onClick = {()=>handlePurchase(event.bid)}>pay</button></p>
+                    </>
+                )
+            })
+        }
         <Grid centered stackable className="grid">
             <Grid.Row className="headerRow">
                 <Grid.Column width={gridWidth} textAlign="center" verticalAlign="middle">

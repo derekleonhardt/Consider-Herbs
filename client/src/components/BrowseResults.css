@@ -18,3 +18,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.paid {
+    color:blue
+}
+.unpaid {
+    color:red
+}
