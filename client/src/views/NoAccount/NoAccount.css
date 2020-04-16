@@ -1,0 +1,15 @@
+.NoAccount > .login{
+    font-size: 1.5em;
+    width: 100px;
+    height: 100px;
+    background-color: #4F745A;
+}
+.NoAccount{
+    background: #A0BAA7;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+}

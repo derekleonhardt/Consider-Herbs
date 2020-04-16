@@ -12,6 +12,7 @@ import Edit from './views/Chat/Edit.js'
 import Footer from "./components/Footer";
 import UserHome from "./views/UserHome/UserHome.js";
 import Checkout from "./views/Checkout/Checkout";
+import NoAccount from "./views/NoAccount/NoAccount";
 import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
 import { get } from 'mongoose';
@@ -89,7 +90,8 @@ const App = (props) => {
 
   //pages tier system
   const TheHome = isAuthenticated ? UserHome : Home;
-  // const 
+  const TheRemedy = isAuthenticated ? Remedy : NoAccount; 
+
 
   if (!access){
     fetch('http://127.0.0.1:5000/auth/access')
@@ -133,7 +135,7 @@ const App = (props) => {
         <Route path = "/Chat/:pid" component = {Chat}></Route>
         <Route exact path = "/Write" component = {Edit}></Route>
         <Route path = "/Edit/:pid" component = {Edit}></Route>
-        <Route exact path="/Remedy" component={Remedy}/>
+        <Route exact path="/Remedy" component={TheRemedy}/>
         <Route path = "/Browse" render = {(props) => <Browse
         searchGlossary = {searchGlossary}
         defaultGlossary = {defaultGlossary}
