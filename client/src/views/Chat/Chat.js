@@ -13,11 +13,12 @@ const listPost = (setMethod) => {
     });
 }
 
-const readPost = (setMethod,id) => {
+const readPost = (setMethod,id,setCommentMethod) => {
     fetch(`http://127.0.0.1:5000/api/db/post/`+id).then(
             (response)=>{
                 (response.json().then(data =>{
                     setMethod(data.data);
+                    loadComment(setCommentMethod, id);
             }))
     });
 }
@@ -36,8 +37,34 @@ const deletePost = (id, refreshMethod) => {
     });;
 }
 
+const writeComment = (pid, content, user) => {
+    if(!user) {
+        alert("you need to sign in!");
+        return;
+    }
+    fetch(`http://127.0.0.1:5000/api/db/post/`+pid+`/reply/write`,{
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        title:"",
+        content:content,
+        name:user.name,
+        username:user.nickname,
+        email:user.email
+})
+    })
+}
 
-
+const loadComment = (setMethod, pid) => {
+    fetch(`http://127.0.0.1:5000/api/db/post/`+pid+`/reply`).then(
+            (response)=>{
+                (response.json().then(data =>{
+                    setMethod(data.data);
+            }))
+    });
+}
 const Chat = (props) => {
     const [posts, setPosts] = useState([]);
     const [curPost, setCurPost] = useState({});
@@ -45,21 +72,14 @@ const Chat = (props) => {
     const refreshList = () => {
         listPost(setPosts);
     }
-    const [comments, setComents] = useState([{
-        name:"john",
-        content: "fgbfh"
-    },
-    {
-        name:"john2",
-        content: "conent"
-}]);
+    const [comments, setComments] = useState([]);
     //if(!user)
     //return(<><h1>you need to sign in!</h1></>)
     //else
     if(props.match.params.pid)
     {
         if(!curPost || !curPost.Id || curPost.Id != props.match.params.pid)
-            readPost(setCurPost, props.match.params.pid);
+            readPost(setCurPost, props.match.params.pid,setComments);
         if(curPost && curPost.Id)
         return (
         <>
