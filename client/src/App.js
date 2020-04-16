@@ -9,7 +9,6 @@ import Chat from "./views/Chat/Chat.js";
 import Admin from './views/Admin/Admin.js';
 import Book from './views/Book/Book.js'
 import Browse from "./views/Browse/Browse.js"
-import Chat from './views/Chat/Chat.js'
 import Edit from './views/Chat/Edit.js'
 import Footer from "./components/Footer";
 import UserHome from "./views/UserHome/UserHome.js";
