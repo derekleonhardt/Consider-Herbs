@@ -36,9 +36,21 @@ const searchGlossary = (e, setResults) =>{
       });
   }else defaultGlossary(setResults);
 }
-/*
+const deleteAuthUserRole = (userId,roles = [],config, access) => {
+  //delete roles
+  fetch(`https://${config.domain}/api/v2/users/${userId}/roles`,{
+          method: "DELETE",
+          headers: {
+            "authorization": "Bearer " + access.access_token,
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({'roles': roles})
+        })
+          .then(res => console.log(res.json()))
+          .catch(rej=>console.log(rej)
+    );
+}
 const setAuthUserRole = (userId,role,config, access) => {
-  let id = [config.subscriberId, config.premiumId, config.adminId];
   let newRole;
   switch(role.toLowerCase()){
     case "admin":
@@ -51,30 +63,18 @@ const setAuthUserRole = (userId,role,config, access) => {
       newRole = config.premiumId;
       break;
   }
-
-  //delete all other roles
-fetch(`https://${config.domain}/api/v2/users`,{
-        // "mode": 'no-cors',
-        method: "DELETE",
-        headers: {
-          "authorization": "Bearer " + access.access_token,
-          "content-type": "application/json",
-        },
-        body:{
-          'roles': id
-        }}).then(res => console.log(res.json()))
-        .catch(rej=>console.log(rej)
-  );
-
-  // fetch(`https://${props.config.domain}/api/v2/users`,{
-  //       headers: {authorization: "Bearer " + props.access.access_token}
-  //       }).then(res => res.json().then(data => {
-  //           setUserList(data);
-  //           setDefaultUserList(data);
-  //       })).catch(rej=>console.log(rej)
-  // );
+  //add new users here
+  fetch(`https://${config.domain}/api/v2/roles/${newRole}/users`,{
+    method:"POST",
+    headers: {authorization: "Bearer " + access.access_token,
+    "content-type": "application/json"},
+    body: JSON.stringify({users: [userId]})
+  })
+  .then(res => res.json().then(data => {
+  }))
+  .catch(rej=>console.log(rej));
 }
-*/
+
 const history = createBrowserHistory();
 
 const App = (props) => {
@@ -90,7 +90,7 @@ const App = (props) => {
 
   //pages tier system
   const TheHome = isAuthenticated ? UserHome : Home;
-  const TheRemedy = (isAuthenticated && userRole === ("admin" || "premium")) ? Remedy : NoAccount; 
+  const TheRemedy = (isAuthenticated && (userRole === "admin" || userRole === "premium")) ? Remedy : NoAccount; 
   const TheBooking = isAuthenticated ? Book : NoAccount;
   const TheAdmin = (isAuthenticated && userRole === "admin") ? Admin : NoAccount;
 
@@ -104,15 +104,15 @@ const App = (props) => {
     fetch(`https://${props.config.domain}/api/v2/users/${user.sub}/roles`,{
       headers: {authorization: "Bearer " + access.access_token}
     }).then(res => res.json().then(data => {
-        if(data.length > 0)
+        if(data.length > 0){
           setUserRole(data[0].name.toLowerCase());
+        }
         else{
           setUserRole("subscriber");
-          // setAuthUserRole(user.sub, "subscriber", config, access);
+          setAuthUserRole(user.sub, "subscriber", config, access);
         }
     })).catch(rej=>console.log(rej));
   }
-  console.log(user.sub);
   return (
     <div>
       <NavBar isAuthenticated = {isAuthenticated} 
