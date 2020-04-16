@@ -17,10 +17,12 @@ const bookingEvents = (setMethod) => {
                     var events = [];
                     data.data.map(d=>{
                         if(d.Visible == 1) {
+                            var displayDate = new Date(d.Date);
+                            displayDate = new Date(displayDate.setTime(displayDate.getTime() + 1 * 86400000));
                             events.push(
                                 {
-                                    start: new Date(d.Date),
-                                    end: new Date(d.Date),
+                                    start: new Date(displayDate),
+                                    end: new Date(displayDate),
                                     title: d.EventTitle+" by "+d.Token,
                                     allDay: true,
                                     email: d.Comment,
