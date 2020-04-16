@@ -3,6 +3,7 @@ const path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     dbRouter = require('../routes/dbRouter.js'),
+    paymentRouter = require('../routes/paymentRouter.js'),
     cors = require('cors'),
     {auth0} = require('./config'),
     request = require('request');
@@ -56,6 +57,7 @@ module.exports.init = () => {
      })
     // add a router
     app.use('/api/db/', dbRouter);
+    app.use('/api/payment/', paymentRouter);
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
         app.use(express.static(path.join(__dirname, '../../client/build')));

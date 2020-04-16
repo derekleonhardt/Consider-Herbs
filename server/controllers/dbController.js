@@ -375,7 +375,7 @@ const listPost = async (req, res) => {
     }
     });
     db.serialize(() => {
-        db.all(`SELECT * FROM post`, (err, row) => {
+        db.all(`SELECT * FROM post order by date desc`, (err, row) => {
           if (err) {
             res.json({error:"error while processing data.", "message":err});
           }
@@ -422,7 +422,7 @@ const writePost = async (req, res) => {
       }
   });
 
-  db.run(`INSERT INTO post(Title, content, Date) VALUES(?,?,?)`, [req.body.title, req.body.content, new Date()], function(err) {
+  db.run(`INSERT INTO post(Title, content, name, username, email, Date) VALUES(?,?,?,?,?,?)`, [req.body.title, req.body.content, req.body.name, req.body.username, req.body.email, new Date()], function(err) {
     if (err) {
       res.json({error:"error while processing data.", "message":err});
       return;
@@ -496,7 +496,7 @@ const writeReply = async (req, res) => {
       }
   });
 
-  db.run(`INSERT INTO reply(postId, Title, content, Date) VALUES(?,?,?,?)`, [req.params.id, req.body.title, req.body.content, new Date()], function(err) {
+  db.run(`INSERT INTO reply(postId, Title, content, name, username, email, Date) VALUES(?,?,?,?,?,?,?)`, [req.params.id, req.body.title, req.body.content, req.body.name, req.body.username, req.body.email, new Date()], function(err) {
     if (err) {
       res.json({error:"error while processing data.", "message":err});
       return;
@@ -570,7 +570,7 @@ const adminListBooking = async (req, res) => {
     }
     });
     db.serialize(() => {
-        db.all(`SELECT * FROM booking`, (err, row) => {
+        db.all(`SELECT * FROM booking order by date`, (err, row) => {
           if (err) {
             res.json({error:"error while processing data.", "message":err});
           }
@@ -593,7 +593,7 @@ const commitBooking = async (req, res) => {
       }
   });
 
-  db.run(`INSERT INTO booking(Token, EventTitle, Comment, Date, Visible) VALUES(?,?,?,?,?)`, [req.body.token, req.body.title, req.body.comment, req.body.date, 0], function(err) {
+  db.run(`INSERT INTO booking(Token, EventTitle, Comment, Date, Visible, Paid) VALUES(?,?,?,?,?, ?)`, [req.body.token, req.body.title, req.body.comment, req.body.date, 0, 0], function(err) {
     if (err) {
       res.json({error:"error while processing data.", "message":err});
       return;
@@ -602,6 +602,24 @@ const commitBooking = async (req, res) => {
     res.json({success:"successfully inserted data."});
   });
   db.close();
+}
+
+const adminInsertBooking = async (req, res) => {
+  const db = new sqlite3.Database(dbPathBooking, (err) => {
+    if (err) {
+        res.json({error:"error while connecting database.", "message":err});
+    }
+});
+
+db.run(`INSERT INTO booking(Token, EventTitle, Comment, Date, Visible, Paid) VALUES(?,?,?,?,?, ?)`, [req.body.token, req.body.title, req.body.comment, req.body.date, 1, 1], function(err) {
+  if (err) {
+    res.json({error:"error while processing data.", "message":err});
+    return;
+  }
+  console.log(new Date(req.body.date));
+  res.json({success:"successfully inserted data."});
+});
+db.close();
 }
 
 const checkBooking = async (req, res) => {
@@ -664,6 +682,24 @@ const insertLink = async (req, res) => {
   });
   db.close();
 };
+const paidBooking = async (req, res) => {
+  console.log(req.body);
+  const charge = req.charge;
+
+  const db = new sqlite3.Database(dbPathBooking, (err) => {
+    if (err) {
+            res.json({error:"error while connecting database.", "message":err});
+        }
+    });
+
+    db.run(`update booking set Paid=1 where Id=?`, [req.body.bid], function(err) {});
+    db.close();
+
+  res.status(200).json({
+    message: 'charge posted successfully',
+    charge
+  })
+}
 
 module.exports = {
   readRecipe, 
@@ -694,9 +730,11 @@ module.exports = {
   deleteReply,
   listBooking,
   adminListBooking,
+  adminInsertBooking,
   commitBooking,
   checkBooking,
   confirmBooking,
   listLinks,
-  insertLink
+  insertLink,
+  paidBooking
 };
