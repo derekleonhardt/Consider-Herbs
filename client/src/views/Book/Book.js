@@ -97,7 +97,6 @@ const Book = ({ products, selectProduct }) => {
         setEvents(events.concat(event));
     }
     if(events.length == 0) {
-        console.log(user);
         bookingEvents(setEvents);
     }
     if(!user)

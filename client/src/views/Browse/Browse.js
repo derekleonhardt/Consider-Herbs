@@ -8,7 +8,7 @@ import "./Browse.css"
 const Browse = (props) => {
   const[results, setResults] = useState([]);
     if(results.length == 0) props.defaultGlossary(setResults);
-    if (results.length > 3 && props.userRole == "guest"){
+    if (results.length > 3 && (props.userRole == "guest" || props.userRole === "subscriber")){
         setResults(results.slice(0,3));
     }
     return(
@@ -17,14 +17,14 @@ const Browse = (props) => {
                 Herb Glossary
             </h1>
             {
-                (props.userRole === "guest" || props.role === "subscriber") &&
+                (props.userRole === "guest" || props.userRole === "subscriber") &&
                 <div className = "NoAccount">
                 <p>Make a Premium acccount to view this content!</p>
                 <Button positive  size="huge" className="button">Become A Premium Member</Button>
                 </div>
             }
             {
-                (props.userRole != "guest") &&
+                (props.userRole != "guest" && props.userRole != "subscriber") &&
                 <div className ="searchBar">
                     <img src = "logos/search.png"/>
                     <input type = "text" placeholder = "Search For Herbs" onChange = {e => props.searchGlossary(e, setResults)}/>

@@ -19,7 +19,11 @@ const NavBar = (props) => {
                         </Link>
                     }
 
-                    <Auth0 className = "login">
+                    <Auth0 className = "login" 
+                    domain = {props.domain}
+                    id = {props.clientId}
+                    user = {props.user}
+                    >
                         Login
                     </Auth0>
                     <a className = "social-link" href={'https://www.facebook.com/Consider-Herbs-276933896476422/'}>

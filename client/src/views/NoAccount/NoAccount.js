@@ -22,6 +22,12 @@ const NoAccount = (props) => {
                 <Button positive  size="huge" className="button">Become A Premium Member</Button>
             </div>
         }
+        {
+            (route.path == "/Admin") &&
+            <div>
+                <p>Sorry, you dont have access to this page :(</p>
+            </div>
+        }
             </div>
     );
 }
