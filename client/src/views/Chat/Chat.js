@@ -37,7 +37,7 @@ const deletePost = (id, refreshMethod) => {
     });;
 }
 
-const writeComment = (pid, content, user) => {
+const writeComment = (pid, content, user, setMethod) => {
     if(!user) {
         alert("you need to sign in!");
         return;
@@ -104,15 +104,15 @@ const Chat = (props) => {
                     );
                 })
             }
-            <h4>Content:</h4>
+            <h4>write comment below</h4>
             <p></p>
             <textarea value={commentIn} onChange={(event)=>{setCommentIn(event.target.value)}}></textarea>
-            <p></p>
-            <button onClick={()=>{writeComment(curPost.Id,commentIn,user,setComments)}}>Comment</button>
-
+            <p>
+            <button onClick={()=>{writeComment(curPost.Id,commentIn,user,setComments); setCommentIn("");}}>Comment</button>
+            </p>
             
-            <Link to={"/Edit/"+curPost.Id}><button>Edit</button></Link>
-            <Link to={"/Chat"}><button onClick={()=>{deletePost(curPost.Id, refreshList)}}>Delete</button></Link>
+            {(user && user.email == curPost.email)?<Link to={"/Edit/"+curPost.Id}><button>Edit</button></Link>:<></>}
+            {(user && user.email == curPost.email)?<Link to={"/Chat"}><button onClick={()=>{deletePost(curPost.Id, refreshList)}}>Delete</button></Link>:<></>}
             <Link to="/Chat"><p>back to list</p></Link>
             
         </>
