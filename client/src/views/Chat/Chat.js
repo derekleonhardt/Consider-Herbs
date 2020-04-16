@@ -54,6 +54,8 @@ const writeComment = (pid, content, user) => {
         username:user.nickname,
         email:user.email
 })
+    }).then((res)=>{
+        loadComment(setMethod,pid);
     })
 }
 
@@ -106,7 +108,7 @@ const Chat = (props) => {
             <p></p>
             <textarea value={commentIn} onChange={(event)=>{setCommentIn(event.target.value)}}></textarea>
             <p></p>
-            <button onClick={()=>{writeComment(curPost.Id,commentIn,user)}}>Comment</button>
+            <button onClick={()=>{writeComment(curPost.Id,commentIn,user,setComments)}}>Comment</button>
 
             
             <Link to={"/Edit/"+curPost.Id}><button>Edit</button></Link>
