@@ -10,7 +10,7 @@ const Checkout = ({ selectedProduct, history }) => {
 
   return (
     <StripeScriptLoader
-    uniqueId="myUniqueId"
+    uniqueId="pk_test_9xbqkUZGpn89mzhDuQaRxJAd002TLcQLbB"
     script="https://js.stripe.com/v3/"
     loader="Loading..."
   >
