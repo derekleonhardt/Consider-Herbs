@@ -4,10 +4,10 @@ import './ContentEdit.css';
 const ContentEdit = (props) => {
     return(
         <div className = "ContentEdit">
-            <label>Page to be edited</label>
+            {/* <label>Page to be edited</label>
             <select>
 
-            </select>
+            </select> */}
         </div>
     );
 }
