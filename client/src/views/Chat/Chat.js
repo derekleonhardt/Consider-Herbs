@@ -62,6 +62,7 @@ const loadComment = (setMethod, pid) => {
             (response)=>{
                 (response.json().then(data =>{
                     setMethod(data.data);
+                    console.log(data.data);
             }))
     });
 }
