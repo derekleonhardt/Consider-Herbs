@@ -90,7 +90,7 @@ const App = (props) => {
 
   //pages tier system
   const TheHome = isAuthenticated ? UserHome : Home;
-  const TheRemedy = (isAuthenticated && userRole === ("admin" || "premium")) ? Remedy : NoAccount; 
+  const TheRemedy = (isAuthenticated && (userRole === "admin" || userRole === "premium")) ? Remedy : NoAccount; 
   const TheBooking = isAuthenticated ? Book : NoAccount;
   const TheAdmin = (isAuthenticated && userRole === "admin") ? Admin : NoAccount;
 
@@ -112,7 +112,7 @@ const App = (props) => {
         }
     })).catch(rej=>console.log(rej));
   }
-  console.log(user.sub);
+  console.log(userRole);
   return (
     <div>
       <NavBar isAuthenticated = {isAuthenticated} 
