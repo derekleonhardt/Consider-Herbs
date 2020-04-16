@@ -74,6 +74,7 @@ const Chat = (props) => {
         listPost(setPosts);
     }
     const [comments, setComments] = useState([]);
+    const [commentIn, setCommentIn] = useState("");
     //if(!user)
     //return(<><h1>you need to sign in!</h1></>)
     //else
@@ -103,9 +104,9 @@ const Chat = (props) => {
             }
             <h4>Content:</h4>
             <p></p>
-            <textarea></textarea>
+            <textarea value={commentIn} onChange={(event)=>{setCommentIn(event.target.value)}}></textarea>
             <p></p>
-                <button>Comment</button>
+            <button onClick={()=>{writeComment(curPost.Id,commentIn,user)}}>Comment</button>
 
             
             <Link to={"/Edit/"+curPost.Id}><button>Edit</button></Link>
