@@ -66,20 +66,24 @@ const Chat = (props) => {
             <h2>{curPost.title}</h2>
             <p>{curPost.name}</p>
             <p>{curPost.content}</p>
-            <h3>Comment</h3>
+            <h3>Comments</h3>
             {
                 comments.map((comment)=>{
                     return(
                         <>
                             <p>
                                 {comment.name}
+                                <p></p>
                                 {comment.content}
                             </p>
                         </>
                     );
                 })
             }
+            <h4>Content:</h4>
+            <p></p>
             <textarea></textarea>
+            <p></p>
                 <button>Comment</button>
 
             
