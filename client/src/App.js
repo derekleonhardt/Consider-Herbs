@@ -110,7 +110,6 @@ const App = (props) => {
           setUserRole("subscriber");
           // setAuthUserRole(user.sub, "subscriber", config, access);
         }
-          console.log(user);
     })).catch(rej=>console.log(rej));
   }
   return (
@@ -132,8 +131,15 @@ const App = (props) => {
         userRole = {userRole}
         />}></Route>
         <Route exact path = "/Book" render={()=>(<TheBooking selectProduct={setSelectedProduct}/>)}></Route>
-        <Route exact path = "/Chat" component = {Chat}></Route>
-        <Route path = "/Chat/:pid" component = {Chat}></Route>
+        {/* Chat needs to be looked at by hosung */}
+        <Route path = "/Chat" render = {(props) => <Chat
+          user = {user}
+          userRole = {userRole}
+        />}></Route>
+        <Route path = "/Chat/:pid" render = {(props) => <Chat
+          user = {user}
+          userRole = {userRole}
+        />}></Route>
         <Route exact path = "/Write" component = {Edit}></Route>
         <Route path = "/Edit/:pid" component = {Edit}></Route>
         <Route exact path="/Remedy" component={TheRemedy}/>

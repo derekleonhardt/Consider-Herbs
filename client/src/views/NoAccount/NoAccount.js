@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './NoAccount.css';
 import Auth0 from './../../components/auth0';
-const Admin = () => {
+const NoAccount = () => {
     return(
         <div className = "NoAccount">
             <p>Make an acccount to view this content!</p>
@@ -9,4 +9,4 @@ const Admin = () => {
         </div>
     );
 }
-export default Admin;
+export default NoAccount;

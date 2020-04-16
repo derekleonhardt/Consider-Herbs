@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Form, Transition, Button, Icon, Grid} from 'semantic-ui-react';
 import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const listPost = (setMethod) => {
     fetch(`http://127.0.0.1:5000/api/db/post/`).then(
@@ -39,25 +39,25 @@ const deletePost = (id, refreshMethod) => {
 
 
 const Chat = (props) => {
+    console.log(props)
     const [posts, setPosts] = useState([]);
     const [curPost, setCurPost] = useState({});
     const { isLoading, user, loginWithRedirect, logout} = useAuth0();
     const refreshList = () => {
         listPost(setPosts);
     }
-    //if(!user)
-    //return(<><h1>you need to sign in!</h1></>)
-    //else
-    if(props.match.params.pid)
+    let {pid} = useParams();
+    if(pid)
     {
-        if(!curPost || !curPost.Id || curPost.Id != props.match.params.pid)
-            readPost(setCurPost, props.match.params.pid);
+        if(!curPost || !curPost.Id || curPost.Id != pid)
+            readPost(setCurPost, pid);
         if(curPost && curPost.Id)
         return (
         <>
             <h2>{curPost.title}</h2>
             <p>{curPost.name}</p>
             <p>{curPost.content}</p>
+
             <h3>Comment</h3>
             <Link to={"/Edit/"+curPost.Id}><button>Edit</button></Link>
             <Link to={"/Chat"}><button onClick={()=>{deletePost(curPost.Id, refreshList)}}>Delete</button></Link>
@@ -87,9 +87,12 @@ const Chat = (props) => {
                 )
             })
         }
-        <Link to="/Write">
-        <button >write post</button>
-        </Link>
+        {
+            (props.userRole != "guest") &&
+            <Link to="/Write">
+            <button >write post</button>
+            </Link>
+        }
         </>
     )
     }
