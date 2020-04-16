@@ -4,7 +4,7 @@ import './NavBar.css';
 
 const NavBar = () => {
     return (
-        <div className = "header">
+        <div className = "top-header">
             {/* Logo */}
             <div className = "social-bar">
                 <Link className = "nav-title" to="/">
