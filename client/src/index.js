@@ -19,20 +19,21 @@ const onRedirectCallback = appState => {
   );
 };
 
-let config_ = {};
+let config = {};
 fetch(`http://127.0.0.1:5000/auth`).then(res =>{
   res.json().then(data => {
-    config_ = data;
+    config = data;
   }).then(() => {
     ReactDOM.render(
       <Auth0Provider
-        domain={config_.domain}
-        client_id={config_.clientId}
+        audience = {config.audience}
+        domain={config.domain}
+        client_id={config.clientId}
         redirect_uri={window.location.origin}
         onRedirectCallback={onRedirectCallback}
       >
         <Router>
-        <App config = {config_}/>
+        <App config = {config}/>
         </Router>
       </Auth0Provider>,
       document.getElementById("root")

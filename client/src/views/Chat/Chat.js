@@ -111,7 +111,7 @@ import React, {useState, useEffect} from 'react';
 import {Form, Transition, Button, Icon, Grid} from 'semantic-ui-react';
 import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
-import { Link } from 'react-router-dom';
+import { Link, useParams, useRouteMatch } from 'react-router-dom';
 
 const listPost = (setMethod) => {
     fetch(`http://127.0.0.1:5000/api/db/post/`).then(
@@ -146,7 +146,7 @@ const deletePost = (id, refreshMethod) => {
     });;
 }
 
-const writeComment = (pid, content, user) => {
+const writeComment = (pid, content, user, setMethod) => {
     if(!user) {
         alert("you need to sign in!");
         return;
@@ -184,15 +184,17 @@ const Chat = (props) => {
     const refreshList = () => {
         listPost(setPosts);
     }
+    const {pid} = useParams();
     const [comments, setComments] = useState([]);
     const [commentIn, setCommentIn] = useState("");
     //if(!user)
     //return(<><h1>you need to sign in!</h1></>)
     //else
-    if(props.match.params.pid)
+    //console.log(pid);
+    if(pid)
     {
-        if(!curPost || !curPost.Id || curPost.Id != props.match.params.pid)
-            readPost(setCurPost, props.match.params.pid,setComments);
+        if(!curPost || !curPost.Id || curPost.Id != pid)
+            readPost(setCurPost, pid,setComments);
         if(curPost && curPost.Id)
         return (
         <>
@@ -213,15 +215,15 @@ const Chat = (props) => {
                     );
                 })
             }
-            <h4>Content:</h4>
+            <h4>write comment below</h4>
             <p></p>
             <textarea value={commentIn} onChange={(event)=>{setCommentIn(event.target.value)}}></textarea>
-            <p></p>
-            <button onClick={()=>{writeComment(curPost.Id,commentIn,user,setComments)}}>Comment</button>
-
+            <p>
+            <button onClick={()=>{writeComment(curPost.Id,commentIn,user,setComments); setCommentIn("");}}>Comment</button>
+            </p>
             
-            <Link to={"/Edit/"+curPost.Id}><button>Edit</button></Link>
-            <Link to={"/Chat"}><button onClick={()=>{deletePost(curPost.Id, refreshList)}}>Delete</button></Link>
+            {(user && user.email == curPost.email)?<Link to={"/Edit/"+curPost.Id}><button>Edit</button></Link>:<></>}
+            {(user && user.email == curPost.email)?<Link to={"/Chat"}><button onClick={()=>{deletePost(curPost.Id, refreshList)}}>Delete</button></Link>:<></>}
             <Link to="/Chat"><p>back to list</p></Link>
             
         </>
@@ -248,9 +250,12 @@ const Chat = (props) => {
                 )
             })
         }
-        <Link to="/Write">
-        <button >write post</button>
-        </Link>
+        {
+            //(props.userRole != "guest") &&
+            <Link to="/Write">
+            <button >write post</button>
+            </Link>
+        }
         </>
     )
     }

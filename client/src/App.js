@@ -13,8 +13,8 @@ import Edit from './views/Chat/Edit.js'
 import Footer from "./components/Footer";
 import UserHome from "./views/UserHome/UserHome.js";
 import Checkout from "./views/Checkout/Checkout";
+import NoAccount from "./views/NoAccount/NoAccount";
 import { useAuth0 } from "./react-auth0-spa";
-import request from 'request';
 import "./App.css"
 import { get } from 'mongoose';
 import { createBrowserHistory } from 'history'
@@ -23,7 +23,7 @@ const defaultGlossary = (setResults) => {
   fetch(`http://127.0.0.1:5000/api/db/glossary/`).then(
           (response)=>{
               (response.json().then(data =>{
-                  setResults(data);
+                  setResults(data.data);
           }))
   });
 }
@@ -32,39 +32,69 @@ const searchGlossary = (e, setResults) =>{
       fetch(`http://127.0.0.1:5000/api/db/glossary/search/${e.target.value}`).then(
           (response)=>{
               (response.json().then(data =>{
-                  setResults(data);
+                  setResults(data.data);
               }))
       });
   }else defaultGlossary(setResults);
 }
+/*
+const setAuthUserRole = (userId,role,config, access) => {
+  let id = [config.subscriberId, config.premiumId, config.adminId];
+  let newRole;
+  switch(role.toLowerCase()){
+    case "admin":
+      newRole = config.adminId;
+      break;
+    case "subscriber":
+      newRole = config.subscriberId;
+      break;
+    case "premium":
+      newRole = config.premiumId;
+      break;
+  }
+
+  //delete all other roles
+fetch(`https://${config.domain}/api/v2/users`,{
+        // "mode": 'no-cors',
+        method: "DELETE",
+        headers: {
+          "authorization": "Bearer " + access.access_token,
+          "content-type": "application/json",
+        },
+        body:{
+          'roles': id
+        }}).then(res => console.log(res.json()))
+        .catch(rej=>console.log(rej)
+  );
+
+  // fetch(`https://${props.config.domain}/api/v2/users`,{
+  //       headers: {authorization: "Bearer " + props.access.access_token}
+  //       }).then(res => res.json().then(data => {
+  //           setUserList(data);
+  //           setDefaultUserList(data);
+  //       })).catch(rej=>console.log(rej)
+  // );
+}
+*/
 const history = createBrowserHistory();
 
 const App = (props) => {
-  const { loading, user, isAuthenticated, getTokenSilently} = useAuth0();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { loading, user, isAuthenticated} = useAuth0();
+  const [userRole, setUserRole] = useState("guest");
   const [access, setAccess] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const config = props.config;
 
-  useEffect(() => { //check to see if user has already logged in
-    const callAPI = async () => {
-      try{
-        const token = await getTokenSilently();
-        // console.log(token);
-      }catch(e){
-        // console.log(e);
-      }
-    };
-    if (!loading) {
-      callAPI();
-    }
-  }, [loading, getTokenSilently]);
-
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  //pages tier system
   const TheHome = isAuthenticated ? UserHome : Home;
-  
+  const TheRemedy = isAuthenticated ? Remedy : NoAccount; 
+  const TheBooking = isAuthenticated ? Book : NoAccount;
+
+
   if (!access){
     fetch('http://127.0.0.1:5000/auth/access')
     .then(res=>res.json().then(data => setAccess(data)))
@@ -75,13 +105,17 @@ const App = (props) => {
     fetch(`https://${props.config.domain}/api/v2/users/${user.sub}/roles`,{
       headers: {authorization: "Bearer " + access.access_token}
     }).then(res => res.json().then(data => {
-      if(data.filter(role => role.name === "Admin").length > 0)
-        setIsAdmin(true);
+        if(data.length > 0)
+          setUserRole(data[0].name.toLowerCase());
+        else{
+          setUserRole("subscriber");
+          // setAuthUserRole(user.sub, "subscriber", config, access);
+        }
     })).catch(rej=>console.log(rej));
   }
   return (
     <div>
-      <NavBar isAuthenticated = {isAuthenticated} user = {user} isAdmin = {isAdmin}/>
+      <NavBar isAuthenticated = {isAuthenticated} user = {user} userRole = {userRole}/>
       <Switch>
         <Route exact path="/">
          <Redirect to="/Home" />
@@ -99,17 +133,25 @@ const App = (props) => {
         access = {access}
         config = {config}
         isAuthenticated = {isAuthenticated}
-        isAdmin = {isAdmin}
+        userRole = {userRole}
         />}></Route>
-        <Route exact path = "/Book" render={()=>(<Book selectProduct={setSelectedProduct}/>)}></Route>
-        <Route exact path = "/Chat" component = {Chat}></Route>
-        <Route path = "/Chat/:pid" component = {Chat}></Route>
+        <Route exact path = "/Book" render={()=>(<TheBooking selectProduct={setSelectedProduct}/>)}></Route>
+        {/* Chat needs to be looked at by hosung */}
+        <Route exact path = "/Chat" render = {() => <Chat
+          user = {user}
+          userRole = {userRole}
+        />}></Route>
+        <Route path = "/Chat/:pid" render = {() => <Chat
+          user = {user}
+          userRole = {userRole}
+        />}></Route>
         <Route exact path = "/Write" component = {Edit}></Route>
         <Route path = "/Edit/:pid" component = {Edit}></Route>
-        <Route exact path="/Remedy" component={Remedy}/>
+        <Route exact path="/Remedy" component={TheRemedy}/>
         <Route path = "/Browse" render = {(props) => <Browse
         searchGlossary = {searchGlossary}
         defaultGlossary = {defaultGlossary}
+        userRole = {userRole}
         />}></Route>
         <Route path ="/Checkout"
               render={()=> (<Checkout selectedProduct={selectedProduct}/>)}/>
