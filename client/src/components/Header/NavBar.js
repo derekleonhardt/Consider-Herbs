@@ -13,7 +13,7 @@ const NavBar = (props) => {
                 </Link>
                 <div className = "social-logos">
                     {
-                        props.isAdmin &&
+                        (props.userRole === "admin") &&
                         <Link className = "login" to="/Admin">
                             Admin Page
                         </Link>

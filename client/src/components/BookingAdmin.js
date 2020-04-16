@@ -26,7 +26,7 @@ const confirmBooking = (bid, array, setMethod) => {
 const BookingAdmin = (props) => {
     const [events, setEvents] = useState([]);
     if(events.length == 0)
-        bookingEvents(setEvents);
+        // bookingEvents(setEvents);
   return(
         <div className = "adminPanel bookingAdmin"> {/*Holds all glossary editing content */}
             <h2 className = "glossaryTitle">Confirm Booking</h2>

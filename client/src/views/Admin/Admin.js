@@ -11,7 +11,10 @@ const Admin = (props) => {
                 <GlossaryEdit {...props}/>
             </div>
             <div className = "adminCol">
-                <EditUsers {...props}/>
+                {
+                    props.access &&
+                    <EditUsers {...props}/>
+                }
                 <BookingAdmin/>
             </div>
         </div>
