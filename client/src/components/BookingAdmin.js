@@ -4,6 +4,7 @@ const bookingEvents = (setMethod) => {
     fetch(`http://127.0.0.1:5000/api/db/booking/admin/`).then(
             (response)=>{
                 (response.json().then(data =>{
+                    console.log(data.data);
                     setMethod(data.data);
             }))
     });
@@ -53,7 +54,7 @@ const BookingAdmin = (props) => {
     const [newEventTitle, setEventTitle] = useState("");
     const [newEventDate, setEventDate] = useState("");
     if(events.length == 0)
-        // bookingEvents(setEvents);
+        bookingEvents(setEvents);
   return(
         <div className = "adminPanel bookingAdmin"> {/*Holds all glossary editing content */}
             <h2 className = "glossaryTitle">Booking</h2>

@@ -132,11 +132,11 @@ const App = (props) => {
         />}></Route>
         <Route exact path = "/Book" render={()=>(<TheBooking selectProduct={setSelectedProduct}/>)}></Route>
         {/* Chat needs to be looked at by hosung */}
-        <Route path = "/Chat" render = {(props) => <Chat
+        <Route exact path = "/Chat" render = {() => <Chat
           user = {user}
           userRole = {userRole}
         />}></Route>
-        <Route path = "/Chat/:pid" render = {(props) => <Chat
+        <Route path = "/Chat/:pid" render = {() => <Chat
           user = {user}
           userRole = {userRole}
         />}></Route>
