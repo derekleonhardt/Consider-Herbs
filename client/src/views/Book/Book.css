@@ -1,0 +1,40 @@
+.grid {
+    padding: 10px;
+    display: flex;
+    background-image: url(../../assets/palmFrond.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.calendar{
+    background: rgb(255, 255, 255);
+    border: 5px solid #4F745A;
+    border-radius: 30px ;
+    padding: 5%;
+}
+.popup{
+    background: rgb(255, 255, 255);
+    border: 5px solid #4F745A;
+    border-radius: 30px ;
+    padding: 10px;
+
+}
+.paymentBox{
+    background: rgb(255, 255, 255);
+    border: 5px solid #4F745A;
+    border-radius: 30px ;
+    padding: 10px;
+}
+.paymentTitle{
+    color: #4F745A;
+}
+.signUp{
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    color: white;
+    text-align: center;
+    font-size: 1.2vw;
+    margin: auto;
+    width: 35%;
+
+}

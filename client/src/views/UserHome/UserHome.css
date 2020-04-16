@@ -1,0 +1,65 @@
+.thanks {
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 1%;
+    color: white;
+    text-align: center;
+    font-size: 1.7vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.spacer {
+    padding: 2%; 
+}
+
+.otherinspo {
+    padding: 2%;
+    background: #A0BAA7;  
+    background-image: url(../../assets/userbackground.jpeg);
+    background-size: cover;
+}
+
+
+.sites, .links{
+    display: flex;
+    background-repeat: no-repeat;
+    flex-direction: row;
+    align-items: center;
+    padding:2% 0 2% 0;
+    justify-content: space-evenly;
+}
+
+.linky {
+    background: #A0BAA7;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    width: 15%;
+    padding: 1%;
+    color: white;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.products {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.product {
+    height: 190px;
+    padding: 2%;  
+
+}
+
+.trying{
+    margin-left: auto;
+    margin-right: auto;
+}
+.web {
+    height: 400px;
+}

@@ -1,6 +1,5 @@
 .background {
-    height: 500px;
-
+    height: 80vh;
     display: flex;
     flex-direction: row-reverse;
 
@@ -8,12 +7,13 @@
     padding: 5%;
     
     background-image: url("/logos/LoginBackground.jpg");
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 .box{
     box-sizing:  border-box;
     width: 30%;
+    min-width: 120px;
     height: 75%;
     border: 5px solid #FFFEFE;
     border-radius: 20px ;
@@ -21,13 +21,6 @@
     text-align: center;
     padding: 10px;
     
-}
-.form{
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    margin: 0 auto 100px;
 }
 .box h1{
     color: white;

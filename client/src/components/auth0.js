@@ -8,10 +8,10 @@ const Auth0 = () => {
   return (
     <>
       {!isAuthenticated && (
-        <button className = "login" onClick={() => loginWithRedirect({})}>Log in</button>
+        <a href = "#" className = "login" onClick={() => loginWithRedirect({})}>Log in</a>
       )}
 
-      {isAuthenticated && <button className = "login" onClick={() => logout()}>Log out</button>}
+      {isAuthenticated && <a href = "#" className = "login" onClick={() => logout()}>Log out</a>}
     </>
   );
 };
