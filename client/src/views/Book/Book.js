@@ -27,7 +27,9 @@ const bookingEvents = (setMethod) => {
                                     allDay: true,
                                     email: d.Comment,
                                     bid: d.Id,
-                                    paid: d.Paid
+                                    paid: d.Paid,
+                                    name: d.Token,
+                                    eventTitle: d.EventTitle
                                 }
                             )
                         }  
@@ -113,7 +115,7 @@ const Book = ({ products, selectProduct }) => {
                         <>
                             <div className="paymentBox">
                                 <h1  className="paymentTitle">Pending Payment</h1>
-                                <p> - booking for {event.title}</p>
+                    <p>booking for {event.eventTitle} on {event.start.getFullYear()+"/"+(event.start.getMonth()+1)+"/"+event.start.getDate()}</p>
                                 <Button  positive onClick = {()=>handlePurchase(event.bid)}>Pay</Button>
                             </div>
                         </>
