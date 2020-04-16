@@ -11,7 +11,6 @@ import Footer from "./components/Footer";
 import UserHome from "./views/UserHome/UserHome.js";
 import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
-import { get } from 'mongoose';
 
 const defaultGlossary = (setResults) => {
   fetch(`http://127.0.0.1:5000/api/db/glossary/`).then(
@@ -31,6 +30,7 @@ const searchGlossary = (e, setResults) =>{
       });
   }else defaultGlossary(setResults);
 }
+/*
 const setAuthUserRole = (userId,role,config, access) => {
   let id = [config.subscriberId, config.premiumId, config.adminId];
   let newRole;
@@ -68,6 +68,7 @@ fetch(`https://${config.domain}/api/v2/users`,{
   //       })).catch(rej=>console.log(rej)
   // );
 }
+*/
 const App = (props) => {
   const { loading, user, isAuthenticated} = useAuth0();
   const [userRole, setUserRole] = useState("guest");
@@ -88,7 +89,6 @@ const App = (props) => {
     .catch(reas=>console.log(reas));
   }
   if (access && isAuthenticated){
-    setAuthUserRole(user.sub, "subscriber", config, access);
     //get the users role
     fetch(`https://${props.config.domain}/api/v2/users/${user.sub}/roles`,{
       headers: {authorization: "Bearer " + access.access_token}
@@ -97,7 +97,7 @@ const App = (props) => {
           setUserRole(data[0].name.toLowerCase());
         else{
           setUserRole("subscriber");
-          setAuthUserRole(user.sub, "subscriber", config, access);
+          // setAuthUserRole(user.sub, "subscriber", config, access);
         }
           console.log(user);
     })).catch(rej=>console.log(rej));
