@@ -39,7 +39,6 @@ const deletePost = (id, refreshMethod) => {
 
 
 const Chat = (props) => {
-    console.log(props)
     const [posts, setPosts] = useState([]);
     const [curPost, setCurPost] = useState({});
     const { isLoading, user, loginWithRedirect, logout} = useAuth0();

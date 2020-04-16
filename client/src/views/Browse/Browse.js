@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import {Button} from 'semantic-ui-react';
+import 'semantic-ui-react';
 import BrowseResults from "../../components/BrowseResults";
 import Auth0 from "./../../components/auth0";
 import "./Browse.css"
@@ -15,10 +17,10 @@ const Browse = (props) => {
                 Herb Glossary
             </h1>
             {
-                (props.userRole == "guest") &&
+                (props.userRole === "guest" || props.role === "subscriber") &&
                 <div className = "NoAccount">
-                    <p>Make an acccount to view more Glossary listings!</p>
-                    <Auth0 className = "login">Login</Auth0>
+                <p>Make a Premium acccount to view this content!</p>
+                <Button positive  size="huge" className="button">Become A Premium Member</Button>
                 </div>
             }
             {
