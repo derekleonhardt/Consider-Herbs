@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Form, Transition, Button, Icon, Grid} from 'semantic-ui-react';
 import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useRouteMatch } from 'react-router-dom';
 
 const listPost = (setMethod) => {
     fetch(`http://127.0.0.1:5000/api/db/post/`).then(
@@ -75,15 +75,16 @@ const Chat = (props) => {
     const refreshList = () => {
         listPost(setPosts);
     }
+    let {pid} = useParams();
     const [comments, setComments] = useState([]);
     const [commentIn, setCommentIn] = useState("");
     //if(!user)
     //return(<><h1>you need to sign in!</h1></>)
     //else
-    if(props.match.params.pid)
+    if(pid)
     {
-        if(!curPost || !curPost.Id || curPost.Id != props.match.params.pid)
-            readPost(setCurPost, props.match.params.pid,setComments);
+        if(!curPost || !curPost.Id || curPost.Id != pid)
+            readPost(setCurPost, pid,setComments);
         if(curPost && curPost.Id)
         return (
         <>
