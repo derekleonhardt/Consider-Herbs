@@ -23,7 +23,7 @@ const bookingEvents = (setMethod) => {
                                 {
                                     start: new Date(displayDate),
                                     end: new Date(displayDate),
-                                    title: d.EventTitle+" by "+d.Token,
+                                    title: d.EventTitle+((d.Token)? " by "+d.Token : ""),
                                     allDay: true,
                                     email: d.Comment,
                                     bid: d.Id,
@@ -143,10 +143,10 @@ const Book = ({ products, selectProduct }) => {
                         <div className="popup">
                             <Form onSubmit={addEvent}>
                                 <Form.Group widths="equal">
-                                    <Form.Input name='title' value={title} fluid label='Title' width={1} onChange={(event)=>setTitle(event.target.value)} required placeholder='Enter Title'/>
+                                    <Form.Input name='title' value={title} fluid label='Title' width={1} onChange={(event)=>setTitle(event.target.value)} value={title} required placeholder='Enter Title'/>
                                 </Form.Group>
                                 <Form.Group widths="equal">
-                                    <Form.Input type="date" name="date" value={date} fluid label='Date' onChange={(event)=>setDate(event.target.value)} required placeholder='2020-03-31'></Form.Input>
+                                    <Form.Input type="date" name="date" value={date} fluid label='Date' onChange={(event)=>setDate(event.target.value)} value={date} required placeholder='2020-03-31'></Form.Input>
                                 </Form.Group>
                                 <Form.Button  primary>Submit</Form.Button>
                             </Form>

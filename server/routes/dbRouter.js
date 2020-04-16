@@ -42,6 +42,7 @@ dbRouter.post('/post/reply/delete', db.deleteReply);  // post body json{id}
 dbRouter.get('/booking/', db.listBooking);
 dbRouter.post('/booking/commit/', db.commitBooking);
 dbRouter.get('/booking/admin/', db.adminListBooking);
+dbRouter.post('/booking/admin/insert', db.adminInsertBooking);
 dbRouter.post('/booking/admin/confirm', db.confirmBooking);
 
 module.exports = dbRouter;

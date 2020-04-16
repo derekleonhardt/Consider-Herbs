@@ -569,7 +569,7 @@ const adminListBooking = async (req, res) => {
     }
     });
     db.serialize(() => {
-        db.all(`SELECT * FROM booking`, (err, row) => {
+        db.all(`SELECT * FROM booking order by date`, (err, row) => {
           if (err) {
             res.json({error:"error while processing data.", "message":err});
           }
@@ -601,6 +601,24 @@ const commitBooking = async (req, res) => {
     res.json({success:"successfully inserted data."});
   });
   db.close();
+}
+
+const adminInsertBooking = async (req, res) => {
+  const db = new sqlite3.Database(dbPathBooking, (err) => {
+    if (err) {
+        res.json({error:"error while connecting database.", "message":err});
+    }
+});
+
+db.run(`INSERT INTO booking(Token, EventTitle, Comment, Date, Visible, Paid) VALUES(?,?,?,?,?, ?)`, [req.body.token, req.body.title, req.body.comment, req.body.date, 1, 1], function(err) {
+  if (err) {
+    res.json({error:"error while processing data.", "message":err});
+    return;
+  }
+  console.log(new Date(req.body.date));
+  res.json({success:"successfully inserted data."});
+});
+db.close();
 }
 
 const checkBooking = async (req, res) => {
@@ -672,6 +690,7 @@ module.exports = {
   deleteReply,
   listBooking,
   adminListBooking,
+  adminInsertBooking,
   commitBooking,
   checkBooking,
   confirmBooking,
