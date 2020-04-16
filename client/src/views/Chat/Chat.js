@@ -45,6 +45,14 @@ const Chat = (props) => {
     const refreshList = () => {
         listPost(setPosts);
     }
+    const [comments, setComents] = useState([{
+        name:"john",
+        content: "fgbfh"
+    },
+    {
+        name:"john2",
+        content: "conent"
+}]);
     //if(!user)
     //return(<><h1>you need to sign in!</h1></>)
     //else
@@ -59,6 +67,22 @@ const Chat = (props) => {
             <p>{curPost.name}</p>
             <p>{curPost.content}</p>
             <h3>Comment</h3>
+            {
+                comments.map((comment)=>{
+                    return(
+                        <>
+                            <p>
+                                {comment.name}
+                                {comment.content}
+                            </p>
+                        </>
+                    );
+                })
+            }
+            <textarea></textarea>
+                <button>Comment</button>
+
+            
             <Link to={"/Edit/"+curPost.Id}><button>Edit</button></Link>
             <Link to={"/Chat"}><button onClick={()=>{deletePost(curPost.Id, refreshList)}}>Delete</button></Link>
             <Link to="/Chat"><p>back to list</p></Link>
