@@ -74,7 +74,7 @@ const GlossaryEdit = (props) => {
     
     ///// Populating the glossary list with items
     if(results.length == 0) props.defaultGlossary(setResults);
-    var temp = results.data != undefined ? results.data.sort((a, b) => (a.Title.toLowerCase() > b.Title.toLowerCase()) ? 1 : -1) : []; //set temp variable to the glossary results ONLY if the results variable is not empty 
+    var temp = results != undefined ? results.sort((a, b) => (a.Title.toLowerCase() > b.Title.toLowerCase()) ? 1 : -1) : []; //set temp variable to the glossary results ONLY if the results variable is not empty 
     const entries = temp.map((result, index) =>{
         return(
             <div key = {index} className = "editEntry" onClick = {() => {setEntryInfo(result);}}>

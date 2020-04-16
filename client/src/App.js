@@ -22,7 +22,7 @@ const defaultGlossary = (setResults) => {
   fetch(`http://127.0.0.1:5000/api/db/glossary/`).then(
           (response)=>{
               (response.json().then(data =>{
-                  setResults(data);
+                  setResults(data.data);
           }))
   });
 }
@@ -31,7 +31,7 @@ const searchGlossary = (e, setResults) =>{
       fetch(`http://127.0.0.1:5000/api/db/glossary/search/${e.target.value}`).then(
           (response)=>{
               (response.json().then(data =>{
-                  setResults(data);
+                  setResults(data.data);
               }))
       });
   }else defaultGlossary(setResults);
@@ -91,6 +91,7 @@ const App = (props) => {
   //pages tier system
   const TheHome = isAuthenticated ? UserHome : Home;
   const TheRemedy = isAuthenticated ? Remedy : NoAccount; 
+  const TheBooking = isAuthenticated ? Book : NoAccount;
 
 
   if (!access){
@@ -130,7 +131,7 @@ const App = (props) => {
         isAuthenticated = {isAuthenticated}
         userRole = {userRole}
         />}></Route>
-        <Route exact path = "/Book" render={()=>(<Book selectProduct={setSelectedProduct}/>)}></Route>
+        <Route exact path = "/Book" render={()=>(<TheBooking selectProduct={setSelectedProduct}/>)}></Route>
         <Route exact path = "/Chat" component = {Chat}></Route>
         <Route path = "/Chat/:pid" component = {Chat}></Route>
         <Route exact path = "/Write" component = {Edit}></Route>
@@ -139,6 +140,7 @@ const App = (props) => {
         <Route path = "/Browse" render = {(props) => <Browse
         searchGlossary = {searchGlossary}
         defaultGlossary = {defaultGlossary}
+        userRole = {userRole}
         />}></Route>
         <Route path ="/Checkout"
               render={()=> (<Checkout selectedProduct={selectedProduct}/>)}/>
