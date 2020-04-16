@@ -25,7 +25,7 @@ const NavBar = (props) => {
                     <a className = "social-link" href={'https://www.facebook.com/Consider-Herbs-276933896476422/'}>
                         <img className = "social-image" src={"/logos/facebookLogo.svg"}/>
                     </a>
-                    <a className = "social-link" href={'https://www.instagram.com/consider.herbs/'}>
+                    <a className = "social-link" href={'https://www.instagram.com/considerherbs/'}>
                         <img className = "social-image" src = {"/logos/instagramLogo.svg"}/>   
                     </a>
                     <a className = "social-link" href={'mailto:dee@considerherbs.com'}>
