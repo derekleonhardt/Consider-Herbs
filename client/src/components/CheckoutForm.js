@@ -40,25 +40,28 @@ const CheckoutForm = ({ selectedProduct, stripe, history }) => {
         )
       }
       return (
-        <div className="checkout-form">
-          <p>Amount: ${selectedProduct.price}</p>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Card details
-              <CardNumberElement />
-            </label>
-            <label>
-              Expiration date
-              <CardExpiryElement />
-            </label>
-            <label>
-              CVC
-              <CardCVCElement />
-            </label>
-            <button type="submit" className="order-button">
-              Pay
-            </button>
-          </form>
+        
+        <div className="checkout-background">
+          <div className="checkout-form">
+            <p>Amount: ${selectedProduct.price}</p>
+            <form onSubmit={handleSubmit}>
+              <label>
+                Card details
+                <CardNumberElement />
+              </label>
+              <label>
+                Expiration date
+                <CardExpiryElement />
+              </label>
+              <label>
+                CVC
+                <CardCVCElement />
+              </label>
+              <button type="submit" className="order-button">
+                Pay
+              </button>
+            </form>
+          </div>
         </div>
       )
     }

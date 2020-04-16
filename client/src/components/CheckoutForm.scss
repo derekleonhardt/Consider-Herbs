@@ -9,10 +9,16 @@
       display: block;
     }
   }
+  .checkout-background{
+    background-image: url(../assets/palmFrond.jpg);
+    display: flex;
+    flex-direction: column;
+  }
   
   .checkout-form {
     width: 400px;
-    padding: 2em;
+    margin: 10px auto;
+    padding: 10px 10px 10px 10px;
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.15);
