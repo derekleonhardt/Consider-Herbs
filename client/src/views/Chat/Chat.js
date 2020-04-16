@@ -75,12 +75,13 @@ const Chat = (props) => {
     const refreshList = () => {
         listPost(setPosts);
     }
-    let {pid} = useParams();
+    const {pid} = useParams();
     const [comments, setComments] = useState([]);
     const [commentIn, setCommentIn] = useState("");
     //if(!user)
     //return(<><h1>you need to sign in!</h1></>)
     //else
+    //console.log(pid);
     if(pid)
     {
         if(!curPost || !curPost.Id || curPost.Id != pid)
@@ -141,7 +142,7 @@ const Chat = (props) => {
             })
         }
         {
-            (props.userRole != "guest") &&
+            //(props.userRole != "guest") &&
             <Link to="/Write">
             <button >write post</button>
             </Link>
