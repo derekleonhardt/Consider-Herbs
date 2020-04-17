@@ -18,8 +18,9 @@ const EditUsers = (props) => {
     const [shownUser, setShownUser] = useState(null);
     const [defaultUserList, setDefaultUserList] = useState([]);
     const [warningMessage, setWarning] = useState(false);
-    const [newUserRole, setNewRole] = useState("Guest");
-    let userTypes = ["Guest","Admin" , "Subscribed", "Premium Subscription"];
+    const [newUserRole, setNewRole] = useState("Subscriber");
+    const [shownRole, setShownRole] = useState("admin");
+    let userTypes = ["Admin" , "Subscriber", "Premium"];
     userTypes = userTypes.map((userType, index) =>{
         return(
             <option key = {index} value = {userType}>{userType}</option>
@@ -35,6 +36,9 @@ const EditUsers = (props) => {
             return(
                 <div key = {index} className = "editEntry" onClick = {() => {
                     setShownUser(entry);
+                    if(shownUser)
+                        props.getAuthUserRole(shownUser.user_id, props.config, setShownRole, props.access);
+
                 }}>
                     <a href = "#">
                         {entry.name}
@@ -52,10 +56,9 @@ const EditUsers = (props) => {
             <div className = "entryInfo">
                 <h2> {shownUser.name}</h2> 
                 <p><b>Email:</b> {shownUser.email}</p>
-                <p><b>Role:</b> {props.userRole}</p>
+                <p><b>Role:</b> {shownRole}</p>
                 <select type = "select" onChange = {e => {
                     setNewRole(e.target.value);
-                    console.log(e.target.value);
                 }}>
                     {userTypes}
                 </select>

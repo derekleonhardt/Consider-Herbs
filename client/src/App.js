@@ -75,6 +75,20 @@ const setAuthUserRole = (userId,role,config, access) => {
   .catch(rej=>console.log(rej));
 }
 
+const getAuthUserRole = (userId, config, setRole, access) => {
+  //get a list of users
+  fetch(`https://${config.domain}/api/v2/users/${userId}/roles`,{
+    headers: {authorization: "Bearer " + access.access_token}
+  }).then(res => res.json().then(data => {
+      if(data.length > 0){
+        setRole(data[0].name.toLowerCase());
+      }
+      else{
+        setRole("subscriber");
+        setAuthUserRole(userId, "subscriber", config, access);
+      }
+  })).catch(rej=>console.log(rej));
+}
 const history = createBrowserHistory();
 
 const App = (props) => {
@@ -101,17 +115,7 @@ const App = (props) => {
   }
   if (access && isAuthenticated){
     //get the users role
-    fetch(`https://${props.config.domain}/api/v2/users/${user.sub}/roles`,{
-      headers: {authorization: "Bearer " + access.access_token}
-    }).then(res => res.json().then(data => {
-        if(data.length > 0){
-          setUserRole(data[0].name.toLowerCase());
-        }
-        else{
-          setUserRole("subscriber");
-          setAuthUserRole(user.sub, "subscriber", config, access);
-        }
-    })).catch(rej=>console.log(rej));
+    getAuthUserRole(user.sub, config, setUserRole, access);
   }
   return (
     <div>
@@ -133,7 +137,9 @@ const App = (props) => {
         access = {access}
         config = {config}
         isAuthenticated = {isAuthenticated}
+        user = {user}
         userRole = {userRole}
+        getAuthUserRole = {getAuthUserRole}
         />}></Route>
         <Route exact path = "/Book" render={()=>(<TheBooking selectProduct={setSelectedProduct}/>)}></Route>
         {/* Chat needs to be looked at by hosung */}
