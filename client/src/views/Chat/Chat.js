@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {Form, Transition, Button, Icon, Grid} from 'semantic-ui-react';
+import {Form, Transition, Button, Icon, Grid, Comment, Segment} from 'semantic-ui-react';
 import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
+import './Chat.css';
 
 const listPost = (setMethod) => {
     fetch(`http://127.0.0.1:5000/api/db/post/`).then(
@@ -131,6 +132,38 @@ const Chat = (props) => {
             refreshList();
     return (
         <>
+        <p></p>
+        <Grid className="grid" verticalAlign="middle" columns='equal'>
+            <Grid.Row centered>
+                <h1 className="title" >Join The Discussion Below</h1>
+            </Grid.Row>
+            <Grid.Row>
+                <Grid.Column width={10}>
+                    <div className="postRow">
+                        <div className="segmentGroup">
+                            <Segment.Group stacked>
+                                {
+                                    posts.map(post=>{
+                                        return(
+                                            <>
+                                                <Segment textAlign='center'>
+                                                        <h3><a href={"/Chat/"+post.Id} className='titleLink'>{post.title}</a></h3>
+                                                        <p>{post.name}</p>
+                                                
+                                                </Segment>
+                                            </>
+                                        )
+                                    })
+                                }
+                            </Segment.Group>
+                        </div>
+                    </div>
+                </Grid.Column>
+                <Grid.Column centered>
+                    <Segment>test</Segment>
+                </Grid.Column>
+            </Grid.Row>
+        </Grid>
         <h2>Posts ({posts.length} posts)</h2>
         {
             posts.map(post=>{

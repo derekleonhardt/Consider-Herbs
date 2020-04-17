@@ -1,0 +1,35 @@
+.grid{
+    padding: 10px;
+    display: flex;
+    background-image: url(../../assets/palmFrond.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.title{
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    color: white;
+    padding: .5%;
+    width: 500px;
+}
+.entry{
+    background-color: #4F745A;
+    padding: 1%;
+    color: white;
+}
+.commentGroup{
+    background: white;
+}
+.titleLink {
+    color: black;
+}
+.segmentGroup{
+    background: #A0BAA7;
+    border: 5px solid #A0BAA7;
+    border-radius: 15px ;
+    padding: 5px;
+}
+.postRow{
+    padding: 2%;
+}
