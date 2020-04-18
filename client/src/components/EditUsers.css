@@ -7,3 +7,22 @@
     flex-grow: 3;
     min-height: 30vw;
 }
+.hidden{
+    display: none;
+}
+.editUsers > input{
+    border: none;
+    padding: 1.5%;
+    width: 95%;
+}
+.editSubmit{
+    margin: auto;
+}
+.hidden{
+    display: none;
+}
+.userEntry{
+    display: flex;
+    flex-flow: column;
+    padding: 2%;
+}

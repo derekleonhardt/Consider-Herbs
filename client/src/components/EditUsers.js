@@ -9,21 +9,19 @@ const getUsers = (props, setUserList, setDefaultUserList) => {
             setDefaultUserList(data);
         })).catch(rej=>console.log(rej));
 }
-const submitNewRole = (shownUser, newUserRole) =>{
-    //setUserRole from props here
-    console.log(shownUser);
-}
 const EditUsers = (props) => {
     const [userList, setUserList]  = useState(null);
     const [shownUser, setShownUser] = useState(null);
     const [defaultUserList, setDefaultUserList] = useState([]);
     const [warningMessage, setWarning] = useState(false);
-    const [newUserRole, setNewRole] = useState("Subscriber");
-    const [shownRole, setShownRole] = useState("admin");
+    const [newUserRole, setNewRole] = useState("admin");
+    const [shownRole, setShownRole] = useState("");
+    const [confirmChange, setConfirm] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
     let userTypes = ["Admin" , "Subscriber", "Premium"];
     userTypes = userTypes.map((userType, index) =>{
         return(
-            <option key = {index} value = {userType}>{userType}</option>
+            <option key = {index} value = {userType.toLowerCase()}>{userType}</option>
         );
     });
 
@@ -36,9 +34,10 @@ const EditUsers = (props) => {
             return(
                 <div key = {index} className = "editEntry" onClick = {() => {
                     setShownUser(entry);
-                    if(shownUser)
-                        props.getAuthUserRole(shownUser.user_id, props.config, setShownRole, props.access);
-
+                    props.getAuthUserRole(entry.user_id, props.config, setShownRole, props.access);
+                    setConfirm(false);
+                    setWarning(false);
+                    setSubmitted(false);
                 }}>
                     <a href = "#">
                         {entry.name}
@@ -50,39 +49,62 @@ const EditUsers = (props) => {
     return(
         
         <div className = "adminPanel editUsers">
-            <h2>View Users</h2>
+            <h2>Manage Users</h2>
             {
             shownUser &&
-            <div className = "entryInfo">
+            <div className = "entryInfo userEntry">
                 <h2> {shownUser.name}</h2> 
                 <p><b>Email:</b> {shownUser.email}</p>
                 <p><b>Role:</b> {shownRole}</p>
-                <select type = "select" onChange = {e => {
+                <select type = "select" 
+                className = "typeEdit"
+                onChange = {e => {
                     setNewRole(e.target.value);
                 }}>
                     {userTypes}
                 </select>
                 
-                <button onClick = {e => {
+                <button 
+                className = {`editSubmit ${confirmChange ? " hidden" : ""}`}
+                onClick = {e => {
                     e.preventDefault()
-                    if(!warningMessage)
+                    if(!warningMessage){
                         setWarning(true);
+                        setConfirm(true);
+                        setSubmitted(false);
+                    }
                 }}>Submit</button>
                 {
                     warningMessage &&
                     <>
                         <p>Are you sure you want to change this users role to {newUserRole} ?</p>
-                        <button onClick ={e =>{
+                        <button
+                        className = "editSubmit" 
+                        onClick ={e =>{
                             e.preventDefault();
-                            submitNewRole(shownUser, newUserRole);
+                            setConfirm(false);
+                            setWarning(false);
+                            setSubmitted(true);
+                            //delete previous role
+                            props.deleteAuthUserRole(shownUser.user_id, [shownRole], props.config, props.access);
+                            //add new role
+                            props.setAuthUserRole(shownUser.user_id,newUserRole,props.config, props.access);
+                            //update role
+                            setShownRole(newUserRole);
                         }}>
                             Yes
                         </button>
                     </>
                 }
+                {
+                    submitted &&
+                    <p>Submitted!</p>
+                }
             </div>
             }
-            <input type = "text" onChange = {e => {
+            <input type = "text" 
+            placeholder = "Search"
+            onChange = {e => {
                 setUserList(defaultUserList.filter(user => user.name.toLowerCase().includes(e.target.value.toLowerCase())));
             }}/>
             <div className = "entries">

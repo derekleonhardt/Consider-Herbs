@@ -37,16 +37,25 @@ const searchGlossary = (e, setResults) =>{
   }else defaultGlossary(setResults);
 }
 const deleteAuthUserRole = (userId,roles = [],config, access) => {
+  let roleId = roles.map((role) =>{
+    switch(role.toLowerCase()){
+      case "admin":
+        return config.adminId;
+      case "subscriber":
+        return config.subscriberId;
+      case "premium":
+        return config.premiumId;
+    }
+  });
   //delete roles
   fetch(`https://${config.domain}/api/v2/users/${userId}/roles`,{
           method: "DELETE",
           headers: {
             "authorization": "Bearer " + access.access_token,
-            "content-type": "application/json",
+            "content-type": "application/json"
           },
-          body: JSON.stringify({'roles': roles})
+          body: JSON.stringify({"roles": roleId})
         })
-          .then(res => console.log(res.json()))
           .catch(rej=>console.log(rej)
     );
 }
@@ -66,7 +75,8 @@ const setAuthUserRole = (userId,role,config, access) => {
   //add new users here
   fetch(`https://${config.domain}/api/v2/roles/${newRole}/users`,{
     method:"POST",
-    headers: {authorization: "Bearer " + access.access_token,
+    headers: {
+      authorization: "Bearer " + access.access_token,
     "content-type": "application/json"},
     body: JSON.stringify({users: [userId]})
   })
@@ -140,6 +150,8 @@ const App = (props) => {
         user = {user}
         userRole = {userRole}
         getAuthUserRole = {getAuthUserRole}
+        deleteAuthUserRole = {deleteAuthUserRole}
+        setAuthUserRole = {setAuthUserRole}
         />}></Route>
         <Route exact path = "/Book" render={()=>(<TheBooking selectProduct={setSelectedProduct}/>)}></Route>
         {/* Chat needs to be looked at by hosung */}
