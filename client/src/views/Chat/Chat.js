@@ -1,3 +1,4 @@
+
 import React, {useState, useReducer} from 'react';
 import logo from '../../assets/logo.svg';
 import { Route, Switch, Redirect  } from 'react-router-dom';
@@ -101,10 +102,9 @@ const postList = posts.map(posts => (
                     <button className= "btn btn-success post-editor-button">Post</button>
                 </div>
             </div>
+            export default Chat
 */
-
 export default Chat
-
 
 /*
 import React, {useState, useEffect} from 'react';

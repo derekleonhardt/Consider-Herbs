@@ -13,9 +13,9 @@
     "react-big-calendar": "^0.24.1",
     "react-dom": "^16.13.0",
     "react-scripts": "^3.4.0",
-    "react-youtube": "^7.11.1",
     "react-stripe-elements": "^6.1.1",
     "react-stripe-script-loader": "^1.1.1",
+    "react-youtube": "^7.11.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2"
   },
