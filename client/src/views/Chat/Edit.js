@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Form, Transition, Button, Icon, Grid} from 'semantic-ui-react';
+import {Form, Transition, Button, Icon, Grid, Input, TextArea} from 'semantic-ui-react';
 import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
 import { Link } from 'react-router-dom';
 import Chat from './Chat.js'
+import './Edit.css';
 
 const writePost = (title, content, user) => {
     if(!user) {
@@ -47,17 +48,57 @@ const Edit = (props) => {
     if(props.match.params.pid)
     return(
         <>
-        title: <input onChange = {e => setTitle(e.target.value)}/><br></br>
-        content: <textarea onChange = {e => setContent(e.target.value)} rows="8" col="50"/><br></br>
-        <Link to="/Chat"><button onClick={()=>{editPost(props.match.params.pid, title, content, user)}}>write</button></Link>
+        <p></p>
+        <Grid className="grid3" centered>
+            <Grid.Row centered>
+                <h1 className="writeTitle" >Create Your Post!</h1>
+            </Grid.Row>
+
+            <Grid.Row centered>
+                <Grid.Column width={9} centered textAlign='center'>
+                    <div className="createPost">
+                        <Form>
+                            <Input  className='writeInput' size='large' fluid onChange = {e => setTitle(e.target.value)} placeholder='Title'/>
+                            <TextArea className='textInput' style={{ minHeight: 250}} onChange = {e => setContent(e.target.value)} placeholder='Body'/>
+                        </Form>
+                    </div>
+                </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+                <Link to="/Chat"><Button  size='massive' classname='writeButton' positive onClick={()=>{writePost(title, content, user)}}>Post</Button></Link>
+            </Grid.Row>
+            <Grid.Row>
+
+            </Grid.Row>
+        </Grid>
         </>
     )
     else
     return(
         <>
-        title: <input onChange = {e => setTitle(e.target.value)}/><br></br>
-        content: <textarea onChange = {e => setContent(e.target.value)} rows="8" col="50"/><br></br>
-        <Link to="/Chat"><button onClick={()=>{writePost(title, content, user)}}>write</button></Link>
+        <p></p>
+        <Grid className="grid3" centered>
+            <Grid.Row centered>
+                <h1 className="writeTitle" >Create Your Post!</h1>
+            </Grid.Row>
+
+            <Grid.Row centered>
+                <Grid.Column width={9} centered textAlign='center'>
+                    <div className="createPost">
+                        <Form>
+                            <Input  className='writeInput' size='large' fluid onChange = {e => setTitle(e.target.value)} placeholder='Title'/>
+                            <TextArea className='textInput' style={{ minHeight: 250}} onChange = {e => setContent(e.target.value)} placeholder='Body'/>
+                        </Form>
+                    </div>
+                </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+                <Link to="/Chat"><Button  size='massive' classname='writeButton' positive onClick={()=>{writePost(title, content, user)}}>Post</Button></Link>
+            </Grid.Row>
+            <Grid.Row>
+
+            </Grid.Row>
+        </Grid>
         </>
     )
 }

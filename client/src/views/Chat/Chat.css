@@ -1,7 +1,7 @@
-.grid{
+.grid2{
     padding: 10px;
     display: flex;
-    background-image: url(../../assets/palmFrond.jpg);
+    background-image: url(../../assets/leafBackground.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     
@@ -51,5 +51,5 @@
 .postButton{
     align-self: center;
     padding-top: 10%;
-
+    
 }

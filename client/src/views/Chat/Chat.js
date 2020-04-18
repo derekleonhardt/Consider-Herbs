@@ -133,7 +133,7 @@ const Chat = (props) => {
     return (
         <>
         <p></p>
-        <Grid className="grid" columns='equal' conlums={2}>
+        <Grid className="grid2" columns='equal' conlums={2}>
             <Grid.Row centered>
                 <h1 className="title" >Join The Discussion Below</h1>
             </Grid.Row>

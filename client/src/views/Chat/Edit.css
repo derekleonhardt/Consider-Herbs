@@ -1,0 +1,31 @@
+.grid3{
+    padding: 10px;
+    display: flex;
+    background-image: url(../../assets/palmFrond2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+}
+.createPost{
+    background: #4F745A;
+    border: 10px solid #4F745A;
+    border-radius: 15px ;
+    margin: auto;
+}
+.writeTitle{
+    background: #A0BAA7;
+    border: 5px solid #4F745A;
+    color: white;
+    padding: .5%;
+    width: 500px;
+}
+.writeInput{
+    padding-bottom: 1%;
+}
+.textInput{
+    padding: 1%;
+}
+.writeButton{
+    color: #A0BAA7;
+}
