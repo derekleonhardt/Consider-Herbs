@@ -51,5 +51,29 @@
 .postButton{
     align-self: center;
     padding-top: 10%;
-    
+
+}
+.grid4{
+    padding: 10px;
+    display: flex;
+    background-image: url(../../assets/palmFrond2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.postTitle{
+    background: #A0BAA7;
+    border: 5px solid #4F745A;
+    color: white;
+    width: fit-content;
+    padding: 1%;
+}
+.postContent{
+    background: #A0BAA7;
+    border: 5px solid #4F745A;
+    color: white;
+    padding: 1%;
+    width: fit-content;
+    text-align: left;
+    max-width: 750px;
 }

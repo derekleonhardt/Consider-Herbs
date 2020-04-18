@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Form, Transition, Button, Icon, Grid, Comment, Segment, Sticky} from 'semantic-ui-react';
+import {Form, Transition, Button, Icon, Grid, Comment, Segment, Sticky, Header} from 'semantic-ui-react';
 import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
@@ -90,34 +90,47 @@ const Chat = (props) => {
         if(curPost && curPost.Id)
         return (
         <>
-            <h2>{curPost.title}</h2>
-            <p>{curPost.name}</p>
-            <p>{curPost.content}</p>
-            <h3>Comments</h3>
-            {
-                comments.map((comment)=>{
-                    return(
-                        <>
-                            <p>
-                                {comment.name}
-                                <p></p>
-                                {comment.content}
-                            </p>
-                        </>
-                    );
-                })
-            }
-            <h4>write comment below</h4>
-            <p></p>
-            <textarea value={commentIn} onChange={(event)=>{setCommentIn(event.target.value)}}></textarea>
-            <p>
-            <button onClick={()=>{writeComment(curPost.Id,commentIn,user,setComments); setCommentIn("");}}>Comment</button>
-            </p>
-            
-            {(user && user.email == curPost.email)?<Link to={"/Edit/"+curPost.Id}><button>Edit</button></Link>:<></>}
-            {(user && user.email == curPost.email)?<Link to={"/Chat"}><button onClick={()=>{deletePost(curPost.Id, refreshList)}}>Delete</button></Link>:<></>}
-            <Link to="/Chat"><p>back to list</p></Link>
-            
+            <Grid centered className='grid4'>
+                <Grid.Row>
+                    <div className="postTitle">
+                        <h1>{curPost.title}</h1>
+                        <p>by: {curPost.name}</p>
+                    </div>
+                </Grid.Row>
+                <Grid.Row>
+                    <div className="postContent">
+                        <p>{curPost.content}</p>
+
+                        <Comment.Group size="mini">
+                            <Header as='h5'dividing>Comments</Header>
+                            {
+                                comments.map((comment)=>{
+                                    return(
+                                        <>
+                                            <Comment>
+                                                <Comment.Content>
+                                                    <Comment.Author>{comment.name}</Comment.Author>
+                                                    <Comment.Text>{comment.content}</Comment.Text>
+                                                </Comment.Content>
+                                            </Comment>
+                                        </>
+                                    );
+                                })
+                            }
+                            <Form reply>
+                                <Form.TextArea value={commentIn} onChange={(event)=>{setCommentIn(event.target.value)}} />
+                                <Button size='small' content='Add Reply' labelPosition='left' icon='edit' positive onClick={()=>{writeComment(curPost.Id,commentIn,user,setComments); setCommentIn("");}} />
+                            </Form>
+                            <p></p>
+                            {(user && user.email == curPost.email)?<Link to={"/Chat"}><Button size='small' negative onClick={()=>{deletePost(curPost.Id, refreshList)}}>Delete Post</Button></Link>:<></>}
+                            <p></p>
+                            <Link to="/Chat"></Link><Button size='small'>Back To All Posts</Button><Link/>
+                        </Comment.Group>
+
+                    </div>
+                </Grid.Row>
+                <Grid.Row></Grid.Row>
+            </Grid>
         </>
         );
         else
