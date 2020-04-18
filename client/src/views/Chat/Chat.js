@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Form, Transition, Button, Icon, Grid, Comment, Segment} from 'semantic-ui-react';
+import {Form, Transition, Button, Icon, Grid, Comment, Segment, Sticky} from 'semantic-ui-react';
 import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
@@ -133,15 +133,16 @@ const Chat = (props) => {
     return (
         <>
         <p></p>
-        <Grid className="grid" verticalAlign="middle" columns='equal'>
+        <Grid className="grid" columns='equal' conlums={2}>
             <Grid.Row centered>
                 <h1 className="title" >Join The Discussion Below</h1>
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column width={10}>
                     <div className="postRow">
+                        <h1 className="postsTitle">Recent Posts ({posts.length})</h1>
                         <div className="segmentGroup">
-                            <Segment.Group stacked>
+                            <Segment.Group>
                                 {
                                     posts.map(post=>{
                                         return(
@@ -159,27 +160,19 @@ const Chat = (props) => {
                         </div>
                     </div>
                 </Grid.Column>
-                <Grid.Column centered>
-                    <Segment>test</Segment>
+
+                <Grid.Column textAlign="center">
+                    <div className="buttonRow">
+                        <Sticky offset={25}>
+                            <Link to="/Write">
+                                <Button  positive size="massive" className="postButton" centered>Write Your Own Post</Button>
+                            </Link>
+                        </Sticky>
+                    
+                    </div>
                 </Grid.Column>
             </Grid.Row>
         </Grid>
-        <h2>Posts ({posts.length} posts)</h2>
-        {
-            posts.map(post=>{
-                return(
-                    <>
-                        <Link to={"/Chat/"+post.Id}><p>{post.Id} {post.title} {post.name}</p></Link>
-                    </>
-                )
-            })
-        }
-        {
-            //(props.userRole != "guest") &&
-            <Link to="/Write">
-            <button >write post</button>
-            </Link>
-        }
         </>
     )
     }

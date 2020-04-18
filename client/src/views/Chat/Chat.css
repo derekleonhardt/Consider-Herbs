@@ -7,7 +7,7 @@
     
 }
 .title{
-    background: #A0BAA7;
+    background: #C5DDE1;
     border: 5px solid #FFFFFF;
     color: white;
     padding: .5%;
@@ -32,4 +32,24 @@
 }
 .postRow{
     padding: 2%;
+}
+.postsTitle{
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    color: white;
+    padding: .5%;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.buttonRow{
+    flex: 1;
+    align-items: center;
+    padding-top: 3.9%;
+}
+.postButton{
+    align-self: center;
+    padding-top: 10%;
+
 }
