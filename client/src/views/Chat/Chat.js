@@ -1,118 +1,10 @@
-
-import React, {useState, useReducer} from 'react';
-import logo from '../../assets/logo.svg';
-import { Route, Switch, Redirect  } from 'react-router-dom';
-import {Button , Form, TextArea, Segment, Header, ItemDescription } from 'semantic-ui-react'
-import './Chat.css';
-import Post from './Functions/Post.jsx'
-import PostEditor from './Functions/PostEditor.js'
-import 'semantic-ui-react';
-import Youtube from 'react-youtube';
-let sub = "";
-let title ="";
-let user ="";
-let vid ="";
-
-function Chat(props) {
-
-const [posts, setPosts] = useState([]);
-
-const updatePosts = (temp) => {
-    setPosts(temp);
-}
-const videoLink = (e) =>
-{
-    console.log(e.target.value);
-    vid = e.target.value;
-    console.log(vid);
-}
-const Submission = (e) =>
-{
-    console.log(e.target.value);
-    sub = e.target.value;
-    console.log(sub);
-}
-const ChangeTitle = (e) =>
-{
-    console.log(e.target.value);
-    title = e.target.value;
-    console.log(title);
-}
-
-const addPost = (e) =>
-{
-    let vidID = "";
-    if(vid !=="")
-    {
-        var array = vid.split("=");
-        vidID = array[1];
-        console.log(vidID);
-    }
-    setPosts([...posts, {
-        id: posts.length,
-        Head: title, 
-        Name: user,
-        value: sub,
-        video: vidID
-    }])
-    //const temp = posts.push(e.target.value);
-    //updatePosts(temp);
-    sub = ''
-    title ="";
-}
-const postList = posts.map(posts => (
-                  
-    <Post key={posts.id} postBy={posts.Name} postTitle ={posts.Head} postBody={posts.value} postVideo={posts.video}/>
-
-));
-    return (
-        <div>
-            <div className= "post-body">
-                {
-                    postList
-                }
-            </div>
-            <div className="post-editor">
-                <div>
-                <PostEditor sub={sub} videoLink={videoLink} ChangeTitle={ChangeTitle} addPost={addPost} Submission={Submission} input={props.input}/>
-                </div>
-            </div>
-        </div>
-    );
-}
-/*
-
-
-
- <Segment>
-                    <Form>
-                        <Form.Field>
-                            <label>Write a respone</label>
-                            <TextArea placeholder= 'Write your response here.' name ={sub} value={name}  onChange={Submission} />
-                            <Button color='green' value={sub} onClick={addPost}  floated='right'>Submit</Button>
-                         </Form.Field>
-                    </Form>
-                    </Segment>
-
-<PostEditor sub={sub} addPost={addPost} Submission={Submission} input={props.input}/>
-
-<div className="panel panel-default post-editor">
-                <div className="panel-body">
-                    <textarea className="form-control post-editor-input"/>
-                    <button className= "btn btn-success post-editor-button">Post</button>
-                </div>
-            </div>
-            export default Chat
-*/
-export default Chat
-
-/*
 import React, {useState, useEffect} from 'react';
 import {Form, Transition, Button, Icon, Grid, Comment, Segment, Sticky, Header} from 'semantic-ui-react';
 import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
 import './Chat.css';
+import Youtube from 'react-youtube';
 
 const listPost = (setMethod) => {
     fetch(`http://127.0.0.1:5000/api/db/post/`).then(
@@ -184,6 +76,54 @@ const Chat = (props) => {
     const { isLoading, user, loginWithRedirect, logout} = useAuth0();
     const refreshList = () => {
         listPost(setPosts);
+    } 
+    const opts = {
+        height: '390',
+        width: '640',
+        PlayerVars:{
+            // https://developers.google.com/youtube/player_parameters
+            autoplay: 1,
+        }
+    };
+    const UrlID = (ID) =>
+    {
+        if(!ID || ID === "")
+        {
+            console.log(ID);
+        }
+        else
+        {
+        var YoutubeID;
+        console.log(ID);
+        var array = ID.split("/");
+        if(array[2] === "www.youtube.com")
+        {
+        console.log(array.length);
+             if(array.length === 4)
+                {
+                var id = array[3];
+                var temp = id.split("=");
+                if(temp.length > 0)
+                {
+                    console.log(temp[1]);
+                    YoutubeID = temp[1];
+                }
+                else
+                {
+                    console.log(temp[0]);
+                    YoutubeID = temp[0];
+                }
+                console.log(array[1]);
+             }
+             else
+                {
+                console.log("error");
+                }
+             return(
+            <Youtube videoId={YoutubeID} opts={opts}/>
+                )
+            }
+        }
     }
     const {pid} = useParams();
     const [comments, setComments] = useState([]);
@@ -208,7 +148,9 @@ const Chat = (props) => {
                 </Grid.Row>
                 <Grid.Row>
                     <div className="postContent">
-                        <p>URL: {curPost.url}</p>
+                        {
+                         UrlID(curPost.url)
+                        }
                         <p>{curPost.content}</p>
 
                         <Comment.Group size="mini">
@@ -313,4 +255,3 @@ export default Chat;
 
 
 ;
-*/

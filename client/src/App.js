@@ -4,7 +4,6 @@ import Home from "./views/Home/Home";
 import NotFound from "./views/NotFound";
 import NavBar from "./components/Header/NavBar";
 import Remedy from './views/Remedy/Remedy.js';
-import Board from "./views/Chat/Board.js";
 import Chat from "./views/Chat/Chat.js";
 import Admin from './views/Admin/Admin.js';
 import Book from './views/Book/Book.js'
@@ -124,10 +123,6 @@ const App = (props) => {
       <Switch>
         <Route exact path="/">
          <Redirect to="/Home" />
-        </Route>
-        <Route exact path="/Chat" component={Board}>
-        </Route>
-        <Route exact path="/Chat/Post" component={Chat}>
         </Route>
         <Route path = "/Home" render = {(props) => <TheHome
           user = {user}
