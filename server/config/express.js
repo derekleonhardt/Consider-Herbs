@@ -35,6 +35,21 @@ module.exports.init = () => {
         res.send(auth0);
     });
 
+    module.exports = {
+        auth0: {
+            clientId: process.env.REACT_APP_AUTH0_CLIENT_ID,
+            clientSecret: process.env.REACT_APP_AUTH0_CLIENT_SECRET,
+            domain: process.env.REACT_APP_AUTH0_DOMAIN,
+            clientId_m: process.env.REACT_APP_AUTH0_CLIENT_ID_M,
+            clientSecret_m: process.env.REACT_APP_AUTH0_CLIENT_SECRET_M,
+            audience: "https://" + process.env.REACT_APP_AUTH0_DOMAIN + "/api/v2/",
+            adminId: process.env.REACT_APP_AUTH0_ADMIN_ID,
+            subscriberId: process.env.REACT_APP_AUTH0_SUBSCRIBER_ID,
+            premiumId: process.env.REACT_APP_AUTH0_PREMIUM_ID
+        }
+    };
+    
+
     var access;
     var options = {
         method: 'POST',
