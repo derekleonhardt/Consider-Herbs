@@ -422,7 +422,7 @@ const writePost = async (req, res) => {
       }
   });
 
-  db.run(`INSERT INTO post(Title, content, name, username, email, Date) VALUES(?,?,?,?,?,?)`, [req.body.title, req.body.content, req.body.name, req.body.username, req.body.email, new Date()], function(err) {
+  db.run(`INSERT INTO post(Title, content, name, username, email, Date, Url) VALUES(?,?,?,?,?,?,?)`, [req.body.title, req.body.content, req.body.name, req.body.username, req.body.email, new Date(),req.body.url], function(err) {
     if (err) {
       res.json({error:"error while processing data.", "message":err});
       return;
@@ -439,7 +439,7 @@ const updatePost = async (req, res) => {
       }
   });
 
-  db.run(`update post set Title =?, content=?, Date=? where Id=?`, [req.body.title, req.body.content, new Date(), req.params.id], function(err) {
+  db.run(`update post set Title =?, content=?, Date=?, Url=? where Id=?`, [req.body.title, req.body.content, req.body.url, new Date(), req.params.id], function(err) {
     if (err) {
       res.json({error:"error while processing data.", "message":err});
       return;

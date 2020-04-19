@@ -13,10 +13,6 @@ async function postCharge(req, res, next) {
 
     if (!charge) throw new Error('charge unsuccessful')
 
-    //res.status(200).json({
-    //  message: 'charge posted successfully',
-    //  charge
-    //})
     req.charge = charge;
     next();
   } catch (error) {

@@ -165,11 +165,15 @@ const Book = ({ products, selectProduct }) => {
             </Grid.Row>
             <Grid.Row>
                 <div>
-                    <p className="signUp">
-                    Consider signing up for Consider Herb’s premium membership today! You will receive unlimited access to all recipes and the herb glossary, as well as the ability to join me for all online videos and classes!
-                    </p>
-                    <p></p>
-                    <Button positive  size="huge" className="button">Become A Premium Member</Button>
+                    <div className="signUp">
+                        <h1>Premium User</h1>
+                        <h2>$10 / month</h2>
+                        <p></p>
+                        <Button positive  size="small" className="button">Become A Premium Member</Button>
+                        <p></p>
+                        <p>Unlimited Recipe and Herb Glossary Access</p>
+                        <p>View All Online Videos and Classes</p>
+                    </div>
                 </div>
             </Grid.Row>
             <Grid.Row></Grid.Row>
