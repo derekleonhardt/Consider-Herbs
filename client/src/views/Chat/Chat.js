@@ -188,11 +188,8 @@ const Chat = (props) => {
                             <p>View All Online Videos and Classes</p>
                         </div>
                         <p></p>
-                        <Sticky offset={25}>
-                            <Link to="/Write">
-                                <Button  positive size="massive" className="postButton" centered>Write Your Own Post</Button>
-                            </Link>
-                        </Sticky>
+                        
+                        {(user)?<Button  positive size="massive" className="postButton" centered>Write Your Own Post</Button>:<></>}
                     
                     </div>
                 </Grid.Column>
