@@ -1,0 +1,88 @@
+.grid2{
+    padding: 10px;
+    display: flex;
+    background-image: url(../../assets/leafBackground.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.title{
+    background: #C5DDE1;
+    border: 5px solid #FFFFFF;
+    color: white;
+    padding: .5%;
+    width: 500px;
+}
+.entry{
+    background-color: #4F745A;
+    padding: 1%;
+    color: white;
+}
+.commentGroup{
+    background: white;
+}
+.titleLink {
+    color: black;
+}
+.segmentGroup{
+    background: #A0BAA7;
+    border: 5px solid #A0BAA7;
+    border-radius: 15px ;
+    padding: 5px;
+}
+.postRow{
+    padding: 2%;
+}
+.postsTitle{
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    color: white;
+    padding: .5%;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.buttonRow{
+    flex: 1;
+    align-items: center;
+    padding-top: 3.9%;
+}
+.postButton{
+    align-self: center;
+    padding-top: 10%;
+
+}
+.grid4{
+    padding: 10px;
+    display: flex;
+    background-image: url(../../assets/palmFrond2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.postTitle{
+    background: #A0BAA7;
+    border: 5px solid #4F745A;
+    color: white;
+    width: fit-content;
+    padding: 1%;
+}
+.postContent{
+    background: #A0BAA7;
+    border: 5px solid #4F745A;
+    color: white;
+    padding: 1%;
+    width: fit-content;
+    text-align: left;
+    max-width: 750px;
+}
+.signUp2{
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    color: white;
+    text-align: center;
+    font-size: 1.2vw;
+    margin: auto;
+    width: 50%;
+}
