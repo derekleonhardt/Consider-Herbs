@@ -13,6 +13,7 @@
     background-image: url(../assets/palmFrond.jpg);
     display: flex;
     flex-direction: column;
+    background-size: cover;
   }
   
   .checkout-form {
@@ -99,4 +100,5 @@
       margin-top: 1em;
     }
   }
+  
   

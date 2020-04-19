@@ -53,7 +53,8 @@ class SubscriptionForm extends React.Component {
       return (
         
         <div className="checkout-background">
-          <center><h2>Become a premium member today!</h2></center>
+          <p></p>
+          <center><h2 className="title">Become a premium member today!</h2></center>
           <div className="checkout-form">
             <form onSubmit={this.handleSubmit}>
               <label>
