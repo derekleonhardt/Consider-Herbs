@@ -16,7 +16,7 @@ import Checkout from "./views/Checkout/Checkout";
 import NoAccount from "./views/NoAccount/NoAccount";
 import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
-import { get } from 'mongoose';
+import { get, PromiseProvider } from 'mongoose';
 import { createBrowserHistory } from 'history'
 
 const defaultGlossary = (setResults) => {
@@ -91,9 +91,9 @@ const App = (props) => {
 
   //pages tier system
   const TheHome = isAuthenticated ? UserHome : Home;
-  const TheRemedy = isAuthenticated ? Remedy : NoAccount; 
+  const TheRemedy = (isAuthenticated && (userRole === "admin" || userRole === "premium")) ? Remedy : NoAccount; 
   const TheBooking = isAuthenticated ? Book : NoAccount;
-
+  const TheAdmin = (isAuthenticated && userRole === "admin") ? Admin : NoAccount;
 
   if (!access){
     fetch('http://127.0.0.1:5000/auth/access')
@@ -113,9 +113,14 @@ const App = (props) => {
         }
     })).catch(rej=>console.log(rej));
   }
+  console.log(userRole);
   return (
     <div>
-      <NavBar isAuthenticated = {isAuthenticated} user = {user} userRole = {userRole}/>
+      <NavBar isAuthenticated = {isAuthenticated} 
+        user = {user} 
+        userRole = {userRole}
+        domain = {config.domain}
+      />
       <Switch>
         <Route exact path="/">
          <Redirect to="/Home" />
@@ -127,7 +132,7 @@ const App = (props) => {
         <Route path = "/Home" render = {(props) => <TheHome
           user = {user}
         />}></Route>
-        <Route path = "/Admin" render = {(props) => <Admin
+        <Route path = "/Admin" render = {(props) => <TheAdmin
         defaultGlossary = {defaultGlossary}
         searchGlossary = {searchGlossary}
         access = {access}
