@@ -40,6 +40,19 @@ const defaultRecipe = (setResults) => {
   });
 }
 
+const getRecipe = (id) => {
+  fetch(`http://127.0.0.1:5000/api/db/recipe/id/`+id).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  data.data.Ingredients.map(ingredient=>{
+                      console.log(ingredient.IngName);
+                      console.log(ingredient.Amounut);
+                      console.log(ingredient.Units);
+                  })
+          }))
+  });
+}
+
 const searchRecipeByBody = (e, setResults) =>{
   if (e.target.value.replace(/\s/g,'') != ''){
       fetch(`http://127.0.0.1:5000/api/db/recipe/body/${e.target.value}`).then(
@@ -83,6 +96,7 @@ const App = () => {
         searchRecipeByBody = {searchRecipeByBody}
         searchRecipe = {searchRecipe}
         defaultRecipe = {defaultRecipe}
+        getRecipe = {getRecipe}
         />}></Route>
         <Route exact path="/UserHome" component={UserHome}/>
 

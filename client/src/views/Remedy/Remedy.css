@@ -31,30 +31,34 @@ body {
 }
 
 .wrist {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
-    left: 42%;
-    top: 100%;
+    left: 28%;
+    top: 110%;
     position: absolute;
 }
 
 .hands {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
     left: 42%;
-    top: 107%;
+    top: 108%;
     position: absolute;
 }
 
 .fingers {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
     left: 42%;
-    top: 113%;
+    top: 115%;
     position: absolute;
 }
 
 .head {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
     left: 35%;
@@ -62,47 +66,53 @@ body {
     position: absolute;
 }
 
-.lips {
+.face {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
-    left: 30%;
-    top: 59%;
-    position: absolute;
-}
-
-.mouth {
-    background-color: #C5DDE1;
-    z-index: 20;
-    left: 30%;
-    top: 62%;
-    position: absolute;
-}
-
-.ears {
-    background-color: #C5DDE1;
-    z-index: 20;
-    left: 30%;
-    top: 65%;
+    left: 28%;
+    top: 61%;
     position: absolute;
 }
 
 .eyes {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
-    left: 30%;
-    top: 68%;
+    left: 28%;
+    top: 64%;
     position: absolute;
 }
 
-.face {
+.ears {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
-    left: 30%;
-    top: 71%;
+    left: 28%;
+    top: 67%;
+    position: absolute;
+}
+
+.mouth {
+    border-radius: 8px;
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 28%;
+    top: 70%;
+    position: absolute;
+}
+
+.lips {
+    border-radius: 8px;
+    background-color: #C5DDE1;
+    z-index: 20;
+    left: 28%;
+    top: 73%;
     position: absolute;
 }
 
 .throat {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
     left: 35%;
@@ -111,14 +121,16 @@ body {
 }
 
 .arm {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
-    left: 42%;
+    left: 30%;
     top: 90%;
     position: absolute;
 }
 
 .stomach {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
     left: 35%;
@@ -127,6 +139,7 @@ body {
 }
 
 .legs {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
     left: 35%;
@@ -135,6 +148,7 @@ body {
 }
 
 .knee {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
     left: 35%;
@@ -143,6 +157,7 @@ body {
 }
 
 .feet {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
     left: 35%;
@@ -151,6 +166,7 @@ body {
 }
 
 .back {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
     left: 60%;
@@ -159,6 +175,7 @@ body {
 }
 
 .chest {
+    border-radius: 8px;
     background-color: #C5DDE1;
     z-index: 20;
     left: 35%;
