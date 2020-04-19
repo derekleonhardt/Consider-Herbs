@@ -177,6 +177,17 @@ const Chat = (props) => {
 
                 <Grid.Column textAlign="center">
                     <div className="buttonRow">
+                        <p></p>
+                        <div className="signUp2">
+                            <h1>Premium User</h1>
+                            <h2>$10 / month</h2>
+                            <p></p>
+                            <Button positive  size="small" className="button">Become A Premium Member</Button>
+                            <p></p>
+                            <p>Unlimited Recipe and Herb Glossary Access</p>
+                            <p>View All Online Videos and Classes</p>
+                        </div>
+                        <p></p>
                         <Sticky offset={25}>
                             <Link to="/Write">
                                 <Button  positive size="massive" className="postButton" centered>Write Your Own Post</Button>

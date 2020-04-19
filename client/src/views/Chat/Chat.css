@@ -77,3 +77,12 @@
     text-align: left;
     max-width: 750px;
 }
+.signUp2{
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    color: white;
+    text-align: center;
+    font-size: 1.2vw;
+    margin: auto;
+    width: 50%;
+}
