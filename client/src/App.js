@@ -36,6 +36,22 @@ const searchGlossary = (e, setResults) =>{
       });
   }else defaultGlossary(setResults);
 }
+const getContentDbListings = async (contentType, page, setListings) =>{
+  let requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+  };
+  let info;
+  fetch(`http://localhost:5000/api/db/${contentType}/page/${page}`, requestOptions)
+  .then(response => response.json().then(data=>{
+      if (data){
+        if(!Array.isArray(data.data))
+          setListings([data.data]);
+        else
+          setListings(data.data); 
+      }
+  }));
+}
 const deleteAuthUserRole = (userId,roles = [],config, access) => {
   let roleId = roles.map((role) =>{
     switch(role.toLowerCase()){
@@ -152,6 +168,7 @@ const App = (props) => {
         getAuthUserRole = {getAuthUserRole}
         deleteAuthUserRole = {deleteAuthUserRole}
         setAuthUserRole = {setAuthUserRole}
+         getDbListings = {getContentDbListings}
         />}></Route>
         <Route exact path = "/Book" render={()=>(<TheBooking selectProduct={setSelectedProduct}/>)}></Route>
         {/* Chat needs to be looked at by hosung */}

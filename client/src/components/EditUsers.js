@@ -49,7 +49,7 @@ const EditUsers = (props) => {
     return(
         
         <div className = "adminPanel editUsers">
-            <h2>Manage Users</h2>
+            <h2 className = "adminHeader">Manage Users</h2>
             {
             shownUser &&
             <div className = "entryInfo userEntry">

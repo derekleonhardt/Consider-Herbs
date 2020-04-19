@@ -46,7 +46,27 @@ dbRouter.post('/booking/admin/confirm', db.confirmBooking);
 dbRouter.post('/booking/admin/insert', db.adminInsertBooking);
 
 //content - link
-dbRouter.get('/content/links/', db.listLinks);
-dbRouter.post('/content/links/insert/', db.insertLink);
+dbRouter.get('/links/', db.listLinks);
+dbRouter.get('/links/:id', db.readLink);
+dbRouter.get('/links/page/:page', db.readLinkPage);
+dbRouter.post('/links/insert/', db.insertLink);
+dbRouter.delete('/links/delete/:id', db.deleteLink);
+dbRouter.patch('/links/update/:id', db.updateLink);
+
+//content - image
+dbRouter.get('/images/', db.listImages);
+dbRouter.get('/images/:id', db.readImage);
+dbRouter.get('/images/page/:page', db.readImagePage);
+dbRouter.post('/images/insert/', db.insertImage);
+dbRouter.delete('/images/delete/:id', db.deleteImage);
+dbRouter.patch('/images/update/:id', db.updateImage);
+
+//content - image
+dbRouter.get('/text/', db.listText);
+dbRouter.get('/text/:id', db.readText);
+dbRouter.get('/text/page/:page', db.readTextPage);
+dbRouter.post('/text/insert/', db.insertText);
+dbRouter.delete('/text/delete/:id', db.deleteText);
+dbRouter.patch('/text/update/:id', db.updateText);
 
 module.exports = dbRouter;
