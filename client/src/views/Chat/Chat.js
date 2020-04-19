@@ -99,6 +99,7 @@ const Chat = (props) => {
                 </Grid.Row>
                 <Grid.Row>
                     <div className="postContent">
+                        <p>URL: {curPost.url}</p>
                         <p>{curPost.content}</p>
 
                         <Comment.Group size="mini">
@@ -124,7 +125,7 @@ const Chat = (props) => {
                             <p></p>
                             {(user && user.email == curPost.email)?<Link to={"/Chat"}><Button size='small' negative onClick={()=>{deletePost(curPost.Id, refreshList)}}>Delete Post</Button></Link>:<></>}
                             <p></p>
-                            <Link to="/Chat"></Link><Button size='small'>Back To All Posts</Button><Link/>
+                            <Link to="/Chat"><Button size='small'>Back To All Posts</Button></Link>
                         </Comment.Group>
 
                     </div>
