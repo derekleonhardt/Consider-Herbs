@@ -1,5 +1,7 @@
 import React from "react";
 import "./BrowseResults.css";
+import 'semantic-ui-react';
+import {Modal, Button} from 'semantic-ui-react';
 
 const BrowseResults = (props) => {
     var temp = props.results != undefined ? 
@@ -8,7 +10,13 @@ const BrowseResults = (props) => {
     const entries = temp.map((result, index) =>{
         return(
             <div key = {index} className = "entry">
-                <h2>{result.Title}</h2>
+                <Modal size='small'  trigger={<h2 className="resultTitle">{result.Title}</h2>}>
+                    <Modal.Header>{result.Title}</Modal.Header>
+                    <Modal.Content>
+                        <p> <b>Definition:</b> {result.Definition}</p>
+                        <p> <b>Usage:</b> {result.Usage}</p>
+                    </Modal.Content>
+                </Modal>
                 <p> <b>Definition:</b> {result.Definition}</p>
                 <p> <b>Usage:</b> {result.Usage}</p>
             </div>
