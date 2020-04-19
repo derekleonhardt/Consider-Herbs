@@ -3,6 +3,7 @@ const dbPath = './server/db/considerHerbDB.db';
 const dbPathPostReply = './server/db/PostReplyDB.db';
 const dbPathBooking = './server/db/bookingDB.db';
 const dbPathContent = './server/db/contentDB.db';
+const dbPathSubscription = './server/db/subscriptionDB.db';
 const readRecipe = async (req, res) => {
     const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
@@ -699,7 +700,54 @@ const paidBooking = async (req, res) => {
     message: 'charge posted successfully',
     charge
   })
+};
+
+const insertSubscription = async (req, res) => {
+  const subscription = req.subscription;
+  const customer = req.customer;
+  const db = new sqlite3.Database(dbPathSubscription, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`INSERT INTO subscription(cid, email, subscription) VALUES(?,?,?)`, [req.customer.id, req.customer.email, req.subscription.id], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    res.status(200).json({
+      message: 'subscription successful',
+      subscription,
+      customer
+    });
+  });
+  db.close();
+};
+
+const listSubscription = async (req, res) => {
+  const db = new sqlite3.Database(dbPathSubscription, (err) => {
+    if (err) {
+        res.json({error:"error while connecting database.", "message":err});
+    }
+    });
+    db.serialize(() => {
+        db.all(`SELECT * FROM subscription`, (err, row) => {
+          if (err) {
+            res.json({error:"error while processing data.", "message":err});
+          }
+            res.json({data: row});
+        });
+      });
+       
+    db.close((err) => {
+        if (err) {
+          console.error(err.message);
+        }
+        console.log('Close the database connection.');
+    });
 }
+
 
 module.exports = {
   readRecipe, 
@@ -736,5 +784,7 @@ module.exports = {
   confirmBooking,
   listLinks,
   insertLink,
-  paidBooking
+  paidBooking,
+  insertSubscription,
+  listSubscription
 };
