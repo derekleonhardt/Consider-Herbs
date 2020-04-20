@@ -3,18 +3,24 @@
     display: flex;
     flex-wrap: wrap;
 }
-.entry{
+.entry2{
     width: 40%;
     margin: 1% 5%;
     background-color: #4F745A;
     padding: 1%;
     color: white;
-    text-overflow: ellipsis;
     border: white 5px solid;
     border-radius: 3%;
-}
-.entry > p{
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+}
+.entry > p{
+    text-align: left;
+    white-space: initial;
+}
+.tester{
+    white-space: initial;
+}
+.modalTitle:hover{
+    color: #007bff;
 }
