@@ -118,7 +118,7 @@ const listRecipeWithIngredients = async (req, res) => {
               res.json({error:"error while processing data.", "message":err});
             }
             if(!row || !row[0]){
-              res.json({data:{}});
+              res.json({data:[]});
             }
             else{
             // process recipe
@@ -171,7 +171,7 @@ const searchRecipeByBody = async (req, res) => {
               res.json({error:"error while processing data.", "message":err});
             }
             if(!row || !row[0]){
-              res.json({data:{}})
+              res.json({data:[]})
             }
             else{
               // process recipe
@@ -225,7 +225,7 @@ const searchRecipe = async (req, res) => {
                 res.json({error:"error while processing data.", "message":err});
               }
               if(!row || !row[0]){
-              res.json({data:{}})
+              res.json({data:[]})
               }
               else{
                 // process recipe
