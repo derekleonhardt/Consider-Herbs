@@ -4,10 +4,10 @@ import Home from "./views/Home/Home";
 import NotFound from "./views/NotFound";
 import NavBar from "./components/Header/NavBar";
 import Remedy from './views/Remedy/Remedy.js';
+import Chat from "./views/Chat/Chat.js";
 import Admin from './views/Admin/Admin.js';
 import Book from './views/Book/Book.js'
 import Browse from "./views/Browse/Browse.js"
-import Chat from './views/Chat/Chat.js'
 import Edit from './views/Chat/Edit.js'
 import Footer from "./components/Footer";
 import UserHome from "./views/UserHome/UserHome.js";
@@ -123,7 +123,7 @@ const App = (props) => {
       />
       <Switch>
         <Route exact path="/">
-          <Redirect to="/Home" />
+         <Redirect to="/Home" />
         </Route>
         <Route path = "/Home" render = {(props) => <TheHome
           user = {user}
