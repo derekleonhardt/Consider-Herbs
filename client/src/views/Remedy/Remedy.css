@@ -289,6 +289,17 @@ body {
     font-size: 1.7vw;
     align-items: center;
 }
+.suggestRecipe{
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    box-sizing: border-box;
+    width: fit-content;
+    padding: 1%;
+    color: white;
+    text-align: center;
+    font-size: 1.7vw;
+    align-items: center;
+}
 .suggestions{
     display: flex;
     flex-flow: column;

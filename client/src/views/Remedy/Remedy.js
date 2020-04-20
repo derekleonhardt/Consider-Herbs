@@ -39,7 +39,7 @@ const Register = (props) => {
                     <button className="wrist" value="wrist" onClick = {e => props.searchRecipeByBody(e, setResults)}></button>
                 </div>
                 <p></p>
-                <p className="pain">Where is your pain located?</p> 
+                <p className="suggestRecipe">Suggested Recipes</p> 
                 <div className ="searchBar">
                     <img src = "logos/search.png"/>
                     <input type = "text" placeholder = "Search By Ailment" onChange = {e => props.searchRecipe(e, setResults)}/>
