@@ -9,11 +9,11 @@
     background-image: url("/logos/LoginBackground.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    /* object-fit: cover; */
 }
 .box{
     box-sizing:  border-box;
     width: 30%;
+    min-width: 120px;
     height: 75%;
     border: 5px solid #FFFEFE;
     border-radius: 20px ;
@@ -21,13 +21,6 @@
     text-align: center;
     padding: 10px;
     
-}
-.form{
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    margin: 0 auto 100px;
 }
 .box h1{
     color: white;

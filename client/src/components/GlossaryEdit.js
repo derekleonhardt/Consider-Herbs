@@ -74,16 +74,18 @@ const GlossaryEdit = (props) => {
     
     ///// Populating the glossary list with items
     if(results.length == 0) props.defaultGlossary(setResults);
-    var temp = results.data != undefined ? results.data.sort((a, b) => (a.Title.toLowerCase() > b.Title.toLowerCase()) ? 1 : -1) : []; //set temp variable to the glossary results ONLY if the results variable is not empty 
+    var temp = results != undefined ? results.sort((a, b) => (a.Title.toLowerCase() > b.Title.toLowerCase()) ? 1 : -1) : []; //set temp variable to the glossary results ONLY if the results variable is not empty 
     const entries = temp.map((result, index) =>{
         return(
             <div key = {index} className = "editEntry" onClick = {() => {setEntryInfo(result);}}>
-                {result.Title}
+                <a href = "#">
+                    {result.Title}
+                </a>
             </div>
         );
     });
   return(
-        <div className = "glossaryEdit"> {/*Holds all glossary editing content */}
+        <div className = "adminPanel" id = "glossaryEdit"> {/*Holds all glossary editing content */}
             <h2 className = "glossaryTitle">Edit Glossary</h2>
             <form className = "infoEdit"> {/*holds everything but the interactive glossary list */}
                 <select onChange = {e => { 

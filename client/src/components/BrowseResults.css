@@ -12,9 +12,22 @@
     text-overflow: ellipsis;
     border: white 5px solid;
     border-radius: 3%;
+    text-align: center;
 }
 .entry > p{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.paid {
+    color:blue
+}
+.unpaid {
+    color:red
+}
+.resultTitle:hover{
+    color: #007bff;
+}
+.resultsTitle{
+    width: fit-content;
 }

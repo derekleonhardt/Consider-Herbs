@@ -27,7 +27,7 @@ dbRouter.delete('/glossary/delete/def/:def', db.deleteGlossaryDef);
 
 // post
 dbRouter.get('/post/', db.listPost);
-dbRouter.get('/post/read/:id', db.readPost);
+dbRouter.get('/post/:id', db.readPost);
 dbRouter.post('/post/write/', db.writePost);        // post body json{title, content}
 dbRouter.post('/post/edit/:id', db.updatePost);     // post body json{title, content}
 dbRouter.delete('/post/delete/:id', db.deletePost);
@@ -37,4 +37,19 @@ dbRouter.get('/post/:id/reply/', db.listReply);
 dbRouter.post('/post/:id/reply/write', db.writeReply);  // post body json{title, content}
 dbRouter.post('/post/reply/edit', db.updateReply);  // post body json{id}
 dbRouter.post('/post/reply/delete', db.deleteReply);  // post body json{id}
+
+// booking
+dbRouter.get('/booking/', db.listBooking);
+dbRouter.post('/booking/commit/', db.commitBooking);
+dbRouter.get('/booking/admin/', db.adminListBooking);
+dbRouter.post('/booking/admin/confirm', db.confirmBooking);
+dbRouter.post('/booking/admin/insert', db.adminInsertBooking);
+
+//content - link
+dbRouter.get('/content/links/', db.listLinks);
+dbRouter.post('/content/links/insert/', db.insertLink);
+
+//subscription
+dbRouter.get('/subscription/', db.listSubscription);
+
 module.exports = dbRouter;

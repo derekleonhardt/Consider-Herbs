@@ -5,3 +5,22 @@
     justify-content: space-around;
 
 }
+.adminPanel{
+    color: white;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    overflow: hidden;
+    background-color: #4F745A;
+    max-height: 45vw;
+    width: 40vw;
+    border: 5px solid white;
+    margin: 1vw 5vw;
+    border-radius: 1em;
+    padding-top:1%;
+}
+.adminCol{
+    display: flex;
+    flex-flow: column;
+    margin: 0;
+}

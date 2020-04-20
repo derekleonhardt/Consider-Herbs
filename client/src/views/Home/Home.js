@@ -20,9 +20,9 @@ const Home = (props) => {
         src: "logos/Rosemary.png",
         caption: "Anti-cancer properties(for certain cancers) and anti-inflammatory properties,discourages hair loss and boosts growth,improves memory, liver boosting."
     });
-    const gallery = arr.map((item) => {
+    const gallery = arr.map((item, index) => {
         return(
-        <figure className = "galleryItem">
+        <figure key = {index} className = "galleryItem">
             <h2 className = "galleryTitle">{item.name}</h2>
             <img className = "galleryImage" src = {item.src}></img>
             <figcaption>{item.caption}</figcaption>

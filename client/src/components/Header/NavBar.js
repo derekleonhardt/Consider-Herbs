@@ -1,20 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Auth0 from "../auth0.js";
 import './NavBar.css';
 
-const NavBar = () => {
+const NavBar = (props) => {
     return (
-        <div className = "header">
+        <div className = "top-header">
             {/* Logo */}
             <div className = "social-bar">
                 <Link className = "nav-title" to="/Home">
                     <img className = "main-logo" src={ "/logos/considerHerbsLogo.png" } alt="React logo" />
                 </Link>
                 <div className = "social-logos">
+                    {
+                        (props.userRole === "admin") &&
+                        <Link className = "login" to="/Admin">
+                            Admin Page
+                        </Link>
+                    }
+
+                    <Auth0 className = "login" 
+                    domain = {props.domain}
+                    id = {props.clientId}
+                    user = {props.user}
+                    >
+                        Login
+                    </Auth0>
                     <a className = "social-link" href={'https://www.facebook.com/Consider-Herbs-276933896476422/'}>
                         <img className = "social-image" src={"/logos/facebookLogo.svg"}/>
                     </a>
-                    <a className = "social-link" href={'https://www.instagram.com/consider.herbs/'}>
+                    <a className = "social-link" href={'https://www.instagram.com/considerherbs/'}>
                         <img className = "social-image" src = {"/logos/instagramLogo.svg"}/>   
                     </a>
                     <a className = "social-link" href={'mailto:dee@considerherbs.com'}>
@@ -37,9 +52,6 @@ const NavBar = () => {
                 <Link className = "nav-link" to ='/Book'>
                 <img className = "nav-logo" src = {"/logos/bookLogo.svg"}></img>
                 Book Consultation</Link>
-                {/* <a className = "nav-link" target='_blank' rel="noopener noreferrer" href="https://reactjs.org/docs/getting-started.html">
-                    React Docs
-                </a> */}
             </div>
 
         </div>

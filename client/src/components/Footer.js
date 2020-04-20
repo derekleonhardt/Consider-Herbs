@@ -13,13 +13,13 @@ const Footer = () => {
                         Email: dee@considerherbs.com
                     </li>
                     <li>
-                        Phone: 123 420 6969
+                        Phone: (352) 123 1234
                     </li>
                     <li>
                         Facebook: Consider Herbs
                     </li>
                     <li>
-                        Instagram: consider.herbs
+                        Instagram: considerherbs
                     </li>
                 </ul>
             </div>

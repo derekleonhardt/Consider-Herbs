@@ -1,85 +1,40 @@
-body {
-    margin: 0;
-}
-
-.about {
-    background: #A0BAA7;
-    display: flex;
-    background-image: url(../../assets/aboutBackground.jpeg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    flex-direction: column;
-    align-items: center;
-    padding:2% 0 2% 0;
-}
-.aboutTitle, .inspoTitle{
-    background-color: #C5DDE1;
+.grid {
     padding: 10px;
-    color: white;
-}
-
-.dee {
-    width: 40%;
-    border: white solid 5px;
-    box-sizing: border-box;
-}
-.deeContent{
-    width: 100%;
     display: flex;
-    justify-content: space-around;
+    background-image: url(../../assets/palmFrond.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
 }
-.info {
-    background: #A0BAA7;
-    border: 5px solid #FFFFFF;
-    box-sizing: border-box;
-    width: 40%;
-    padding: 1%;
-    color: white;
-    text-align: center;
-    font-size: 1.7vw;
-}
-.herbInspiration{
-    display: flex;
-    flex-flow: column;
-    padding: 1%;
-    align-items: center;
-    padding-bottom: 5%;
-    background: #A0BAA7;
-    margin: 0;
-}
-.inspoTitle{
-    margin: auto;
-}
-.booking,.aboutTitle, .inspoTitle,.findHerbs{
-    font-family: inherit;
-    border: white solid 5px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-}
-.booking,.findHerbs{
-    background-color: #4F745A;
-}
-.booking > a , .findHerbs > a{
-    color: white;
+.calendar{
+    background: rgb(255, 255, 255);
+    border: 5px solid #4F745A;
+    border-radius: 30px ;
     padding: 5%;
 }
-.herbGallery{
-    display: flex;
-    flex-flow: row;
-    align-items: flex-start;
+.popup{
+    background: rgb(255, 255, 255);
+    border: 5px solid #4F745A;
+    border-radius: 30px ;
+    padding: 10px;
+
 }
-.galleryImage{
-    max-width: 20vw;
-    margin-bottom: 5%;
+.paymentBox{
+    background: rgb(255, 255, 255);
+    border: 5px solid #4F745A;
+    border-radius: 30px ;
+    padding: 10px;
 }
-.galleryItem{
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    width: 33%;
+.paymentTitle{
+    color: #4F745A;
 }
-figcaption, .galleryTitle{
-    text-align: center;
+.signUp{
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
     color: white;
+    text-align: center;
+    font-size: 1.2vw;
+    margin: auto;
+    width: 75%;
+
 }
