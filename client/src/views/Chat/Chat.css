@@ -77,6 +77,11 @@
     width: fit-content;
     text-align: left;
     max-width: 750px;
+    min-width: 500px;
+}
+.contentSection{
+    min-height: 200px;
+    min-width: 500px;
 }
 .signUp2{
     background: #A0BAA7;
