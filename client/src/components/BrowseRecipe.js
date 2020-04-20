@@ -22,6 +22,7 @@ const BrowseRecipe = (props) => {
                 <p> <b>Description:</b> {result.Description}</p>
                 <p> <b>Ingredients</b></p>
                 <ul>
+                {result.Ingredients?<>
                 {
                     result.Ingredients.map(ingredient=>{
                         return(
@@ -29,6 +30,7 @@ const BrowseRecipe = (props) => {
                         )
                     })
                 }
+                </>:<></>}
                 </ul>
             </div>
         );
