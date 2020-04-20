@@ -34,6 +34,7 @@ const ContentEdit = (props) => {
             getDbListings = {props.getDbListings}
             updateDbListings = {props.updateDbListings}
             deleteDbListings = {props.deleteDbListings}
+            addDbListings = {props.addDbListings}
             />
         </div>
     );

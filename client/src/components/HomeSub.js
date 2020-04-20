@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-const contentLinking = (homeLink, getDbListings, contentType, linkListings, setHomeLink, setAboutEntry, setTypeEntry, setLinkListings, setSubmittal) => {
+//making this function is literallyone of the stupidest things ive every done omg
+//like fuck bro
+const contentLinking = (homeLink, getDbListings, contentType, linkListings, setHomeLink, setAboutEntry, setTypeEntry, setLinkListings, setSubmittal, setCounter, counter, setAdd) => {
     if(!homeLink)
         (getDbListings(contentType, "userHome", setHomeLink));
     else if(!linkListings && homeLink[0]){
@@ -8,6 +10,8 @@ const contentLinking = (homeLink, getDbListings, contentType, linkListings, setH
             return(
                 <div key = {index} className = "editEntry editContentEntry" onClick = {() => {
                     setAboutEntry(link);
+                    setCounter(counter++);
+                    setAdd(false);
                     setTypeEntry(contentType);
                     setSubmittal({
                         name: link.name ? link.name : null,
@@ -53,11 +57,24 @@ const HomeSub = (props) => {
     const [homeLink, setHomeLink] = useState(null);
     const [linkListings, setLinkListings] = useState(null);
     const [submittal, setSubmittal] = useState({});
+    const [counter, setCounter] = useState(0);
+    const [add, setAdd] = useState(false);
+    const defaultSubmit = {
+        name: null,
+        src: null,
+        alt: null,
+        title: null,
+        caption: null,
+        text: null,
+        inUse: null,
+        id: null,
+        page: "userHome"
+    };
 
     //initializing content DB info for text, links, and images
-    contentLinking(homeLink, props.getDbListings, "Links", linkListings, setHomeLink, setAboutEntry, setTypeEntry, setLinkListings, setSubmittal);
-    contentLinking(homeImages, props.getDbListings, "Images", imageListings, setHomeImages, setAboutEntry, setTypeEntry, setImageListings, setSubmittal);
-    contentLinking(homeText, props.getDbListings, "Text", textListings, setHomeText, setAboutEntry, setTypeEntry, setTextListings, setSubmittal);
+    contentLinking(homeLink, props.getDbListings, "Links", linkListings, setHomeLink, setAboutEntry, setTypeEntry, setLinkListings, setSubmittal, setCounter, counter, setAdd);
+    contentLinking(homeImages, props.getDbListings, "Images", imageListings, setHomeImages, setAboutEntry, setTypeEntry, setImageListings, setSubmittal, setCounter, counter, setAdd);
+    contentLinking(homeText, props.getDbListings, "Text", textListings, setHomeText, setAboutEntry, setTypeEntry, setTextListings, setSubmittal, setCounter, counter, setAdd);
 
     
     return(
@@ -65,8 +82,25 @@ const HomeSub = (props) => {
                 <h3>About Section</h3>
                 {
                     aboutEntry &&
-                    <div className = "entryInfo contentEntryInfo">
+                    <div className = "entryInfo contentEntryInfo" key = {counter}>
                     {/* This div shows up when a listing is clicked. */}
+                    {
+                        add &&
+                        <>
+                            <h3>Add Content</h3>
+                            <select onChange = {e => {
+                                e.preventDefault();
+                                setTypeEntry(e.target.value);
+                                setAboutEntry({});
+                                setSubmittal(defaultSubmit);
+                            }}>
+                                <option value ="Text">text</option>
+                                <option value ="Images">image</option>
+                                <option value ="Links">link</option>
+                            </select>
+
+                        </>
+                    }
                         {
                             (typeEntry == "Text") &&
                             <>  
@@ -78,7 +112,7 @@ const HomeSub = (props) => {
                                 }}
                                 />
                                 <label><b>Text:</b> </label>
-                                <textarea cols = "" className = "submitInput" defaultValue = {submittal.text}
+                                <textarea className = "submitInput" defaultValue = {submittal.text}
                                 onChange = {e =>{
                                     let submit = submittal;
                                     submit.text = e.target.value;
@@ -88,7 +122,7 @@ const HomeSub = (props) => {
                             </>
                         }
                         {
-                            (typeEntry == "Images") &&
+                            (typeEntry === "Images") &&
                             <>
                                 <label><b>Alt Text:</b> </label>
                                 <input type = "text" defaultValue = {submittal.alt} className = "submitInput" onChange = {e =>{
@@ -114,7 +148,7 @@ const HomeSub = (props) => {
                             </>
                         }
                         {
-                            (typeEntry == "Links") &&
+                            (typeEntry === "Links") &&
                             <>
                                 <label><b>Name:</b> </label>
                                 <input type = "text" defaultValue = {submittal.name} className = "submitInput" onChange = {e =>{
@@ -155,21 +189,35 @@ const HomeSub = (props) => {
                             setSubmittal(submit);
                         }}
                         />
+                        {
+                            !add &&
+                            <div className = "contentButtons">
+                                <button onClick = {e => {
+                                    e.preventDefault();
+                                    props.updateDbListings(typeEntry, submittal);
+                                    setAboutEntry(null);
+                                }}>Submit</button>
+                                <button onClick = {e => {
+                                    e.preventDefault();
+                                    props.deleteDbListings(typeEntry,submittal.id)
+                                    setAboutEntry(null);
+                                    
+                                }}>
+                                    Delete
+                                </button>
+                            </div>
+                        }
+                        {
+                            add &&
+                            <button onClick = {e => {
+                            e.preventDefault();
+                            props.addDbListings(typeEntry,submittal);
+                            setAboutEntry(null);
+                            setAdd(false);
+                            setSubmittal(defaultSubmit);
+                            }}>Add</button>
 
-                        <button onClick = {e => {
-                            e.preventDefault();
-                            props.updateDbListings("text", submittal);
-                            setAboutEntry(null);
-                            contentLinking(homeText, props.getDbListings, "Text", textListings, setHomeText, setAboutEntry, setTypeEntry, setTextListings, setSubmittal);
-                        }}>Submit</button>
-                        <button onClick = {e => {
-                            e.preventDefault();
-                            props.deleteDbListings(submittal.id);
-                            setAboutEntry(null);
-                            contentLinking(homeText, props.getDbListings, "Text", textListings, setHomeText, setAboutEntry, setTypeEntry, setTextListings, setSubmittal);
-                        }}>
-                            Delete
-                        </button>
+                        }
                     </div>
                 }
                 <div className= "entries contentEntry">
@@ -186,6 +234,15 @@ const HomeSub = (props) => {
                         linkListings
                     }
                 </div>
+                <button onClick = {e => {
+                    e.preventDefault();
+                    setTypeEntry("Text");
+                    setAboutEntry({});
+                    setCounter(counter+1);
+                    setSubmittal(defaultSubmit);
+                    setAdd(true);
+                    
+                }}>Add New Listing</button>
         </div>
     );
 }

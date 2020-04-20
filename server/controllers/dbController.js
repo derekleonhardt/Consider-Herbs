@@ -709,7 +709,7 @@ const readLinkPage = async (req, res) => {
     }
     });
     db.serialize(() => {
-      db.get(`SELECT * FROM Link where page=?`, [req.params.page], (err, row) => {
+      db.all(`SELECT * FROM Link where page=?`, [req.params.page], (err, row) => {
         if (err) {
           res.json({error:"error while processing data.", "message":err});
         }
@@ -820,7 +820,7 @@ const readImagePage = async (req, res) => {
     }
     });
     db.serialize(() => {
-      db.get(`SELECT * FROM Image where page=?`, [req.params.page], (err, row) => {
+      db.all(`SELECT * FROM Image where page=?`, [req.params.page], (err, row) => {
         if (err) {
           res.json({error:"error while processing data.", "message":err});
         }
@@ -931,7 +931,7 @@ const readTextPage = async (req, res) => {
     }
     });
     db.serialize(() => {
-      db.get(`SELECT * FROM Text where page=?`, [req.params.page], (err, row) => {
+      db.all(`SELECT * FROM Text where page like ?`, ["%" + req.params.page + "%"], (err, row) => {
         if (err) {
           res.json({error:"error while processing data.", "message":err});
         }

@@ -68,9 +68,24 @@ const deleteContentDbListings = async (contentType, id) =>{
     method: "DELETE",
   };
   fetch(`http://localhost:5000/api/db/${contentType.toLowerCase()}/delete/${id}`, requestOptions)
-  .then(response => response.text())
+  .then(response => {
+    response.text();
+    return response.text();
+  })
   .catch(err => console.log(err));
 }
+const addContentDbListings = async (contentType, listingInfo) =>{
+    let requestOptions = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(listingInfo)
+    };
+    fetch(`http://localhost:5000/api/db/${contentType.toLowerCase()}/insert/`, requestOptions)
+    .then(response => response.json().then(data => console.log(data)))
+    .catch(err => console.log(err));
+  }
 const deleteAuthUserRole = (userId,roles = [],config, access) => {
   let roleId = roles.map((role) =>{
     switch(role.toLowerCase()){
@@ -187,9 +202,10 @@ const App = (props) => {
         getAuthUserRole = {getAuthUserRole}
         deleteAuthUserRole = {deleteAuthUserRole}
         setAuthUserRole = {setAuthUserRole}
-         getDbListings = {getContentDbListings}
-         updateDbListings = {updateContentDbListings}
-         deleteDbListings = {deleteContentDbListings}
+        getDbListings = {getContentDbListings}
+        updateDbListings = {updateContentDbListings}
+        deleteDbListings = {deleteContentDbListings}
+        addDbListings = {addContentDbListings}
         />}></Route>
         <Route exact path = "/Book" render={()=>(<TheBooking selectProduct={setSelectedProduct}/>)}></Route>
         {/* Chat needs to be looked at by hosung */}
