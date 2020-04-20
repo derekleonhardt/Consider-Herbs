@@ -38,7 +38,7 @@ const searchGlossary = (e, setResults) =>{
   }else defaultGlossary(setResults);
 }
 const defaultRecipe = (setResults) => {
-  fetch(`http://127.0.0.1:5000/api/db/recipe/`).then(
+  fetch(`http://127.0.0.1:5000/api/db/recipe/extended`).then(
           (response)=>{
               (response.json().then(data =>{
                   setResults(data.data);
@@ -78,7 +78,7 @@ const searchRecipe = (e, setResults) =>{
       fetch(`http://127.0.0.1:5000/api/db/recipe/search/${e.target.value}`).then(
           (response)=>{
               (response.json().then(data =>{
-                  setResults(data);
+                  setResults(data.data);
               }))
       });
   }else defaultRecipe(setResults);

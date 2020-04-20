@@ -20,6 +20,16 @@ const BrowseRecipe = (props) => {
                 <p> <b>Recipe Name:</b> {result.RecName}</p>
                 <p> <b>Ailment:</b> {result.Ailment}</p>
                 <p> <b>Description:</b> {result.Description}</p>
+                <p> <b>Ingredients</b></p>
+                <ul>
+                {
+                    result.Ingredients.map(ingredient=>{
+                        return(
+                        <li key={ingredient.IngName}>{ingredient.IngName} {ingredient.Amounut} {ingredient.Units}</li>
+                        )
+                    })
+                }
+                </ul>
             </div>
         );
     });
