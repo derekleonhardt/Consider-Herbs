@@ -3,6 +3,7 @@ const dbPath = './server/db/considerHerbDB.db';
 const dbPathPostReply = './server/db/PostReplyDB.db';
 const dbPathBooking = './server/db/bookingDB.db';
 const dbPathContent = './server/db/contentDB.db';
+const dbPathSubscription = './server/db/subscriptionDB.db';
 const readRecipe = async (req, res) => {
     const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
@@ -14,7 +15,7 @@ const readRecipe = async (req, res) => {
           if (err) {
             res.json({error:"error while processing data.", "message":err});
           }
-          if(row){
+          if(row && row[0]){
             var recData = {data: {
                 "Id": row[0].Id,
                 "Ingredients":[],
@@ -54,7 +55,7 @@ const readRecipeByID = async (req, res) => {
           if (err) {
             res.json({error:"error while processing data.", "message":err});
           }
-          if(row){
+          if(row && row[0]){
             var recData = {data: {
                 "Id": row[0].Id,
                 "Ingredients":[],
@@ -105,6 +106,59 @@ const listRecipe = async (req, res) => {
             console.log('Close the database connection.');
         });
 };
+const listRecipeWithIngredients = async (req, res) => {
+  const db = new sqlite3.Database(dbPath, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+      });
+      db.serialize(() => {
+          db.all(`SELECT * FROM recipe join ingredients on recipe.Id=ingredients.Id order by recipe.Id`, (err, row) => {
+            if (err) {
+              res.json({error:"error while processing data.", "message":err});
+            }
+            if(!row || !row[0]){
+              res.json({data:{}});
+            }
+            else{
+            // process recipe
+            var curId = -1;
+            const newProcessedData = [];
+            row.map(recipe=>{
+              if(curId != recipe.Id){
+                newProcessedData.push({
+                  Id: recipe.Id,
+                  RecName: recipe.RecName,
+                  Ailment: recipe.Ailment,
+                  BodyPart: recipe.BodyPart,
+                  Description: recipe.Description,
+                  Ingredients: [{
+                    IngName: recipe.IngName,
+                    Amounut: recipe.Amounut,
+                    Units: recipe.Units
+                  }]
+                });
+                curId = recipe.Id;
+              } else {
+                newProcessedData[newProcessedData.length - 1].Ingredients.push({
+                  IngName: recipe.IngName,
+                  Amounut: recipe.Amounut,
+                  Units: recipe.Units
+                })
+              }
+            })
+            res.json({data: newProcessedData});
+          }
+          });
+        });
+         
+      db.close((err) => {
+          if (err) {
+            console.error(err.message);
+          }
+          console.log('Close the database connection.');
+      });
+};
 const searchRecipeByBody = async (req, res) => {
   const db = new sqlite3.Database(dbPath, (err) => {
       if (err) {
@@ -112,14 +166,46 @@ const searchRecipeByBody = async (req, res) => {
       }
       });
       db.serialize(() => {
-          db.all(`SELECT * FROM recipe where Bodypart=? COLLATE NOCASE`, [req.params.body], (err, row) => {
+          db.all(`SELECT * FROM recipe join ingredients on recipe.Id=ingredients.Id where Bodypart=? COLLATE NOCASE order by recipe.Id`, [req.params.body], (err, row) => {
             if (err) {
               res.json({error:"error while processing data.", "message":err});
             }
-              res.json({data: row});
+            if(!row || !row[0]){
+              res.json({data:{}})
+            }
+            else{
+              // process recipe
+            var curId = -1;
+            const newProcessedData = [];
+            row.map(recipe=>{
+              if(curId != recipe.Id){
+                newProcessedData.push({
+                  Id: recipe.Id,
+                  RecName: recipe.RecName,
+                  Ailment: recipe.Ailment,
+                  BodyPart: recipe.BodyPart,
+                  Description: recipe.Description,
+                  Ingredients: [{
+                    IngName: recipe.IngName,
+                    Amounut: recipe.Amounut,
+                    Units: recipe.Units
+                  }]
+                });
+                curId = recipe.Id;
+              } else {
+                newProcessedData[newProcessedData.length - 1].Ingredients.push({
+                  IngName: recipe.IngName,
+                  Amounut: recipe.Amounut,
+                  Units: recipe.Units
+                })
+              }
+            })
+            res.json({data: newProcessedData});
+            }
           });
         });
-         
+        
+      
       db.close((err) => {
           if (err) {
             console.error(err.message);
@@ -134,11 +220,42 @@ const searchRecipe = async (req, res) => {
         }
         });
         db.serialize(() => {
-            db.all(`SELECT * FROM recipe where RecName like ?`, ["%"+req.params.query+"%"], (err, row) => {
+            db.all(`SELECT * FROM recipe join ingredients on recipe.Id=ingredients.Id where RecName like ? order by recipe.Id`, ["%"+req.params.query+"%"], (err, row) => {
               if (err) {
                 res.json({error:"error while processing data.", "message":err});
               }
-                res.json({data: row});
+              if(!row || !row[0]){
+              res.json({data:{}})
+              }
+              else{
+                // process recipe
+            var curId = -1;
+            const newProcessedData = [];
+            row.map(recipe=>{
+              if(curId != recipe.Id){
+                newProcessedData.push({
+                  Id: recipe.Id,
+                  RecName: recipe.RecName,
+                  Ailment: recipe.Ailment,
+                  BodyPart: recipe.BodyPart,
+                  Description: recipe.Description,
+                  Ingredients: [{
+                    IngName: recipe.IngName,
+                    Amounut: recipe.Amounut,
+                    Units: recipe.Units
+                  }]
+                });
+                curId = recipe.Id;
+              } else {
+                newProcessedData[newProcessedData.length - 1].Ingredients.push({
+                  IngName: recipe.IngName,
+                  Amounut: recipe.Amounut,
+                  Units: recipe.Units
+                })
+              }
+            })
+            res.json({data: newProcessedData});
+          }
             });
           });
            
@@ -699,7 +816,54 @@ const paidBooking = async (req, res) => {
     message: 'charge posted successfully',
     charge
   })
+};
+
+const insertSubscription = async (req, res) => {
+  const subscription = req.subscription;
+  const customer = req.customer;
+  const db = new sqlite3.Database(dbPathSubscription, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`INSERT INTO subscription(cid, email, subscription) VALUES(?,?,?)`, [req.customer.id, req.customer.email, req.subscription.id], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    res.status(200).json({
+      message: 'subscription successful',
+      subscription,
+      customer
+    });
+  });
+  db.close();
+};
+
+const listSubscription = async (req, res) => {
+  const db = new sqlite3.Database(dbPathSubscription, (err) => {
+    if (err) {
+        res.json({error:"error while connecting database.", "message":err});
+    }
+    });
+    db.serialize(() => {
+        db.all(`SELECT * FROM subscription`, (err, row) => {
+          if (err) {
+            res.json({error:"error while processing data.", "message":err});
+          }
+            res.json({data: row});
+        });
+      });
+       
+    db.close((err) => {
+        if (err) {
+          console.error(err.message);
+        }
+        console.log('Close the database connection.');
+    });
 }
+
 
 module.exports = {
   readRecipe, 
@@ -708,7 +872,8 @@ module.exports = {
   searchRecipe, 
   insertRecipe, 
   updateRecipe, 
-  deleteRecipe, 
+  deleteRecipe,
+  listRecipeWithIngredients,
   searchRecipeByBody, 
   listGlossary, 
   readGlossary, 
@@ -736,5 +901,7 @@ module.exports = {
   confirmBooking,
   listLinks,
   insertLink,
-  paidBooking
+  paidBooking,
+  insertSubscription,
+  listSubscription
 };

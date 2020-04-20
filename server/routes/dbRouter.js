@@ -5,6 +5,7 @@ const dbRouter = express.Router();
 dbRouter.get('/recipe/name/:name', db.readRecipe);
 dbRouter.get('/recipe/id/:id', db.readRecipeByID);
 dbRouter.get('/recipe/', db.listRecipe);
+dbRouter.get('/recipe/extended/', db.listRecipeWithIngredients);
 dbRouter.get('/recipe/body/:body', db.searchRecipeByBody);
 dbRouter.get('/recipe/search/:query', db.searchRecipe);
 dbRouter.post('/recipe/insert',db.insertRecipe);
@@ -48,5 +49,8 @@ dbRouter.post('/booking/admin/insert', db.adminInsertBooking);
 //content - link
 dbRouter.get('/content/links/', db.listLinks);
 dbRouter.post('/content/links/insert/', db.insertLink);
+
+//subscription
+dbRouter.get('/subscription/', db.listSubscription);
 
 module.exports = dbRouter;

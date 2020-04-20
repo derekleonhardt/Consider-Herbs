@@ -4,6 +4,7 @@ import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
 import { Link, useParams, useRouteMatch } from 'react-router-dom';
 import './Chat.css';
+import Youtube from 'react-youtube';
 
 const listPost = (setMethod) => {
     fetch(`http://127.0.0.1:5000/api/db/post/`).then(
@@ -75,6 +76,54 @@ const Chat = (props) => {
     const { isLoading, user, loginWithRedirect, logout} = useAuth0();
     const refreshList = () => {
         listPost(setPosts);
+    } 
+    const opts = {
+        height: '390',
+        width: '640',
+        PlayerVars:{
+            // https://developers.google.com/youtube/player_parameters
+            autoplay: 1,
+        }
+    };
+    const UrlID = (ID) =>
+    {
+        if(!ID || ID === "")
+        {
+            console.log(ID);
+        }
+        else
+        {
+        var YoutubeID;
+        console.log(ID);
+        var array = ID.split("/");
+        if(array[2] === "www.youtube.com")
+        {
+        console.log(array.length);
+             if(array.length === 4)
+                {
+                var id = array[3];
+                var temp = id.split("=");
+                if(temp.length > 0)
+                {
+                    console.log(temp[1]);
+                    YoutubeID = temp[1];
+                }
+                else
+                {
+                    console.log(temp[0]);
+                    YoutubeID = temp[0];
+                }
+                console.log(array[1]);
+             }
+             else
+                {
+                console.log("error");
+                }
+             return(
+            <Youtube videoId={YoutubeID} opts={opts}/>
+                )
+            }
+        }
     }
     const {pid} = useParams();
     const [comments, setComments] = useState([]);
@@ -99,7 +148,9 @@ const Chat = (props) => {
                 </Grid.Row>
                 <Grid.Row>
                     <div className="postContent">
-                        <p>URL: {curPost.url}</p>
+                        {
+                         UrlID(curPost.url)
+                        }
                         <p>{curPost.content}</p>
 
                         <Comment.Group size="mini">
@@ -182,17 +233,14 @@ const Chat = (props) => {
                             <h1>Premium User</h1>
                             <h2>$10 / month</h2>
                             <p></p>
-                            <Button positive  size="small" className="button">Become A Premium Member</Button>
+                            <Link to='/Subscribe'><Button positive  size="small" className="button">Become A Premium Member</Button></Link>
                             <p></p>
                             <p>Unlimited Recipe and Herb Glossary Access</p>
                             <p>View All Online Videos and Classes</p>
                         </div>
                         <p></p>
-                        <Sticky offset={25}>
-                            <Link to="/Write">
-                                <Button  positive size="massive" className="postButton" centered>Write Your Own Post</Button>
-                            </Link>
-                        </Sticky>
+                        
+                        {(user)?<Button  positive size="massive" className="postButton" centered>Write Your Own Post</Button>:<></>}
                     
                     </div>
                 </Grid.Column>
@@ -204,3 +252,6 @@ const Chat = (props) => {
 }
 
 export default Chat;
+
+
+;

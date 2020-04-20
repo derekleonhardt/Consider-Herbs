@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment';
 import {Form, Transition, Button, Icon, Grid} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './Book.css';
 import 'semantic-ui-react';
@@ -169,7 +170,7 @@ const Book = ({ products, selectProduct }) => {
                         <h1>Premium User</h1>
                         <h2>$10 / month</h2>
                         <p></p>
-                        <Button positive  size="small" className="button">Become A Premium Member</Button>
+                        <Link to='/Subscribe'><Button positive  size="small" className="button">Become A Premium Member</Button></Link>
                         <p></p>
                         <p>Unlimited Recipe and Herb Glossary Access</p>
                         <p>View All Online Videos and Classes</p>

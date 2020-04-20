@@ -4,15 +4,16 @@ import Home from "./views/Home/Home";
 import NotFound from "./views/NotFound";
 import NavBar from "./components/Header/NavBar";
 import Remedy from './views/Remedy/Remedy.js';
+import Chat from "./views/Chat/Chat.js";
 import Admin from './views/Admin/Admin.js';
 import Book from './views/Book/Book.js'
 import Browse from "./views/Browse/Browse.js"
-import Chat from './views/Chat/Chat.js'
 import Edit from './views/Chat/Edit.js'
 import Footer from "./components/Footer";
 import UserHome from "./views/UserHome/UserHome.js";
 import Checkout from "./views/Checkout/Checkout";
 import NoAccount from "./views/NoAccount/NoAccount";
+import Subscribe from "./views/Checkout/Subscribe";
 import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
 import { get, PromiseProvider } from 'mongoose';
@@ -50,6 +51,52 @@ const deleteAuthUserRole = (userId,roles = [],config, access) => {
           .catch(rej=>console.log(rej)
     );
 }
+const defaultRecipe = (setResults) => {
+  fetch(`http://127.0.0.1:5000/api/db/recipe/extended`).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  setResults(data.data);
+          }))
+  });
+}
+
+const getRecipe = (id) => {
+  fetch(`http://127.0.0.1:5000/api/db/recipe/id/`+id).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  const test = data.data.Ingredients.map(ingredient=>{
+                    return(
+                      <p>{ingredient.IngName}</p>
+                    );
+                      console.log(ingredient.IngName);
+                      console.log(ingredient.Amounut);
+                      console.log(ingredient.Units);
+                  })
+          }))
+  });
+}
+
+const searchRecipeByBody = (e, setResults) =>{
+  if (e.target.value.replace(/\s/g,'') != ''){
+      fetch(`http://127.0.0.1:5000/api/db/recipe/body/${e.target.value}`).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  setResults(data.data);
+              }))
+      });
+  }else defaultRecipe(setResults);
+}
+
+const searchRecipe = (e, setResults) =>{
+  if (e.target.value.replace(/\s/g,'') != ''){
+      fetch(`http://127.0.0.1:5000/api/db/recipe/search/${e.target.value}`).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  setResults(data.data);
+              }))
+      });
+  }else defaultRecipe(setResults);
+}
 const setAuthUserRole = (userId,role,config, access) => {
   let newRole;
   switch(role.toLowerCase()){
@@ -76,6 +123,7 @@ const setAuthUserRole = (userId,role,config, access) => {
 }
 
 const history = createBrowserHistory();
+
 
 const App = (props) => {
   const { loading, user, isAuthenticated} = useAuth0();
@@ -122,10 +170,17 @@ const App = (props) => {
       />
       <Switch>
         <Route exact path="/">
-          <Redirect to="/Home" />
+         <Redirect to="/Home" />
         </Route>
         <Route path = "/Home" render = {(props) => <TheHome
           user = {user}
+        />}></Route>
+        <Route exact path="/Register" component={Remedy} />
+        <Route path = "/Remedy" render = {(props) => <TheRemedy
+        searchRecipeByBody = {searchRecipeByBody}
+        searchRecipe = {searchRecipe}
+        defaultRecipe = {defaultRecipe}
+        getRecipe = {getRecipe}
         />}></Route>
         <Route path = "/Admin" render = {(props) => <TheAdmin
         defaultGlossary = {defaultGlossary}
@@ -136,7 +191,6 @@ const App = (props) => {
         userRole = {userRole}
         />}></Route>
         <Route exact path = "/Book" render={()=>(<TheBooking selectProduct={setSelectedProduct}/>)}></Route>
-        {/* Chat needs to be looked at by hosung */}
         <Route exact path = "/Chat" render = {() => <Chat
           user = {user}
           userRole = {userRole}
@@ -155,6 +209,10 @@ const App = (props) => {
         />}></Route>
         <Route path ="/Checkout"
               render={()=> (<Checkout selectedProduct={selectedProduct}/>)}/>
+        <Route exact path = "/Subscribe"  render = {() => <Subscribe
+          user = {user}
+          userRole = {userRole}
+        />}></Route>
         <Route component={NotFound}/>
       </Switch>
       <Footer/>
