@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./HomeSub.css";
 
 //making this function is literallyone of the stupidest things ive every done omg
 //like fuck bro
@@ -81,7 +82,6 @@ const HomeSub = (props) => {
     contentLinking(homeProducts, props.getDbListings, "Products", productListings, setHomeProducts, setAboutEntry, setTypeEntry, setProductListings, setSubmittal, setCounter, counter, setAdd);
     return(
         <div className = "pageChoice">
-                <h3>About Section</h3>
                 {
                     aboutEntry &&
                     <div className = "entryInfo contentEntryInfo" key = {counter}>
@@ -244,7 +244,7 @@ const HomeSub = (props) => {
                         productListings
                     }
                 </div>
-                <button onClick = {e => {
+                <button className = "addNewListing" onClick = {e => {
                     e.preventDefault();
                     setTypeEntry("Text");
                     setAboutEntry({});
@@ -252,7 +252,7 @@ const HomeSub = (props) => {
                     setSubmittal(defaultSubmit);
                     setAdd(true);
                     
-                }}>Add New Listing</button>
+                }}>Add</button>
         </div>
     );
 }

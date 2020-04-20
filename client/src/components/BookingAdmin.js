@@ -58,9 +58,8 @@ const BookingAdmin = (props) => {
   return(
         <div className = "adminPanel bookingAdmin"> {/*Holds all glossary editing content */}
             <h2 className = "glossaryTitle">Booking</h2>
-            
-            <div>
-                <h3>bookings to be confirmed</h3>
+            <h3>Bookings to be confirmed</h3>
+            <div className = "entryInfo">
                 {
                     events.map(data=>{
                         if(data.Visible==0 && data.Date)
@@ -69,7 +68,9 @@ const BookingAdmin = (props) => {
                         </div>)
                     })
                 }
-                <h3>confirmed bookings and events</h3>
+            </div>
+            <h3>Confirmed Bookings and Events</h3>
+            <div className = "entryInfo">
                 {
                     events.map(data=>{
                         if(data.Visible==1 && data.Date)
@@ -78,11 +79,11 @@ const BookingAdmin = (props) => {
                         </div>)
                     })
                 }
-                <h3>add event to calendar</h3>
-                <p>title: <input onChange={(event)=>setEventTitle(event.target.value)} value={newEventTitle} ></input></p>
-                <p>date: <input type='date' onChange={(event)=>setEventDate(event.target.value)} value={newEventDate}></input></p>
-                <p><button onClick={()=>{addEvent(newEventTitle, newEventDate, setEventTitle, setEventDate)}}>add</button></p>
             </div>
+            <h3>Add event to calendar</h3>
+            <p>Title: <input onChange={(event)=>setEventTitle(event.target.value)} value={newEventTitle} ></input></p>
+            <p>Date: <input type='date' onChange={(event)=>setEventDate(event.target.value)} value={newEventDate}></input></p>
+            <p><button onClick={()=>{addEvent(newEventTitle, newEventDate, setEventTitle, setEventDate)}}>Add</button></p>
         </div>
     );
 }
