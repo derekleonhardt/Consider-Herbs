@@ -30,7 +30,11 @@ const ContentEdit = (props) => {
             }}>
                 {pageOptions}
             </select>
-            <ShownPage getDbListings = {props.getDbListings}/>
+            <ShownPage 
+            getDbListings = {props.getDbListings}
+            updateDbListings = {props.updateDbListings}
+            deleteDbListings = {props.deleteDbListings}
+            />
         </div>
     );
 }

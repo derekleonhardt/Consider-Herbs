@@ -15,7 +15,6 @@ import Checkout from "./views/Checkout/Checkout";
 import NoAccount from "./views/NoAccount/NoAccount";
 import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
-import { get, PromiseProvider } from 'mongoose';
 import { createBrowserHistory } from 'history'
 
 const defaultGlossary = (setResults) => {
@@ -42,7 +41,7 @@ const getContentDbListings = async (contentType, page, setListings) =>{
       redirect: 'follow'
   };
   let info;
-  fetch(`http://localhost:5000/api/db/${contentType}/page/${page}`, requestOptions)
+  fetch(`http://localhost:5000/api/db/${contentType.toLowerCase()}/page/${page}`, requestOptions)
   .then(response => response.json().then(data=>{
       if (data){
         if(!Array.isArray(data.data))
@@ -51,6 +50,26 @@ const getContentDbListings = async (contentType, page, setListings) =>{
           setListings(data.data); 
       }
   }));
+}
+const updateContentDbListings = async (contentType, listingInfo) =>{
+  let requestOptions = {
+    method: "PATCH",
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify(listingInfo)
+  };
+  fetch(`http://localhost:5000/api/db/${contentType.toLowerCase()}/update/${listingInfo.id}`, requestOptions)
+  .then(response => response.json().then(data => console.log(data)))
+  .catch(err => console.log(err));
+}
+const deleteContentDbListings = async (contentType, id) =>{
+  let requestOptions = {
+    method: "DELETE",
+  };
+  fetch(`http://localhost:5000/api/db/${contentType.toLowerCase()}/delete/${id}`, requestOptions)
+  .then(response => response.text())
+  .catch(err => console.log(err));
 }
 const deleteAuthUserRole = (userId,roles = [],config, access) => {
   let roleId = roles.map((role) =>{
@@ -169,6 +188,8 @@ const App = (props) => {
         deleteAuthUserRole = {deleteAuthUserRole}
         setAuthUserRole = {setAuthUserRole}
          getDbListings = {getContentDbListings}
+         updateDbListings = {updateContentDbListings}
+         deleteDbListings = {deleteContentDbListings}
         />}></Route>
         <Route exact path = "/Book" render={()=>(<TheBooking selectProduct={setSelectedProduct}/>)}></Route>
         {/* Chat needs to be looked at by hosung */}

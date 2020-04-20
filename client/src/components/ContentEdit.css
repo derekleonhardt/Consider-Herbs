@@ -1,0 +1,41 @@
+.contentEdit{
+    max-height: 100vh;
+}
+
+.pageChoice{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+.pageChoice > h3{
+    padding-left: 3%;
+}
+.contentEntry{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.editContentEntry{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 3%;
+}
+
+.submitInput{
+    border: none;
+    padding:1%;
+
+}
+textarea.submitInput{
+    min-height: 5em;
+    min-width: 100%;
+    max-width: 100%;
+}
+.contentEntryInfo{
+    display: flex;
+    flex-flow: column;
+    margin: 0px auto;
+
+}
