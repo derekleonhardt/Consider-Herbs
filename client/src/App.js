@@ -190,6 +190,7 @@ const App = (props) => {
         </Route>
         <Route path = "/Home" render = {(props) => <TheHome
           user = {user}
+          getDbListings = {getContentDbListings}
         />}></Route>
         <Route path = "/Admin" render = {(props) => <TheAdmin
         defaultGlossary = {defaultGlossary}
