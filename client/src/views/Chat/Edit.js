@@ -62,6 +62,7 @@ const Edit = (props) => {
                     <div className="createPost">
                         <Form>
                             <Input  className='writeInput' size='large' fluid onChange = {e => setTitle(e.target.value)} placeholder='Title'/>
+                            <Input  className='writeInput' size='large' fluid onChange = {e => setUrl(e.target.value)} placeholder='Youtube Url'/>
                             <TextArea className='textInput' style={{ minHeight: 250}} onChange = {e => setContent(e.target.value)} placeholder='Body'/>
                         </Form>
                     </div>
@@ -90,7 +91,7 @@ const Edit = (props) => {
                     <div className="createPost">
                         <Form>
                             <Input  className='writeInput' size='large' fluid onChange = {e => setTitle(e.target.value)} placeholder='Title'/>
-                            <Input  className='writeInput' size='large' fluid onChange = {e => setUrl(e.target.value)} placeholder='Url'/>
+                            <Input  className='writeInput' size='large' fluid onChange = {e => setUrl(e.target.value)} placeholder='Youtube Url'/>
                             <TextArea className='textInput' style={{ minHeight: 250}} onChange = {e => setContent(e.target.value)} placeholder='Body'/>
                         </Form>
                     </div>

@@ -1,47 +1,52 @@
-import React from 'react';
+import React, {useState} from "react";
 import logo from '../../assets/logo.svg';
 import './Remedy.css';
+import BrowseRecipe from "../../components/BrowseRecipe";
 
-const Register = () => {
-    const arr = [];
-    arr.push({
-        name: "Lavender",
-        src: "logos/Lavender.png",
-        caption:"Lavender has a long history of use to boost appetite and mood, as well as relieve gastrointestinal problems and anxiety."
-    },{
-        name: "Eucalyptus",
-        src: "logos/Eucalyptus.png",
-        caption: "People use eucalyptus for many conditions including asthma, bronchitis, plaque and gingivitis, head lice, toe nail fungus, and many others"
-    },{
-        name: "Rosemary",
-        src: "logos/Rosemary.png",
-        caption: "Anti-cancer properties(for certain cancers) and anti-inflammatory properties,discourages hair loss and boosts growth,improves memory, liver boosting."
-    });
 
-    const gallery = arr.map((item) => {
-        return(
-        <figure className = "galleryItem">
-            <h2 className = "galleryTitle">{item.name}</h2>
-            <img className = "galleryImage" src = {item.src}></img>
-            <figcaption>{item.caption}</figcaption>
-        </figure>
-    )})
 
+
+const Register = (props) => {
+
+    const[results, setResults] = useState([]);
+    if(results.length == 0) props.defaultRecipe(setResults);
     return (
         <>
             
             <div className="remedy">
                 <h1 className = "remedyTitle">Find A Remedy</h1>
-                    <p className="pain">Where is your pain located?</p> 
-                    <img src="logos/body-1.jpeg" className="body" />
-                <div className = "suggestions">
-                <h2 className = "inspoTitle">Suggested Herbs</h2>
-                <div className = "herbGallery">
-                   {gallery}                    
+                <p className="pain">Where is your pain located?</p>
+
+                <div className='bodyOutline'>
+                    <button className="arm" value="arm" onClick = {e => props.searchRecipeByBody(e, setResults)}>Arm</button>
+                    <button className="back" value="back" onClick = {e => props.searchRecipeByBody(e, setResults)}>Back</button>
+                    <button className="chest" value="chest" onClick = {e => props.searchRecipeByBody(e, setResults)}>Chest</button>
+                    <button className="ears" value="ears" onClick = {e => props.searchRecipeByBody(e, setResults)}>Ears</button>
+                    <button className="eyes" value="eyes" onClick = {e => props.searchRecipeByBody(e, setResults)}>Eyes</button>
+                    <button className="face" value="face" onClick = {e => props.searchRecipeByBody(e, setResults)}>Face</button>
+                    <button className="feet" value="feet" onClick = {e => props.searchRecipeByBody(e, setResults)}>Feet</button>
+                    <button className="fingers" value="fingers" onClick = {e => props.searchRecipeByBody(e, setResults)}>Fingers</button>
+                    <button className="hands" value="hands" onClick = {e => props.searchRecipeByBody(e, setResults)}>Hands</button>
+                    <button className="head" value="head" onClick = {e => props.searchRecipeByBody(e, setResults)}>Head</button>
+                    <button className="knee" value="knee" onClick = {e => props.searchRecipeByBody(e, setResults)}>Knee</button>
+                    <button className="legs" value="legs" onClick = {e => props.searchRecipeByBody(e, setResults)}>Legs</button>
+                    <button className="lips" value="lips" onClick = {e => props.searchRecipeByBody(e, setResults)}>Lips</button>
+                    <button className="mouth" value="mouth" onClick = {e => props.searchRecipeByBody(e, setResults)}>Mouth</button>
+                    <button className="stomach" value="stomach" onClick = {e => props.searchRecipeByBody(e, setResults)}>Stomach</button>
+                    <button className="throat" value="throat" onClick = {e => props.searchRecipeByBody(e, setResults)}>Throat</button>
+                    <button className="wrist" value="wrist" onClick = {e => props.searchRecipeByBody(e, setResults)}>Wrist</button>
                 </div>
-                
-            </div>
-                
+                <p></p>
+                <p className="pain">Where is your pain located?</p> 
+                <div className ="searchBar">
+                    <img src = "logos/search.png"/>
+                    <input type = "text" placeholder = "Search By Ailment" onChange = {e => props.searchRecipe(e, setResults)}/>
+                </div> 
+                <BrowseRecipe
+                    results = {results}
+                    getRecipe ={props.getRecipe}
+                />
+
             </div>
             
         </>

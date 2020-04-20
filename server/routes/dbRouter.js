@@ -5,6 +5,7 @@ const dbRouter = express.Router();
 dbRouter.get('/recipe/name/:name', db.readRecipe);
 dbRouter.get('/recipe/id/:id', db.readRecipeByID);
 dbRouter.get('/recipe/', db.listRecipe);
+dbRouter.get('/recipe/extended/', db.listRecipeWithIngredients);
 dbRouter.get('/recipe/body/:body', db.searchRecipeByBody);
 dbRouter.get('/recipe/search/:query', db.searchRecipe);
 dbRouter.post('/recipe/insert',db.insertRecipe);
@@ -68,5 +69,8 @@ dbRouter.get('/text/page/:page', db.readTextPage);
 dbRouter.post('/text/insert/', db.insertText);
 dbRouter.delete('/text/delete/:id', db.deleteText);
 dbRouter.patch('/text/update/:id', db.updateText);
+
+//subscription
+dbRouter.get('/subscription/', db.listSubscription);
 
 module.exports = dbRouter;

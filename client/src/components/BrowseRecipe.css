@@ -1,0 +1,20 @@
+.results{
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+.entry{
+    width: 40%;
+    margin: 1% 5%;
+    background-color: #4F745A;
+    padding: 1%;
+    color: white;
+    text-overflow: ellipsis;
+    border: white 5px solid;
+    border-radius: 3%;
+}
+.entry > p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
