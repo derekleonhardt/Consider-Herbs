@@ -62,13 +62,21 @@ dbRouter.post('/images/insert/', db.insertImage);
 dbRouter.delete('/images/delete/:id', db.deleteImage);
 dbRouter.patch('/images/update/:id', db.updateImage);
 
-//content - image
+//content - text
 dbRouter.get('/text/', db.listText);
 dbRouter.get('/text/:id', db.readText);
 dbRouter.get('/text/page/:page', db.readTextPage);
 dbRouter.post('/text/insert/', db.insertText);
 dbRouter.delete('/text/delete/:id', db.deleteText);
 dbRouter.patch('/text/update/:id', db.updateText);
+
+//content - product
+dbRouter.get('/products/', db.listProduct);
+dbRouter.get('/products/:id', db.readProduct);
+dbRouter.get('/products/page/:page', db.readProductPage);
+dbRouter.post('/products/insert/', db.insertProduct);
+dbRouter.delete('/products/delete/:id', db.deleteProduct);
+dbRouter.patch('/products/update/:id', db.updateProduct);
 
 //subscription
 dbRouter.get('/subscription/', db.listSubscription);

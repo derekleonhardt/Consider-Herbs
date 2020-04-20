@@ -1110,6 +1110,117 @@ const deleteText = async (req, res) => {
   });
   db.close();
 };
+const listProduct = async (req, res) => {
+  const db = new sqlite3.Database(dbPathContent, (err) => {
+    if (err) {
+        res.json({error:"error while connecting database.", "message":err});
+    }
+    });
+    db.serialize(() => {
+        db.all(`SELECT * FROM Product`, (err, row) => {
+          if (err) {
+            res.json({error:"error while processing data.", "message":err});
+          }
+            res.json({data: row});
+        });
+      });
+       
+    db.close((err) => {
+        if (err) {
+          console.error(err.message);
+        }
+    });
+}
+const readProduct = async (req, res) => {
+  const db = new sqlite3.Database(dbPathContent, (err) => {
+    if (err) {
+        res.json({error:"error while connecting database.", "message":err});
+    }
+    });
+    db.serialize(() => {
+      db.get(`SELECT * FROM Product where id=?`, [req.params.id], (err, row) => {
+        if (err) {
+          res.json({error:"error while processing data.", "message":err});
+        }
+          res.json({data: row});
+      });
+    });
+       
+    db.close((err) => {
+        if (err) {
+          console.error(err.message);
+        }
+    });
+}
+const readProductPage = async (req, res) => {
+  const db = new sqlite3.Database(dbPathContent, (err) => {
+    if (err) {
+        res.json({error:"error while connecting database.", "message":err});
+    }
+    });
+    db.serialize(() => {
+      db.all(`SELECT * FROM Product where page like ?`, ["%" + req.params.page + "%"], (err, row) => {
+        if (err) {
+          res.json({error:"error while processing data.", "message":err});
+        }
+          res.json({data: row});
+      });
+    });
+       
+    db.close((err) => {
+        if (err) {
+          console.error(err.message);
+        }
+    });
+}
+const insertProduct = async (req, res) => {
+  const db = new sqlite3.Database(dbPathContent, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`INSERT INTO Product(name, caption, src, page, inUse, alt, price) VALUES(?,?,?,?,?,?,?)`, [req.body.name, req.body.caption, req.body.src, req.body.page, req.body.inUse, req.body.alt, req.body.price], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    res.json({success:"successfully inserted data."});
+  });
+  db.close();
+};
+const updateProduct = async (req, res) => {
+  const db = new sqlite3.Database(dbPathContent, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`update Product set name=?, caption=?, src=?, page=?, inUse=?, alt=?, price=?`, [req.body.name, req.body.caption, req.body.src, req.body.page, req.body.inUse, req.body.alt, req.body.price], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    res.json({success:"successfully inserted data."});
+  });
+  db.close();
+};
+const deleteProduct = async (req, res) => {
+  const db = new sqlite3.Database(dbPathContent, (err) => {
+      if (err) {
+          res.json({error:"error while connecting database.", "message":err});
+      }
+  });
+
+  db.run(`delete from Product where id=?`, [req.params.id], function(err) {
+    if (err) {
+      res.json({error:"error while processing data.", "message":err});
+      return;
+    }
+    res.json({success:"successfully deleted data."});
+  });
+  db.close();
+};
 const insertSubscription = async (req, res) => {
   const subscription = req.subscription;
   const customer = req.customer;
@@ -1210,5 +1321,11 @@ module.exports = {
   readTextPage,
   readLinkPage,
   insertSubscription,
-  listSubscription
+  listSubscription,
+  listProduct, 
+  readProduct,
+  readProductPage,
+  insertProduct,
+  deleteProduct,
+  updateProduct
 };

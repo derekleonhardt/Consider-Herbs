@@ -35,7 +35,7 @@ const contentLinking = (homeLink, getDbListings, contentType, linkListings, setH
                         link.alt
                     }
                     {
-                        (contentType === "Links") &&
+                        ((contentType === "Links")||(contentType === "Products") ) &&
                         link.name
                     }
                     </p>
@@ -56,6 +56,8 @@ const HomeSub = (props) => {
     const [textListings, setTextListings] = useState(null);
     const [homeLink, setHomeLink] = useState(null);
     const [linkListings, setLinkListings] = useState(null);
+    const [homeProducts, setHomeProducts] = useState(null);
+    const [productListings, setProductListings] = useState(null);
     const [submittal, setSubmittal] = useState({});
     const [counter, setCounter] = useState(0);
     const [add, setAdd] = useState(false);
@@ -68,15 +70,15 @@ const HomeSub = (props) => {
         text: null,
         inUse: null,
         id: null,
-        page: "userHome"
+        page: "userHome",
+        price: 0
     };
 
     //initializing content DB info for text, links, and images
     contentLinking(homeLink, props.getDbListings, "Links", linkListings, setHomeLink, setAboutEntry, setTypeEntry, setLinkListings, setSubmittal, setCounter, counter, setAdd);
     contentLinking(homeImages, props.getDbListings, "Images", imageListings, setHomeImages, setAboutEntry, setTypeEntry, setImageListings, setSubmittal, setCounter, counter, setAdd);
     contentLinking(homeText, props.getDbListings, "Text", textListings, setHomeText, setAboutEntry, setTypeEntry, setTextListings, setSubmittal, setCounter, counter, setAdd);
-
-    
+    contentLinking(homeProducts, props.getDbListings, "Products", productListings, setHomeProducts, setAboutEntry, setTypeEntry, setProductListings, setSubmittal, setCounter, counter, setAdd);
     return(
         <div className = "pageChoice">
                 <h3>About Section</h3>
@@ -97,6 +99,7 @@ const HomeSub = (props) => {
                                 <option value ="Text">text</option>
                                 <option value ="Images">image</option>
                                 <option value ="Links">link</option>
+                                <option value ="Products">product</option>
                             </select>
 
                         </>
@@ -122,7 +125,7 @@ const HomeSub = (props) => {
                             </>
                         }
                         {
-                            (typeEntry === "Images") &&
+                            ((typeEntry === "Images") || (typeEntry === "Products")) &&
                             <>
                                 <label><b>Alt Text:</b> </label>
                                 <input type = "text" defaultValue = {submittal.alt} className = "submitInput" onChange = {e =>{
@@ -131,24 +134,10 @@ const HomeSub = (props) => {
                                     setSubmittal(submit);
                                 }}
                                 />
-                                <label><b>Src:</b> </label>
-                                <input type = "text" defaultValue = {submittal.src} className = "submitInput" onChange = {e =>{
-                                    let submit = submittal;
-                                    submit.src = e.target.value;
-                                    setSubmittal(submit);
-                                }}
-                                />
-                                <label><b>Caption:</b> </label>
-                                <input type = "text" defaultValue = {submittal.caption} className = "submitInput" onChange = {e =>{
-                                    let submit = submittal;
-                                    submit.caption = e.target.value;
-                                    setSubmittal(submit);
-                                }}
-                                />
                             </>
                         }
                         {
-                            (typeEntry === "Links") &&
+                            ((typeEntry === "Links") || (typeEntry === "Products")) &&
                             <>
                                 <label><b>Name:</b> </label>
                                 <input type = "text" defaultValue = {submittal.name} className = "submitInput" onChange = {e =>{
@@ -156,7 +145,24 @@ const HomeSub = (props) => {
                                     submit.name = e.target.value;
                                     setSubmittal(submit);
                                 }}
+                                />                                
+                            </>
+                        }
+                        {
+                            (typeEntry === "Products") &&
+                            <>
+                                <label><b>Price:</b> </label>
+                                <input type = "number" defaultValue = {submittal.price} className = "submitInput" onChange = {e =>{
+                                    let submit = submittal;
+                                    submit.price = e.target.value;
+                                    setSubmittal(submit);
+                                }}
                                 />
+                            </>
+                        }
+                        {
+                            (typeEntry != "Text") &&
+                            <>
                                 <label><b>Src:</b> </label>
                                 <input type = "text" defaultValue = {submittal.src} className = "submitInput" onChange = {e =>{
                                     let submit = submittal;
@@ -232,6 +238,10 @@ const HomeSub = (props) => {
                     {
                         linkListings &&
                         linkListings
+                    }
+                    {
+                        productListings &&
+                        productListings
                     }
                 </div>
                 <button onClick = {e => {
