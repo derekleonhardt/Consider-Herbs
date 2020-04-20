@@ -556,7 +556,7 @@ const updatePost = async (req, res) => {
       }
   });
 
-  db.run(`update post set Title =?, content=?, Date=?, Url=? where Id=?`, [req.body.title, req.body.content, req.body.url, new Date(), req.params.id], function(err) {
+  db.run(`update post set Title =?, content=?, Url=?, Date=? where Id=?`, [req.body.title, req.body.content, req.body.url, new Date(), req.params.id], function(err) {
     if (err) {
       res.json({error:"error while processing data.", "message":err});
       return;
