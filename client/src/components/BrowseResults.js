@@ -9,7 +9,7 @@ const BrowseResults = (props) => {
     : [];
     const entries = temp.map((result, index) =>{
         return(
-            <div key = {index} className = "entry2">
+            <div key = {index} className = "entry">
                 <Modal size='small'  trigger={<h2 className="resultTitle">{result.Title}</h2>}>
                     <Modal.Header>{result.Title}</Modal.Header>
                     <Modal.Content>
