@@ -43,7 +43,7 @@ const Register = (props) => {
                     <input type = "text" placeholder = "Search By Ailment" onChange = {e => props.searchRecipe(e, setResults)}/>
                 </div> 
                 <BrowseRecipe
-                    results = {results.data}
+                    results = {results}
                     getRecipe ={props.getRecipe}
                 />
 

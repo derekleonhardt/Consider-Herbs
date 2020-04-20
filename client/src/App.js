@@ -41,7 +41,7 @@ const defaultRecipe = (setResults) => {
   fetch(`http://127.0.0.1:5000/api/db/recipe/`).then(
           (response)=>{
               (response.json().then(data =>{
-                  setResults(data);
+                  setResults(data.data);
           }))
   });
 }
@@ -67,7 +67,7 @@ const searchRecipeByBody = (e, setResults) =>{
       fetch(`http://127.0.0.1:5000/api/db/recipe/body/${e.target.value}`).then(
           (response)=>{
               (response.json().then(data =>{
-                  setResults(data);
+                  setResults(data.data);
               }))
       });
   }else defaultRecipe(setResults);
@@ -176,7 +176,7 @@ const App = (props) => {
           user = {user}
         />}></Route>
         <Route exact path="/Register" component={Remedy} />
-        <Route path = "/Remedy" render = {(props) => <Remedy
+        <Route path = "/Remedy" render = {(props) => <TheRemedy
         searchRecipeByBody = {searchRecipeByBody}
         searchRecipe = {searchRecipe}
         defaultRecipe = {defaultRecipe}

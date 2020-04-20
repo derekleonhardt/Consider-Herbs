@@ -3,34 +3,10 @@ import "./BrowseRecipe.css";
 
 var test =0;
 
-const getRecipe = (id) => {
-    fetch(`http://127.0.0.1:5000/api/db/recipe/id/`+id).then(
-            (response)=>{
-                (response.json().then(data =>{
-                    test = data.data.Ingredients.map((ingredient,index)=>{
-                      
-                        //console.log(ingredient.IngName);
-                        //console.log(ingredient.Amounut);
-                        //console.log(ingredient.Units);
-                        return(
-                            <div key={index}>
-                                <p>{ingredient.IngName} + {ingredient.Amounut} + {ingredient.Units}</p>
-                            </div>
-                            
-                          );
-                    })
-            }))
-
-    });
-    return(
-        <div>
-           {test} 
-        </div>
-    );
-  }
 
 const BrowseRecipe = (props) => {
-    var temp = props.results != undefined ? 
+    console.log(props.results);
+    var temp = props.results? 
     props.results.sort((a, b) => (a.RecName > b.RecName) ? 1 : -1) 
     : [];
 
@@ -44,16 +20,6 @@ const BrowseRecipe = (props) => {
                 <p> <b>Recipe Name:</b> {result.RecName}</p>
                 <p> <b>Ailment:</b> {result.Ailment}</p>
                 <p> <b>Description:</b> {result.Description}</p>
-                <p>{getRecipe(result.Id)}</p>
-            
-
-
-                
-
-                
-               
-                
-
             </div>
         );
     });
