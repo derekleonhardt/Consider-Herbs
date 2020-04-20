@@ -44,7 +44,10 @@ const getRecipe = (id) => {
   fetch(`http://127.0.0.1:5000/api/db/recipe/id/`+id).then(
           (response)=>{
               (response.json().then(data =>{
-                  data.data.Ingredients.map(ingredient=>{
+                  const test = data.data.Ingredients.map(ingredient=>{
+                    return(
+                      <p>{ingredient.IngName}</p>
+                    );
                       console.log(ingredient.IngName);
                       console.log(ingredient.Amounut);
                       console.log(ingredient.Units);

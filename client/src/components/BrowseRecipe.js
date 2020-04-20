@@ -1,20 +1,32 @@
 import React, {useState} from "react";
 import "./BrowseRecipe.css";
 
-var test = 0;
+var test =0;
 
 const getRecipe = (id) => {
     fetch(`http://127.0.0.1:5000/api/db/recipe/id/`+id).then(
             (response)=>{
                 (response.json().then(data =>{
-                    data.data.Ingredients.map((ingredient,index)=>{
-
-                        console.log(ingredient.IngName);
-                        console.log(ingredient.Amounut);
-                        console.log(ingredient.Units);
+                    test = data.data.Ingredients.map((ingredient,index)=>{
+                      
+                        //console.log(ingredient.IngName);
+                        //console.log(ingredient.Amounut);
+                        //console.log(ingredient.Units);
+                        return(
+                            <div key={index}>
+                                <p>{ingredient.IngName} + {ingredient.Amounut} + {ingredient.Units}</p>
+                            </div>
+                            
+                          );
                     })
             }))
+
     });
+    return(
+        <div>
+           {test} 
+        </div>
+    );
   }
 
 const BrowseRecipe = (props) => {
@@ -22,8 +34,8 @@ const BrowseRecipe = (props) => {
     props.results.sort((a, b) => (a.RecName > b.RecName) ? 1 : -1) 
     : [];
 
+    const[results, setResults] = useState([]);
 
-    
 
     const entries = temp.map((result, index) =>{
         return(
@@ -32,7 +44,8 @@ const BrowseRecipe = (props) => {
                 <p> <b>Recipe Name:</b> {result.RecName}</p>
                 <p> <b>Ailment:</b> {result.Ailment}</p>
                 <p> <b>Description:</b> {result.Description}</p>
-                <p>tests{getRecipe(result.Id)}</p>
+                <p>{getRecipe(result.Id)}</p>
+            
 
 
                 
