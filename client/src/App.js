@@ -37,6 +37,52 @@ const searchGlossary = (e, setResults) =>{
       });
   }else defaultGlossary(setResults);
 }
+const defaultRecipe = (setResults) => {
+  fetch(`http://127.0.0.1:5000/api/db/recipe/`).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  setResults(data.data);
+          }))
+  });
+}
+
+const getRecipe = (id) => {
+  fetch(`http://127.0.0.1:5000/api/db/recipe/id/`+id).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  const test = data.data.Ingredients.map(ingredient=>{
+                    return(
+                      <p>{ingredient.IngName}</p>
+                    );
+                      console.log(ingredient.IngName);
+                      console.log(ingredient.Amounut);
+                      console.log(ingredient.Units);
+                  })
+          }))
+  });
+}
+
+const searchRecipeByBody = (e, setResults) =>{
+  if (e.target.value.replace(/\s/g,'') != ''){
+      fetch(`http://127.0.0.1:5000/api/db/recipe/body/${e.target.value}`).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  setResults(data.data);
+              }))
+      });
+  }else defaultRecipe(setResults);
+}
+
+const searchRecipe = (e, setResults) =>{
+  if (e.target.value.replace(/\s/g,'') != ''){
+      fetch(`http://127.0.0.1:5000/api/db/recipe/search/${e.target.value}`).then(
+          (response)=>{
+              (response.json().then(data =>{
+                  setResults(data);
+              }))
+      });
+  }else defaultRecipe(setResults);
+}
 /*
 const setAuthUserRole = (userId,role,config, access) => {
   let id = [config.subscriberId, config.premiumId, config.adminId];
@@ -77,6 +123,7 @@ fetch(`https://${config.domain}/api/v2/users`,{
 }
 */
 const history = createBrowserHistory();
+
 
 const App = (props) => {
   const { loading, user, isAuthenticated} = useAuth0();
@@ -127,6 +174,13 @@ const App = (props) => {
         </Route>
         <Route path = "/Home" render = {(props) => <TheHome
           user = {user}
+        />}></Route>
+        <Route exact path="/Register" component={Remedy} />
+        <Route path = "/Remedy" render = {(props) => <TheRemedy
+        searchRecipeByBody = {searchRecipeByBody}
+        searchRecipe = {searchRecipe}
+        defaultRecipe = {defaultRecipe}
+        getRecipe = {getRecipe}
         />}></Route>
         <Route path = "/Admin" render = {(props) => <TheAdmin
         defaultGlossary = {defaultGlossary}
