@@ -286,6 +286,8 @@ const App = (props) => {
         <Route exact path = "/Subscribe"  render = {() => <Subscribe
           user = {user}
           userRole = {userRole}
+          config = {config}
+          access = {access}
         />}></Route>
         <Route component={NotFound}/>
       </Switch>

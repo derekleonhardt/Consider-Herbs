@@ -34,6 +34,7 @@ class SubscriptionForm extends React.Component {
               alert("error!");
             if(data.message)
               this.props.setSuccess(true);
+              this.props.setAuthUserRole(this.props.user.sub,"premium",this.props.config, this.props.access)
           })
         })
       }
