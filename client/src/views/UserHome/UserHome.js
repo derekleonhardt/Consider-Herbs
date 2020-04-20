@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './UserHome.css';
+import {Form, Transition, Button, Icon, Grid, Comment, Segment, Sticky, Header} from 'semantic-ui-react';
+import 'semantic-ui-react';
 
 const UserHome = (props) => {
     const [links, setLinks] = useState(null);
@@ -23,12 +25,11 @@ const UserHome = (props) => {
         let format = links.filter(link => link.inUse);
         setShownLinks(format.map((link, index) =>{
             return(
-                <div key = {index}>
-                    <h3>{link.name}</h3>
-                    <embed src = {link.src}></embed>
+                <div key = {index} className="adminLinks">
+                    <h1>{link.name}</h1>
+                    <embed src = {link.src} className="embedLink"></embed>
                     {
-                        link.caption &&
-                        <p>{link.caption}</p>
+                        <p className="linkCaption">{link.caption}</p>
                     }
                 </div>
             );
@@ -38,8 +39,8 @@ const UserHome = (props) => {
         let format = products.filter(product => product.inUse);
         setShownProducts(format.map((product, index) =>{
             return(
-                <figure key = {index}>
-                    <h3>{product.name}</h3>
+                <figure key = {index} className='figure'>
+                    <h3 className="productName">{product.name}</h3>
                     <img src = {product.src} alt= {product.alt}/>
                     <figcaption>${product.price}</figcaption>
                     <figcaption>{product.caption}</figcaption>
@@ -51,10 +52,12 @@ const UserHome = (props) => {
         let format = text.filter(txt => txt.inUse);
         setShownText(format.map((text, index) =>{
             return(
-                <div key = {index}>
-                    <h3>{text.title}</h3>
-                    <p>{text.text}</p>
-                </div> 
+                <Grid.Column>
+                    <div key = {index} className="addText">
+                        <h3 className="textTitle">{text.title}</h3>
+                        <p className="textTitle">{text.text}</p>
+                    </div> 
+                </Grid.Column> 
             );
         }));
     }
@@ -62,18 +65,20 @@ const UserHome = (props) => {
         let format = images.filter(img => img.inUse);
         setShownImages(format.map((image, index) =>{
             return(
-                <figure key = {index}>
-                    <img src = {image.src} alt= {image.alt}/>
-                    <figcaption>{image.caption}</figcaption>
-                </figure> 
+                <div key = {index} className="img">
+                    <div className='img2'>
+                        <img src = {image.src}  alt={image.alt} className="embedImg"/>
+                    </div>
+                    <h2>{image.caption}</h2>
+                </div>
             );
         }));
     }
     return(
         <div className="otherinspo">
-            <div className="thanks">
+            <div className="thanks1">
                 <h1>Thank you for Considering Herbs, {props.user.name}! </h1>
-                <h3>For more inspiration on how you can use herbs in every day life, take a look at these websites.</h3>
+                <h3>For more inspiration on how you can use herbs in every day life, take a look at these websites and announcements.</h3>
             </div>
         
             <div className="links">
@@ -82,17 +87,19 @@ const UserHome = (props) => {
             <div className="text">
                 {shownText}
             </div>
-            <div className="img">
-                {shownImages}
+            <div className="thanks">
+                <h3 className="checkout">Take a look at some fun images!</h3>
             </div>
-            <div className = "products">
-                {shownProducts}
+            <div className="imgContainer">
+                {shownImages}
             </div>
             <div className="thanks">
                 <h3 className="checkout">Check out these products I have been loving!</h3>
             </div>
 
-        
+            <div className = "products">
+                {shownProducts}
+            </div>
         </div>
     );
 }

@@ -1,5 +1,5 @@
 .thanks {
-    background: #A0BAA7;
+    background: #4F745A;
     border: 5px solid #FFFFFF;
     box-sizing: border-box;
     width: 50%;
@@ -9,6 +9,8 @@
     font-size: 1.7vw;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .spacer {
@@ -62,4 +64,110 @@
 }
 .web {
     height: 400px;
+}
+.adminLinks{
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    box-sizing: border-box;
+    padding: 1%;
+    color: white;
+    text-align: center;
+    font-size: 1.7vw;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    border-radius: 15px ;
+}
+.linkCaption{
+    font-size: 1.2vw;
+}
+.embedLink{
+    padding: 1%;
+    width: 350px;
+    height: 350px;
+
+}
+.addText{
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    box-sizing: border-box;
+    padding: 1%;
+    color: white;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    border-radius: 15px ;
+    margin-bottom: 15px;
+}
+.thanks1{
+    background: #4F745A;
+    border: 5px solid #FFFFFF;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 1%;
+    color: white;
+    text-align: center;
+    font-size: 1.7vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+.text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+.img{
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    box-sizing: border-box;
+    padding: 1%;
+    color: white;
+    text-align: center;
+    font-size: 1.7vw;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    border-radius: 15px ;
+    margin-bottom: 15px;
+}
+.embedImg{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+.embedFig{
+    max-width: 100%;
+    max-height: 100%;
+}
+.img2{
+    width: 500px;
+    height: 500px;
+}
+.imgContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.productName{
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+.figure{
+    align-items: center;
+    text-align: center;
+    background: #A0BAA7;
+    border: 5px solid #FFFFFF;
+    box-sizing: border-box;
+    padding: 1%;
+    border-radius: 15px ;
+    margin-bottom: 15px;
+
 }
