@@ -16,6 +16,7 @@ const Browse = (props) => {
             </div> 
             <BrowseResults
                 results = {results.data}
+                getRecipe = {props.getRecipe}
             />
         </div>
     );

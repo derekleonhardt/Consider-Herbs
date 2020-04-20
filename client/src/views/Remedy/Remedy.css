@@ -3,15 +3,17 @@ body {
 }
 
 .remedy {
-    background: #A0BAA7;
+    background-image: url("./../../assets/glossaryBackground.png");
+    background-size: auto;
+    min-height: 200vh;
     display: flex;
-    background-image: url(../../assets/remedy-background.jpeg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    flex-direction: column;
+    flex-flow: column;
     align-items: center;
-    padding:2% 0 2% 0;
+    padding-top: 2%;
+    font-family: "brawler" serif;
 }
+
+
 
 .remedyTitle {
     background-color: #C5DDE1;
@@ -22,7 +24,8 @@ body {
 
 .body {
     position: relative;
-    width: 60%;
+    max-width: 100%;
+    max-height: 100%;
     border: white solid 5px;
     box-sizing: border-box;
     top: 0;
@@ -33,160 +36,137 @@ body {
 .wrist {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 28%;
-    top: 110%;
     position: absolute;
+    bottom: 48%;
+    right: 79%;
 }
 
 .hands {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 42%;
-    top: 108%;
     position: absolute;
+    bottom: 45%;
+    right: 52.5%;
 }
 
 .fingers {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 42%;
-    top: 115%;
     position: absolute;
+    bottom: 39%;
+    right: 50%;
 }
 
 .head {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 35%;
-    top: 60%;
     position: absolute;
+    bottom: 92%;
+    right: 67%;
 }
 
 .face {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 28%;
-    top: 61%;
     position: absolute;
+    bottom: 86%;
+    right: 67%;
 }
-
 .eyes {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 28%;
-    top: 64%;
     position: absolute;
+    bottom: 86%;
+    right: 57%;
 }
 
 .ears {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 28%;
-    top: 67%;
     position: absolute;
+    bottom: 86%;
+    right: 77%;
 }
 
 .mouth {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 28%;
-    top: 70%;
     position: absolute;
+    bottom: 81%;
+    right: 66.5%;
 }
 
 .lips {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 28%;
-    top: 73%;
     position: absolute;
+    bottom: 81%;
+    right: 60%;
 }
 
 .throat {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 35%;
-    top: 71%;
     position: absolute;
+    bottom: 78%;
+    right: 66.5%;
 }
 
 .arm {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 30%;
-    top: 90%;
     position: absolute;
+    bottom: 70%;
+    right: 78%;
+
 }
 
 .stomach {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 35%;
-    top: 95%;
     position: absolute;
+    bottom: 58%;
+    right: 65.3%;
 }
 
 .legs {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 35%;
-    top: 115%;
     position: absolute;
+    bottom: 39%;
+    right: 71%;
 }
 
 .knee {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 35%;
-    top: 125%;
     position: absolute;
+    bottom: 26%;
+    right: 63%;
 }
 
 .feet {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 35%;
-    top: 150%;
     position: absolute;
+    bottom: 1%;
+    right: 66.5%;
 }
 
 .back {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 60%;
-    top: 90%;
     position: absolute;
+    bottom: 60%;
+    right: 25.5%;
 }
 
 .chest {
     border-radius: 8px;
     background-color: #C5DDE1;
-    z-index: 20;
-    left: 35%;
-    top: 80%;
     position: absolute;
-}
-
-.remedy{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+    bottom: 74%;
+    right: 66.5%;
 }
 .pain {
     background: #A0BAA7;
@@ -242,4 +222,12 @@ body {
 figcaption, .galleryTitle{
     text-align: center;
     color: white;
+}
+.bodyOutline{
+    height: 675px;
+    width: 675px;
+    background-image: url(../../assets/body-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
