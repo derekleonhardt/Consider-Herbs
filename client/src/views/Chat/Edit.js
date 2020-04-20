@@ -3,6 +3,7 @@ import {Form, Transition, Button, Icon, Grid, Input, TextArea} from 'semantic-ui
 import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
 import { Link, useHistory } from 'react-router-dom';
+import JoditEditor from "jodit-react";
 import Chat from './Chat.js'
 import './Edit.css';
 
@@ -77,12 +78,17 @@ const Edit = (props) => {
             </Grid.Row>
 
             <Grid.Row centered>
-                <Grid.Column width={9} centered textAlign='center'>
+                <Grid.Column width={9} centered>
                     <div className="createPost">
                         <Form>
                             <Input  className='writeInput' size='large' fluid value={title} onChange = {e => setTitle(e.target.value)} placeholder='Title'/>
                             <Input  className='writeInput' size='large' fluid value={url} onChange = {e => setUrl(e.target.value)} placeholder='Youtube Url'/>
-                            <TextArea className='textInput' value={content} style={{ minHeight: 250}} onChange = {e => setContent(e.target.value)} placeholder='Body'/>
+                            <JoditEditor
+                            minHeight={400}
+                            value={content}
+                            tabIndex={1}
+		                    onBlur={newContent => setContent(newContent)}
+                            />
                         </Form>
                     </div>
                 </Grid.Column>
@@ -107,12 +113,17 @@ const Edit = (props) => {
             </Grid.Row>
 
             <Grid.Row centered>
-                <Grid.Column width={9} centered textAlign='center'>
+                <Grid.Column width={9} centered>
                     <div className="createPost">
                         <Form>
-                            <Input  className='writeInput' size='large' fluid onChange = {e => setTitle(e.target.value)} placeholder='Title'/>
-                            <Input  className='writeInput' size='large' fluid onChange = {e => setUrl(e.target.value)} placeholder='Youtube Url'/>
-                            <TextArea className='textInput' style={{ minHeight: 250}} onChange = {e => setContent(e.target.value)} placeholder='Body'/>
+                            <Input  className='writeInput' size='large' fluid value={title} onChange = {e => setTitle(e.target.value)} placeholder='Title'/>
+                            <Input  className='writeInput' size='large' fluid value={url} onChange = {e => setUrl(e.target.value)} placeholder='Youtube Url'/>
+                            <JoditEditor
+                            minHeight={400}
+                            value={content}
+                            tabIndex={1}
+		                    onBlur={newContent => setContent(newContent)}
+                            />
                         </Form>
                     </div>
                 </Grid.Column>

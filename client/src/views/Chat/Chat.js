@@ -5,6 +5,7 @@ import { useAuth0 } from "../../react-auth0-spa";
 import { Link, useParams, useRouteMatch, useHistory } from 'react-router-dom';
 import './Chat.css';
 import Youtube from 'react-youtube';
+import renderHTML from 'react-render-html';
 
 const listPost = (setMethod) => {
     fetch(`http://127.0.0.1:5000/api/db/post/`).then(
@@ -168,7 +169,7 @@ const Chat = (props) => {
                         {
                          UrlID(curPost.url)
                         }
-                        <p>{curPost.content}</p>
+                        {renderHTML(curPost.content)}
                         </div>
 
                         <Comment.Group size="mini">
