@@ -15,7 +15,7 @@ const readRecipe = async (req, res) => {
           if (err) {
             res.json({error:"error while processing data.", "message":err});
           }
-          if(row){
+          if(row && row[0]){
             var recData = {data: {
                 "Id": row[0].Id,
                 "Ingredients":[],
@@ -55,7 +55,7 @@ const readRecipeByID = async (req, res) => {
           if (err) {
             res.json({error:"error while processing data.", "message":err});
           }
-          if(row){
+          if(row && row[0]){
             var recData = {data: {
                 "Id": row[0].Id,
                 "Ingredients":[],
