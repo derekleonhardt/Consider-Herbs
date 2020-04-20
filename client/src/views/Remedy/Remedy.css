@@ -34,139 +34,249 @@ body {
 }
 
 .wrist {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
     position: absolute;
     bottom: 48%;
-    right: 79%;
+    right: 82%;
+}
+.wrist:hover{
+    background: white;
 }
 
 .hands {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
     position: absolute;
-    bottom: 45%;
-    right: 52.5%;
+    bottom: 46%;
+    right: 56%;
+}
+.hands:hover{
+    background: white;
 }
 
 .fingers {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
     position: absolute;
-    bottom: 39%;
-    right: 50%;
+    bottom: 42%;
+    right: 55%;
+}
+.fingers:hover{
+    background: white;
 }
 
 .head {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 50%;
     position: absolute;
     bottom: 92%;
-    right: 67%;
+    right: 69.5%;
+}
+
+.head:hover{
+    background: white;
 }
 
 .face {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
     position: absolute;
-    bottom: 86%;
+    bottom: 85%;
+    right: 69.5%;
+}
+
+.face:hover{
+    background: white;
+}
+
+.eyes {
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 86.5%;
     right: 67%;
 }
-.eyes {
-    border-radius: 8px;
-    background-color: #C5DDE1;
-    position: absolute;
-    bottom: 86%;
-    right: 57%;
+
+.eyes:hover{
+    background: white;
 }
 
 .ears {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
     position: absolute;
-    bottom: 86%;
-    right: 77%;
+    bottom: 86.5%;
+    right: 75.5%;
+}
+
+.ears:hover{
+    background: white;
 }
 
 .mouth {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
     position: absolute;
-    bottom: 81%;
-    right: 66.5%;
+    bottom: 82%;
+    right: 71%;
+}
+
+.mouth:hover{
+    background: white;
 }
 
 .lips {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
     position: absolute;
-    bottom: 81%;
-    right: 60%;
+    bottom: 82%;
+    right: 68%;
+}
+
+.lips:hover{
+    background: white;
 }
 
 .throat {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
     position: absolute;
     bottom: 78%;
-    right: 66.5%;
+    right: 69.5%;
+}
+
+.throat:hover{
+    background: white;
 }
 
 .arm {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 50%;
     position: absolute;
     bottom: 70%;
     right: 78%;
 
 }
 
+.arm:hover{
+    background: white;
+}
+
+.dot {
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 70%;
+    right: 78%;
+  }
+
 .stomach {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 50%;
     position: absolute;
     bottom: 58%;
-    right: 65.3%;
+    right: 69.5%;
+}
+
+.stomach:hover{
+    background: white;
 }
 
 .legs {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
     position: absolute;
     bottom: 39%;
-    right: 71%;
+    right: 74%;
+}
+
+.legs:hover{
+    background: white;
 }
 
 .knee {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
     position: absolute;
     bottom: 26%;
-    right: 63%;
+    right: 66%;
+}
+
+.knee:hover{
+    background: white;
 }
 
 .feet {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 100%;
     position: absolute;
-    bottom: 1%;
+    bottom: 5%;
     right: 66.5%;
+}
+
+.feet:hover{
+    background: white;
 }
 
 .back {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 50%;
     position: absolute;
     bottom: 60%;
-    right: 25.5%;
+    right: 28%;
+}
+
+.back:hover{
+    background: white;
 }
 
 .chest {
-    border-radius: 8px;
-    background-color: #C5DDE1;
+    height: 17px;
+    width: 17px;
+    background-color: #4F745A;
+    border-radius: 50%;
     position: absolute;
     bottom: 74%;
-    right: 66.5%;
+    right: 69.5%;
+}
+
+.chest:hover{
+    background: white;
 }
 .pain {
     background: #A0BAA7;
