@@ -233,7 +233,7 @@ const Chat = (props) => {
                             <h1>Premium User</h1>
                             <h2>$10 / month</h2>
                             <p></p>
-                            <Button positive  size="small" className="button">Become A Premium Member</Button>
+                            <Link to='/Subscribe'><Button positive  size="small" className="button">Become A Premium Member</Button></Link>
                             <p></p>
                             <p>Unlimited Recipe and Herb Glossary Access</p>
                             <p>View All Online Videos and Classes</p>

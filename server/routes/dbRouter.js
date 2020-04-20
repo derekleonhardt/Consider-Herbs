@@ -49,4 +49,7 @@ dbRouter.post('/booking/admin/insert', db.adminInsertBooking);
 dbRouter.get('/content/links/', db.listLinks);
 dbRouter.post('/content/links/insert/', db.insertLink);
 
+//subscription
+dbRouter.get('/subscription/', db.listSubscription);
+
 module.exports = dbRouter;

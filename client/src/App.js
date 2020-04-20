@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import UserHome from "./views/UserHome/UserHome.js";
 import Checkout from "./views/Checkout/Checkout";
 import NoAccount from "./views/NoAccount/NoAccount";
+import Subscribe from "./views/Checkout/Subscribe";
 import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
 import { get, PromiseProvider } from 'mongoose';
@@ -155,6 +156,10 @@ const App = (props) => {
         />}></Route>
         <Route path ="/Checkout"
               render={()=> (<Checkout selectedProduct={selectedProduct}/>)}/>
+        <Route exact path = "/Subscribe"  render = {() => <Subscribe
+          user = {user}
+          userRole = {userRole}
+        />}></Route>
         <Route component={NotFound}/>
       </Switch>
       <Footer/>
