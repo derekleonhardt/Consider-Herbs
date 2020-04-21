@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import StripeScriptLoader from 'react-stripe-script-loader'
 import { StripeProvider, Elements } from 'react-stripe-elements';
 import CheckoutForm from './../../components/CheckoutForm';
+import stripePublicKey from './../../config/stripeConfig';
 
 const Checkout = ({ selectedProduct, history }) => {
   useEffect(() => {
@@ -10,11 +11,11 @@ const Checkout = ({ selectedProduct, history }) => {
 
   return (
     <StripeScriptLoader
-    uniqueId="pk_test_9xbqkUZGpn89mzhDuQaRxJAd002TLcQLbB"
+    uniqueId={stripePublicKey}
     script="https://js.stripe.com/v3/"
     loader="Loading..."
   >
-    <StripeProvider apiKey="pk_test_9xbqkUZGpn89mzhDuQaRxJAd002TLcQLbB">
+    <StripeProvider apiKey={stripePublicKey}>
       <Elements>
         <CheckoutForm selectedProduct={selectedProduct} history={history} />
       </Elements>
