@@ -178,13 +178,17 @@ const Chat = (props) => {
                             <Header as='h5'dividing>Comments</Header>
                             {
                                 comments.map((comment)=>{
+                                    const date = new Date(comment.Date);
                                     return(
                                         <>
                                             <Comment>
                                                 <Comment.Content>
                                                     <Comment.Author>{comment.name}</Comment.Author>
+                                                    <Comment.Metadata>
+                                                    <div>{date.toDateString() + " "+ date.getHours() + ":" + date.getMinutes()}</div>
+                                                    </Comment.Metadata>
                                                     <Comment.Text>{comment.content}</Comment.Text>
-                                    <Comment.Actions>{(user && user.email == curPost.email)?<a onClick={()=>deleteComment(comment.Id, loadComment, setComments, curPost.Id)}>delete</a>:<></>}</Comment.Actions>
+                                                    <Comment.Actions>{(user && user.email == curPost.email)?<a onClick={()=>deleteComment(comment.Id, loadComment, setComments, curPost.Id)}>delete</a>:<></>}</Comment.Actions>
                                                 </Comment.Content>
                                             </Comment>
                                         </>
