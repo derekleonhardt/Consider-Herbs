@@ -152,7 +152,8 @@ const Chat = (props) => {
     {
         if(!curPost || !curPost.Id || curPost.Id != pid)
             readPost(setCurPost, pid,setComments);
-        if(curPost && curPost.Id)
+        if(curPost && curPost.Id) {
+        const date = new Date(curPost.Date);
         return (
         <>
             <Grid centered className='grid4'>
@@ -160,6 +161,7 @@ const Chat = (props) => {
                     <div className="postTitle">
                         <h1>{curPost.title}</h1>
                         <p>by: {curPost.name}</p>
+                        <p>{date.toDateString() + " "+ date.getHours() + ":" + date.getMinutes()}</p>
                     </div>
                 </Grid.Row>
                 <Grid.Row>
@@ -205,7 +207,7 @@ const Chat = (props) => {
                 <Grid.Row></Grid.Row>
             </Grid>
         </>
-        );
+        );}
         else
         return (
         <>
@@ -231,11 +233,13 @@ const Chat = (props) => {
                             <Segment.Group>
                                 {
                                     posts.map(post=>{
+                                        const date = new Date(post.Date);
                                         return(
                                             <>
                                                 <Segment textAlign='center'>
                                                         <h3><a href={"/Chat/"+post.Id} className='titleLink'>{post.title}</a></h3>
                                                         <p>{post.name}</p>
+                                                        <p>{date.toDateString() + " "+ date.getHours() + ":" + date.getMinutes()}</p>
                                                 
                                                 </Segment>
                                             </>
