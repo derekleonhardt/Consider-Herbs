@@ -17,7 +17,7 @@ const BrowseResults = (props) => {
                         <p> <b>Usage:</b> {result.Usage}</p>
                     </Modal.Content>
                 </Modal>
-                <p> <b>Definition:</b> {result.Definition}</p>
+                <p className="tester"> <b>Definition:</b> {result.Definition}</p>
                 <p> <b>Usage:</b> {result.Usage}</p>
             </div>
         );

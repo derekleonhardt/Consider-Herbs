@@ -14,6 +14,7 @@ import UserHome from "./views/UserHome/UserHome.js";
 import Checkout from "./views/Checkout/Checkout";
 import NoAccount from "./views/NoAccount/NoAccount";
 import Subscribe from "./views/Checkout/Subscribe";
+import Loading from "./components/Loading";
 import { useAuth0 } from "./react-auth0-spa";
 import "./App.css"
 import { createBrowserHistory } from 'history'
@@ -207,7 +208,7 @@ const App = (props) => {
   const config = props.config;
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading/>;
   }
 
   //pages tier system
@@ -285,6 +286,8 @@ const App = (props) => {
         <Route exact path = "/Subscribe"  render = {() => <Subscribe
           user = {user}
           userRole = {userRole}
+          config = {config}
+          access = {access}
         />}></Route>
         <Route component={NotFound}/>
       </Switch>
