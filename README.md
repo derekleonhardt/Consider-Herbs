@@ -1,74 +1,137 @@
-## _**PLEASE READ THIS TO COMPLETION BEFORE ASKING ANY QUESTIONS!**_
+# Consider Herbs
 
-### _**IMPORTANT NOTES**_ - 
-This project does not have a mongoDB connection setup. Setup the connection based on the environments below.
-- local development: create a config file (make sure to name it config.js) in the config folder, which exports your db.uri connection. An example is provided, config/config.example.js. This file will be ignored by git so your db credentials will be kept safe when the app is deployed.
-- production: Since the config file is not pushed when you deploy your app, you must specifiy your db uri in heorku. Set the uri in heroku as specified in [this](https://devcenter.heroku.com/articles/config-vars) resource. Make sure you name the environement variable "DB_URI".
-
-This project contains an example project board meant to showcase how one can be used. The issues posted to it are not real issues.
+Web application built by group Homeopathic Homies for Consider Herbs as the final project for CEN3031 in Spring 2020.
 
 ## Getting Started
-This repository aims to assist you in beginning work on a MERN stack application for heroku deployment with a solid file structure as a foundation. To get started make a copy of this template repo for your project teams by clicking the green "Use this template" button above.
 
-Since this project will hold both the client application and the server application there will be node modules in two different places. First run `npm install` from the root. After this you will run `npm run-script install-all` from the root. From now on run this command anytime you want to install all modules again. This is a script we have defined in package.json. Alternatively your group may choose to simplify this process by using yarn workspaces as specified [here](https://yarnpkg.com/lang/en/docs/workspaces/).
+### Installing and Development Enviroment
 
-This app can be deployed directly to heroku since there is a script defined in package.json which will automatically handle building and deploying the app. For more information on deploying to heroku reference the extra resources at the bottom of this file. 
+A step by step series of examples that tell you how to get a development env running
 
+First run `npm install` from the root.
 
-## Available Scripts
+After this you will run `npm run-script install-all` from the root.
 
-Please note that any time the server is run in these scripts `nodemon` is used in place of `node` for easier development. If you are interested in how this works follow the nodemon In the project directory, you can run:
-
-### `npm run-script dev`
+`npm run-script dev`
 
 Runs both the client app and the server app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view the client in the browser.
 
-### `npm run-script client`
 
-Runs just the client app in development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view the client in the browser.
+## Built With
 
+*  SQLite
+*  Express
+*  React
+*  Node.js
 
-### `npm run-script server`
+## Features
 
-Runs just the server in development mode.<br>
+### Login / User Authentication
 
+Achieved a multi tiered user system consisting of a
+    * Non logged in user
+    * Logged in user
+    * Premium subscription user
+    * Admin
 
-### `npm run build`
+This Funcionality was achieved with the use of the Auth0 API and persists through refresh as well as restricts user-flow throughout the website depending on tier
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Herb Glossary and Recipe Searching
 
-If deploying to heroku this does not need to be run since it is handled by the heroku-postbuild script<br>
+The herb glossary is a basic search bar located on the Browse Herbs page with output of herbs with their definitions and usages displayed. There is the ability to click on the name of any herb on the page which results in a pop-up with all of that herbs information shown.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Within the Find A Remedy page there is a body diagram with buttons positioned around the body corresponding to different locations of pain that a user might be experiencing. These buttons sort the display of recipes below based on the corresponding pain area, and display all relevant recipies and their ingredients for the user. There is also a search bar functionality which filters the recipies displayed based on ailment.
 
+All of these functions were implemented through connection to an SQLite database that was created using Excel file provided by the client.
 
-## File structure
-#### `client` - Holds the client application
-- #### `public` - This holds all of our static files
-- #### `src`
-    - #### `assets` - This folder holds assets such as images, docs, and fonts
-    - #### `components` - This folder holds all of the different components that will make up our views
-    - #### `views` - These represent a unique page on the website i.e. Home or About. These are still normal react components
-    - #### `App.js` - This is what renders all of our browser routes and different views
-    - #### `index.js` - This is what renders the react app by rendering App.js, should not change
-- #### `package.json` - Defines npm behaviors and packages for the client
-#### `server` - Holds the server application
-- #### `config` - This holds our configuration files, like mongoDB uri
-- #### `controllers` - These hold all of the callback functions that each route will call
-- #### `models` - This holds all of our data models
-- #### `routes` - This holds all of our HTTP to URL path associations for each unique url
-- #### `tests` - This holds all of our server tests that we have defined
-- #### `server.js` - Defines npm behaviors and packages for the client
-#### `package.json` - Defines npm behaviors like the scripts defined in the next section of the README
-#### `.gitignore` - Tells git which files to ignore
-#### `README` - This file!
+### Chat Functionality
 
-## Learn More
-To learn how to setup a local MongoDB instance for testing, check out how to [connect to MongoDB](https://docs.mongodb.com/guides/server/drivers/).
+Discussion board functionality implemented on the Chat With Others page lists all recent posts and their authors as well as gives the user the option to write their own post. Each post is able to be clicked which redirects to the post page where all of the post contents as well as comments are shown. The user is able to add comments, and the author of the post is able to edit the post, and delete the post. Posts are text based but a youtube video link can be embeded within the post.
 
-To learn how to deploy a full-stack web app to heroku, check out [this great guide](https://daveceddia.com/deploy-react-express-app-heroku/).
+This chat is powered through another SQLite database.
 
-To learn React, check out the [React documentation](https://reactjs.org/).# Consider-Herbs
+### Consulation Calendar Booking
+
+Calendar implemented with React-big-calendar. On the Book Consulation page a user is able to book a consultation on a given date. The admin then confirms this date and the user is prompted for payment for the consultation through use of Stripe. The consultation will then appear on the calendar. Admin has full acess to deny or accept consulation bookings as well as add other events to the calendar such as video classes. The calendar is able to viewed in a day, week, month, or agenda view.
+
+These bookings are handled through another SQLite database.
+
+### Header and Footer
+
+Header and Footer take care of all the linking around the application, as well as link to outside social media and email accounts
+
+### Admin Functionality
+
+The admin has access to the /Admin path which is an admin page which grants acess to edit the glossary, manage all users and their tier of subscriptinon, confirm bookings and tell which users have paid for their booking, as well as manage Text, Images, Products, and Links shows on the userhome. This gives the admin ability to change what the users are she pleases.
+
+### API Usage
+
+ * Auth0 - User Authentication
+ * Stripe - Payment Managment
+ * Rest API - payment managment
+ * Database API - database managment
+         
+        recipe
+        -	/db/recipe/name/:name	(GET)		get recipe data by name
+        -	/db/recipe/id:id			(GET)		get recipe data by ID
+        -	/db/recipe/			(GET)		get list of recipe
+        -	/db/recipe/extended/		(GET)		get list of recipe including ingredients
+        -	/db/recipe/body/:body		(GET)		search recipe by body
+        -	/db/recipe/search/:query	(GET)		search recipe by name
+        -	/db/recipe/insert/		(POST)	insert recipe
+        -	/db/recipe/update/		(POST)	update recipe
+        -	/db/recipe/delete/:id		(DELETE)	delete recipe
+        
+        ingredients
+        -	/db/ingredients/add			(POST)	add ingredient to recipe
+        -	/db/ingredients/delete/:id/:name	(DELETE)	delete ingredient from recipe
+
+        glossary
+        -	/db/glossary/name/:name		(GET)		get glossary by name
+        -	/db/glossary/				(GET)		list glossary
+        -	/db/glossary/search/:query		(GET)		search glossary
+        -	/db/glossary/insert			(POST)	insert glossary
+        -	/db/glossary/update			(POST)	update glossary
+        -	/db/glossary/delete/:name		(DELETE)	delete glossary by name
+        -	/db/glossary/delete/def/:def		(DELETE)	delete glossary by definition
+
+        post
+        -	/db/post/		(GET)		get list of posts
+        -	/db/post/:id		(GET)		get post by id
+        -	/db/post/write/		(POST)	write post
+        -	/db/post/edit/:id	(POST)	edit post
+        -	/db/post/delete/:id	(DELETE)	delete post
+
+        reply
+        -	/db/post/:id/reply/		(GET)		get list of reply of a post
+        -	/db/post/:id/reply/write		(POST)	write reply on a post
+        -	/db/post/reply/edit		(POST)	edit reply
+        -	/db/post/reply/delete		(POST)	delete reply
+
+        content - link
+        -	/db/links			(GET)		get list of links
+        -	/db/links/:id			(GET)		get link by id
+        -	/db/links/page/:page		(GET)		get link page
+        -	/db/links/insert/		(POST)	insert link
+        -	/db/links/delete/:id		(DELETE)	delete link
+        -	/db/links/update/:id		(PATCH)	update link
+
+        content - image
+        -	/db/images/			(GET)		get list of images
+        -	/db/images/:id			(GET)		get image by id
+        -	/db/images/page/:page	(GET)		get image page
+        -	/db/images/insert/		(POST)	insert image
+        -	/db/images/delete/:id		(DELETE)	delete image
+        -	/db/images/update/:id		(PATCH)	update image
+
+        content - product
+        -	/db/products/			(GET)		get list of products
+        -	/db/products/:id		(GET)		get product by id
+        -	/db/products/page/:page	(GET)		get product page
+        -	/db/products/insert/		(POST)	insert product
+        -	/db/products/delete/:id	(DELETE)	delete product
+        -	/db/products/update/:id	(PATCH)	update product
+
+        subscription
+        -	/db/subscription	(GET)		list subscriptions
