@@ -1,4 +1,5 @@
-const stripe = require('stripe')("sk_test_6rCNDxDb2pGYE6RfW2o2l82l00HhRUqmpq")
+const {stripeKey} = require('../config/config')
+const stripe = require('stripe')(stripeKey.privateKey)
 
 async function postCharge(req, res, next) {
   try {
