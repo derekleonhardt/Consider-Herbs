@@ -23,6 +23,10 @@ const Subscribe = (props) => {
         setSuccess={setSuccess} 
         access = {props.access}
         config = {props.config}
+        setAuthUserRole = {props.setAuthUserRole}
+        deleteAuthUserRole = {props.deleteAuthUserRole}
+        userRole = {props.userRole}
+        setUserRole = {props.setUserRole}
         />
       </Elements>
     </StripeProvider>

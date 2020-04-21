@@ -27,11 +27,11 @@
 
 .sites, .links{
     display: flex;
-    background-repeat: no-repeat;
     flex-direction: row;
     align-items: center;
     padding:2% 0 2% 0;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .linky {
@@ -51,8 +51,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 .product {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
     height: 190px;
     padding: 2%;  
 
@@ -73,19 +77,17 @@
     color: white;
     text-align: center;
     font-size: 1.7vw;
-    margin-left: auto;
-    margin-right: auto;
     width: fit-content;
     border-radius: 15px ;
+    margin: 2%;
 }
 .linkCaption{
     font-size: 1.2vw;
 }
 .embedLink{
     padding: 1%;
-    width: 350px;
+    /* width: 80%; */
     height: 350px;
-
 }
 .addText{
     background: #A0BAA7;
@@ -128,11 +130,9 @@
     color: white;
     text-align: center;
     font-size: 1.7vw;
-    margin-left: auto;
-    margin-right: auto;
     width: fit-content;
-    border-radius: 15px ;
-    margin-bottom: 15px;
+    border-radius: 15px;   
+    margin: 2%;
 }
 .embedImg{
     max-width: 100%;
@@ -150,8 +150,8 @@
 .imgContainer{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .productName{

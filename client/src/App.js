@@ -178,8 +178,10 @@ const setAuthUserRole = (userId,role,config, access) => {
     "content-type": "application/json"},
     body: JSON.stringify({users: [userId]})
   })
-  .then(res => res.json().then(data => {
-  }))
+  .then(res => {
+    res.json().then(data => {
+  })
+  console.log(res)})
   .catch(rej=>console.log(rej));
 }
 
@@ -264,7 +266,10 @@ const App = (props) => {
         deleteDbListings = {deleteContentDbListings}
         addDbListings = {addContentDbListings}
         />}></Route>
-        <Route exact path = "/Book" render={()=>(<TheBooking selectProduct={setSelectedProduct}/>)}></Route>
+        <Route exact path = "/Book" render={()=>(<TheBooking 
+        selectProduct={setSelectedProduct}
+        userRole = {userRole}
+        />)}></Route>
         <Route exact path = "/Chat" render = {() => <Chat
           user = {user}
           userRole = {userRole}
@@ -288,6 +293,9 @@ const App = (props) => {
           userRole = {userRole}
           config = {config}
           access = {access}
+          setAuthUserRole = {setAuthUserRole}
+          deleteAuthUserRole = {deleteAuthUserRole}
+          setUserRole = {setUserRole}
         />}></Route>
         <Route component={NotFound}/>
       </Switch>

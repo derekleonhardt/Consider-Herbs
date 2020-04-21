@@ -250,6 +250,8 @@ const Chat = (props) => {
                 <Grid.Column textAlign="center">
                     <div className="buttonRow">
                         <p></p>
+                        {
+                    ((props.userRole === "guest") || (props.userRole === "subscriber")) &&
                         <div className="signUp2">
                             <h1>Premium User</h1>
                             <h2>$10 / month</h2>
@@ -259,6 +261,7 @@ const Chat = (props) => {
                             <p>Unlimited Recipe and Herb Glossary Access</p>
                             <p>View All Online Videos and Classes</p>
                         </div>
+                        }
                         <p></p>
                         
                         {(user)?<Link to={"/Write"}><Button  positive size="massive" className="postButton" centered>Write Your Own Post</Button></Link>:<></>}
