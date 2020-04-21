@@ -68,7 +68,10 @@ The admin has access to the /Admin path which is an admin page which grants aces
 ### API Usage
 
  * Auth0 - User Authentication
+      - API keys are available in auth0 Dashboard under Applications > ConsiderHerbsMachine (_M) version of API keys are       available under Applications > Machine to Machine
  * Stripe - Payment Managment
+      - Public key available for change at client/config/stripeConfig.js
+      - Private key located in .env file read in by /server/config/config.js
  * Rest API - payment managment
  * Database API - database managment
          
