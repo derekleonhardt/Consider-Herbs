@@ -8,6 +8,7 @@ import './Book.css';
 import 'semantic-ui-react';
 import { useAuth0 } from "../../react-auth0-spa";
 import { useHistory } from "react-router-dom";
+import { PromiseProvider } from 'mongoose';
 const localizer = momentLocalizer(moment)
 const gridWidth = 500;
 const bookingEvents = (setMethod) => {
@@ -60,7 +61,7 @@ const commitBooking = (event) => {
 }
 
 
-const Book = ({ products, selectProduct }) => {
+const Book = ({selectProduct, userRole}) => {
     const [events, setEvents] = useState([]);
     const [bookVisible, setBookVisible] = useState(false);
     const [date, setDate] = useState("");
@@ -164,7 +165,10 @@ const Book = ({ products, selectProduct }) => {
             <Grid.Row className="headerRow">
                 
             </Grid.Row>
-            <Grid.Row>
+           <Grid.Row>
+            {
+                ((userRole === "guest") || (userRole === "subscriber")) &&
+           
                 <div>
                     <div className="signUp">
                         <h1>Premium User</h1>
@@ -176,6 +180,7 @@ const Book = ({ products, selectProduct }) => {
                         <p>View All Online Videos and Classes</p>
                     </div>
                 </div>
+            }
             </Grid.Row>
             <Grid.Row></Grid.Row>
 
