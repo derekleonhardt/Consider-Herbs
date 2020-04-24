@@ -21,7 +21,7 @@ const CheckoutForm = ({ selectedProduct, stripe, history }) => {
   
       const { token } = await stripe.createToken()
   
-      const order = await axios.post('http://127.0.0.1:5000/api/payment/charge', {
+      const order = await axios.post('/api/payment/charge', {
         amount: selectedProduct.price.toString().replace('.', ''),
         source: token.id,
         receipt_email: selectedProduct.email,

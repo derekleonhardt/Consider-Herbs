@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d51ea951.chunk.css",
+    "main.js": "/static/js/main.41dffd79.chunk.js",
+    "main.js.map": "/static/js/main.41dffd79.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ca18a468.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ca18a468.js.map",
+    "static/css/2.5ce03a08.chunk.css": "/static/css/2.5ce03a08.chunk.css",
+    "static/js/2.617633b3.chunk.js": "/static/js/2.617633b3.chunk.js",
+    "static/js/2.617633b3.chunk.js.map": "/static/js/2.617633b3.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.f92037cb468482b508ec3281df5258fd.js": "/precache-manifest.f92037cb468482b508ec3281df5258fd.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.5ce03a08.chunk.css.map": "/static/css/2.5ce03a08.chunk.css.map",
+    "static/css/main.d51ea951.chunk.css.map": "/static/css/main.d51ea951.chunk.css.map",
+    "static/js/2.617633b3.chunk.js.LICENSE.txt": "/static/js/2.617633b3.chunk.js.LICENSE.txt",
+    "static/media/Home.css": "/static/media/aboutBackground.eb7772e3.jpeg",
+    "static/media/Remedy.css": "/static/media/body-1.224060f7.jpg",
+    "static/media/semantic.min.css": "/static/media/outline-icons.ef60a4f6.woff",
+    "static/media/Browse.css": "/static/media/glossaryBackground.0b7ffbb6.png",
+    "static/media/Chat.css": "/static/media/leafBackground.c01ab234.jpg",
+    "static/media/logo.svg": "/static/media/logo.25bf045c.svg",
+    "static/media/Book.css": "/static/media/palmFrond.87285711.jpg",
+    "static/media/Edit.css": "/static/media/palmFrond2.b4ce2a18.jpg",
+    "static/media/UserHome.css": "/static/media/userbackground.99e5f514.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ca18a468.js",
+    "static/css/2.5ce03a08.chunk.css",
+    "static/js/2.617633b3.chunk.js",
+    "static/css/main.d51ea951.chunk.css",
+    "static/js/main.41dffd79.chunk.js"
+  ]
+}

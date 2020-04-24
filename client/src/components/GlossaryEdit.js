@@ -25,7 +25,7 @@ const GlossaryEdit = (props) => {
             setMessageStatus("Please pick an entry to delete");
             return;
         }
-        const response = await fetch(`http://127.0.0.1:5000/api/db/glossary/delete/${formContents.Title}`, {
+        const response = await fetch(`/api/db/glossary/delete/${formContents.Title}`, {
           method: 'DELETE'
         });
         var res = (await response.json());
@@ -54,7 +54,7 @@ const GlossaryEdit = (props) => {
             };
             await submitDelete(entryInfo, false);
         }
-        const response = await fetch(`http://127.0.0.1:5000/api/db/glossary/insert`,
+        const response = await fetch(`/api/db/glossary/insert`,
         {
             method: 'POST',
             headers: {
