@@ -20,7 +20,7 @@ import "./App.css"
 import { createBrowserHistory } from 'history'
 
 const defaultGlossary = (setResults) => {
-  fetch(`http://127.0.0.1:5000/api/db/glossary/`).then(
+  fetch(`/api/db/glossary/`).then(
           (response)=>{
               (response.json().then(data =>{
                   setResults(data.data);
@@ -29,7 +29,7 @@ const defaultGlossary = (setResults) => {
 }
 const searchGlossary = (e, setResults) =>{
   if (e.target.value.replace(/\s/g,'') != ''){
-      fetch(`http://127.0.0.1:5000/api/db/glossary/search/${e.target.value}`).then(
+      fetch(`/api/db/glossary/search/${e.target.value}`).then(
           (response)=>{
               (response.json().then(data =>{
                   setResults(data.data);
@@ -43,7 +43,7 @@ const getContentDbListings = async (contentType, page, setListings) =>{
       redirect: 'follow'
   };
   let info;
-  fetch(`http://localhost:5000/api/db/${contentType.toLowerCase()}/page/${page}`, requestOptions)
+  fetch(`/api/db/${contentType.toLowerCase()}/page/${page}`, requestOptions)
   .then(response => response.json().then(data=>{
       if (data){
         if(!Array.isArray(data.data))
@@ -61,7 +61,7 @@ const updateContentDbListings = async (contentType, listingInfo) =>{
     },
     body: JSON.stringify(listingInfo)
   };
-  fetch(`http://localhost:5000/api/db/${contentType.toLowerCase()}/update/${listingInfo.id}`, requestOptions)
+  fetch(`/api/db/${contentType.toLowerCase()}/update/${listingInfo.id}`, requestOptions)
   .then(response => response.json().then(data => console.log(data)))
   .catch(err => console.log(err));
 }
@@ -69,7 +69,7 @@ const deleteContentDbListings = async (contentType, id) =>{
   let requestOptions = {
     method: "DELETE",
   };
-  fetch(`http://localhost:5000/api/db/${contentType.toLowerCase()}/delete/${id}`, requestOptions)
+  fetch(`/api/db/${contentType.toLowerCase()}/delete/${id}`, requestOptions)
   .then(response => {
     response.text();
     return response.text();
@@ -84,7 +84,7 @@ const addContentDbListings = async (contentType, listingInfo) =>{
       },
       body: JSON.stringify(listingInfo)
     };
-    fetch(`http://localhost:5000/api/db/${contentType.toLowerCase()}/insert/`, requestOptions)
+    fetch(`/api/db/${contentType.toLowerCase()}/insert/`, requestOptions)
     .then(response => response.json().then(data => console.log(data)))
     .catch(err => console.log(err));
   }
@@ -112,7 +112,7 @@ const deleteAuthUserRole = (userId,roles = [],config, access) => {
     );
 }
 const defaultRecipe = (setResults) => {
-  fetch(`http://127.0.0.1:5000/api/db/recipe/extended`).then(
+  fetch(`/api/db/recipe/extended`).then(
           (response)=>{
               (response.json().then(data =>{
                   setResults(data.data);
@@ -121,7 +121,7 @@ const defaultRecipe = (setResults) => {
 }
 
 const getRecipe = (id) => {
-  fetch(`http://127.0.0.1:5000/api/db/recipe/id/`+id).then(
+  fetch(`/api/db/recipe/id/`+id).then(
           (response)=>{
               (response.json().then(data =>{
                   const test = data.data.Ingredients.map(ingredient=>{
@@ -138,7 +138,7 @@ const getRecipe = (id) => {
 
 const searchRecipeByBody = (e, setResults) =>{
   if (e.target.value.replace(/\s/g,'') != ''){
-      fetch(`http://127.0.0.1:5000/api/db/recipe/body/${e.target.value}`).then(
+      fetch(`/api/db/recipe/body/${e.target.value}`).then(
           (response)=>{
               (response.json().then(data =>{
                   setResults(data.data);
@@ -149,7 +149,7 @@ const searchRecipeByBody = (e, setResults) =>{
 
 const searchRecipe = (e, setResults) =>{
   if (e.target.value.replace(/\s/g,'') != ''){
-      fetch(`http://127.0.0.1:5000/api/db/recipe/search/${e.target.value}`).then(
+      fetch(`/api/db/recipe/search/${e.target.value}`).then(
           (response)=>{
               (response.json().then(data =>{
                   setResults(data.data);
@@ -220,7 +220,7 @@ const App = (props) => {
   const TheAdmin = (isAuthenticated && userRole === "admin") ? Admin : NoAccount;
 
   if (!access){
-    fetch('http://127.0.0.1:5000/auth/access')
+    fetch('/auth/access')
     .then(res=>res.json().then(data => setAccess(data)))
     .catch(reas=>console.log(reas));
   }

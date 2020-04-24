@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './BookingAdmin.css';
 const bookingEvents = (setMethod) => {
-    fetch(`http://127.0.0.1:5000/api/db/booking/admin/`).then(
+    fetch(`/api/db/booking/admin/`).then(
             (response)=>{
                 (response.json().then(data =>{
                     console.log(data.data);
@@ -16,7 +16,7 @@ const confirmBooking = (bid, array, setMethod) => {
             newarr.push(d);
     });
     setMethod(newarr);
-    fetch(`http://127.0.0.1:5000/api/db/booking/admin/confirm`,{
+    fetch(`/api/db/booking/admin/confirm`,{
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
@@ -30,7 +30,7 @@ const addEvent = (title, date, setTitleMethod, setDateMethod) => {
         alert("please fill required form");
         return;
     }
-    fetch(`http://127.0.0.1:5000/api/db/booking/admin/insert`,{
+    fetch(`/api/db/booking/admin/insert`,{
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
