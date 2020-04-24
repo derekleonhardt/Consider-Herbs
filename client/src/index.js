@@ -20,7 +20,7 @@ const onRedirectCallback = appState => {
 };
 
 let config = {};
-fetch(`http://127.0.0.1:5000/auth`).then(res =>{
+fetch(`/auth`).then(res =>{
   res.json().then(data => {
     config = data;
   }).then(() => {

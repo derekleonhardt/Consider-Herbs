@@ -12,7 +12,7 @@ import { PromiseProvider } from 'mongoose';
 const localizer = momentLocalizer(moment)
 const gridWidth = 500;
 const bookingEvents = (setMethod) => {
-    fetch(`http://127.0.0.1:5000/api/db/booking/`).then(
+    fetch(`/api/db/booking/`).then(
             (response)=>{
                 (response.json().then(data =>{
                     //console.log(data);
@@ -41,7 +41,7 @@ const bookingEvents = (setMethod) => {
     });
 }
 const commitBooking = (event) => {
-    fetch(`http://127.0.0.1:5000/api/db/booking/commit`,{
+    fetch(`/api/db/booking/commit`,{
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'

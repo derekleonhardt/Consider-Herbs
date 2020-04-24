@@ -20,7 +20,7 @@ class SubscriptionForm extends React.Component {
       if (result.error) {
         alert("error!");
       } else {
-        fetch('http://127.0.0.1:5000/api/payment/subscribe', {
+        fetch('/api/payment/subscribe', {
           method: 'post',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({

@@ -58,15 +58,9 @@ module.exports.init = () => {
     // add a router
     app.use('/api/db/', dbRouter);
     app.use('/api/payment/', paymentRouter);
-    if (process.env.NODE_ENV === 'production') {
-        // Serve any static files
-        app.use(express.static(path.join(__dirname, '../../client/build')));
-
-        // Handle React routing, return all requests to React app
-        app.get('*', function(req, res) {
-            res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
-        });
-    }
+    
+    app.use(express.static('client/build'));
+    app.get('*', (req, res) => res.sendFile(path.resolve('client','build', 'index.html')));
 
     return app
 }

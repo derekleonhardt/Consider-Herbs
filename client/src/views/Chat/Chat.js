@@ -8,7 +8,7 @@ import Youtube from 'react-youtube';
 import renderHTML from 'react-render-html';
 
 const listPost = (setMethod) => {
-    fetch(`http://127.0.0.1:5000/api/db/post/`).then(
+    fetch(`/api/db/post/`).then(
             (response)=>{
                 (response.json().then(data =>{
                     setMethod(data.data);
@@ -17,7 +17,7 @@ const listPost = (setMethod) => {
 }
 
 const readPost = (setMethod,id,setCommentMethod) => {
-    fetch(`http://127.0.0.1:5000/api/db/post/`+id).then(
+    fetch(`/api/db/post/`+id).then(
             (response)=>{
                 (response.json().then(data =>{
                     setMethod(data.data);
@@ -27,7 +27,7 @@ const readPost = (setMethod,id,setCommentMethod) => {
 }
 
 const deletePost = (id, refreshMethod) => {
-    fetch(`http://127.0.0.1:5000/api/db/post/delete/`+id,{
+    fetch(`/api/db/post/delete/`+id,{
         method: 'DELETE',
         headers: {
         'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ const writeComment = (pid, content, user, setMethod) => {
         alert("you need to sign in!");
         return;
     }
-    fetch(`http://127.0.0.1:5000/api/db/post/`+pid+`/reply/write`,{
+    fetch(`/api/db/post/`+pid+`/reply/write`,{
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ const writeComment = (pid, content, user, setMethod) => {
 }
 
 const loadComment = (setMethod, pid) => {
-    fetch(`http://127.0.0.1:5000/api/db/post/`+pid+`/reply`).then(
+    fetch(`/api/db/post/`+pid+`/reply`).then(
             (response)=>{
                 (response.json().then(data =>{
                     setMethod(data.data);
@@ -73,7 +73,7 @@ const loadComment = (setMethod, pid) => {
 }
 
 const deleteComment = (id, refreshMethod,setCommentMethod,pid) => {
-    fetch(`http://127.0.0.1:5000/api/db/post/reply/delete/`,{
+    fetch(`/api/db/post/reply/delete/`,{
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
